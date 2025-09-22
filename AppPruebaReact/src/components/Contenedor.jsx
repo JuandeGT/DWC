@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Children } from "react";
 
 const Contenedor = (props) => {
-	return <div>props.childrem</div>;
+	return <>{props.Children}</>;
 };
 
 export default Contenedor;
