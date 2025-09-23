@@ -6,7 +6,7 @@ const Pelicula = (props) => {
 			<h2>{props.titulo}</h2>
 			<p>{props.direccion}</p>
 			<image>{props.cartela}</image>
-			<div>{props.childrem}</div>
+			<div>{props.Children}</div>
 		</>
 	);
 };

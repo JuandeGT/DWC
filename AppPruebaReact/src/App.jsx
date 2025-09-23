@@ -1,12 +1,9 @@
 import React from "react";
-import Contenedor from "./components/Contenedor.jsx";
-import Interprete from "./components/Interprete.jsx";
-import Pelicula from "./components/Pelicula.jsx";
+import Contenedor from "./components/Contenedor";
+import Interprete from "./components/Interprete";
+import Pelicula from "./components/Pelicula";
 
 function App() {
-	// Código JavaScript Vanilla.
-	let ancho = 300;
-
 	return (
 		<div>
 			<Contenedor>
