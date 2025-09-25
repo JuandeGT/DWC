@@ -1,18 +1,16 @@
 "use strict";
 
-const constructor = (nombre, anyo, descripcion, alumnado) => {
+const curso = (nombre, anyo, alumnado, descripcion) => {
+	if (typeof descripcion == "undefined") {
+		// Comprobamos si no hay descripción para asignarle un valor por defecto
+		descripcion = "Descripcion del curso vacía";
+	}
 	return {
 		nombre: nombre,
 		anyo: anyo,
 		alumnado: [alumnado],
-		descripcion: function (descripcion) {
-			if (typeof descripcion == "undefined") {
-				return "Descripcion del curso";
-			} else {
-				return descripcion;
-			}
-		},
+		descripcion: descripcion,
 	};
 };
 
-export { constructor };
+export { curso };

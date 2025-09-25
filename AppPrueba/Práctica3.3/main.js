@@ -1,7 +1,22 @@
 "use strict";
 
-import { constructor } from "./bibliotecas/ejercicio1.js";
+import { curso } from "./bibliotecas/ejercicio1.js";
+import { mostrar } from "./bibliotecas/ejercicio2.js";
+import { discente } from "./bibliotecas/ejercicio3.js";
 
-console.log(
-	constructor("DAW", 2, "Desarrollo aplicaciones web", ["Juande", "Rubén"])
+// Ejercicio 1.
+let primerCurso = curso("DAW", 2, ["Juande", "Rubén"]);
+
+// Ejercicio 2.
+console.log(mostrar(primerCurso));
+
+// Ejercicio 3.
+let discente1 = discente(
+	10816196,
+	"Juan",
+	"Gómez Tenza",
+	["Videojugos", "Deportes", "Animales"],
+	[7, 10, 3]
 );
+console.log(discente1.calcularMedia().toLocaleString("es-ES"));
+console.log(discente1.imprimirAficiones);
