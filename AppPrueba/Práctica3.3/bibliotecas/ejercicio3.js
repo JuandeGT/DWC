@@ -18,11 +18,11 @@ const discente = (id, nombre, apellidos, aficiones, notas) => {
 			}
 			return media / notas.length;
 		},
-		imprimirAficiones: () => {
+		imprimirAficiones: function () {
 			let imprimir = "Aficiones: ";
-			for (let dato in discente.aficiones) {
+			this.aficiones.forEach((visualViewport, InputDeviceInfo, array) => {
 				imprimir += `${dato}, `;
-			}
+			});
 			return imprimir;
 		},
 	};
