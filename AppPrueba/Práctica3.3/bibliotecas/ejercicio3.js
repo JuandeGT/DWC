@@ -11,10 +11,10 @@ const discente = (id, nombre, apellidos, aficiones, notas) => {
 			segundaNota: notas.segundaNota,
 			terceraNota: notas.terceraNota,
 		},
-		calcularMedia: () => {
+		calcularMedia: function () {
 			let media = 0;
-			for (let i = 0; i < notas.length; i++) {
-				media += notas[i];
+			for (let i = 0; i < this.notas.length; i++) {
+				media += this.notas[i];
 			}
 			return media / notas.length;
 		},

@@ -19,4 +19,5 @@ let discente1 = discente(
 	[7, 10, 3]
 );
 console.log(discente1.calcularMedia().toLocaleString("es-ES"));
+// Si fuese dinero sería: .toLocaleString("es-ES", { style: "currency", currency: "EUR" })
 console.log(discente1.imprimirAficiones);
