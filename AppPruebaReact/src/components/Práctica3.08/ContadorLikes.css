@@ -1,0 +1,19 @@
+.likes_container {
+	text-align: center;
+	margin: 20px 0;
+}
+h1 {
+	margin-bottom: 10px;
+	font-size: 1.4rem;
+}
+
+button {
+	margin: 5px;
+	padding: 6px 12px;
+	cursor: pointer;
+}
+
+div {
+	font-weight: bold;
+	margin-top: 10px;
+}

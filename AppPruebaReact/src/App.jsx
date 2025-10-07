@@ -2,11 +2,25 @@ import React from 'react';
 import Contenedor from './components/Contenedor.jsx';
 import Interprete from './components/Interprete.jsx';
 import Pelicula from './components/Pelicula.jsx';
+import Listado from './components/Práctica3.08/Listado.jsx';
+import ContadorLimite from './components/Práctica3.08/ContadorLimite.jsx';
+import ContadorLikes from './components/Práctica3.08/ContadorLikes.jsx';
+import './App.css';
 
 function App() {
 	return (
-		<div>
-			<Contenedor>
+		<>
+			<Listado />
+			<ContadorLimite />
+			<ContadorLikes />
+		</>
+	);
+}
+
+export default App;
+
+/*
+<Contenedor>
 				<Pelicula
 					titulo="Grown Ups"
 					direccion="Lago Chebacco en Massachusetts"
@@ -41,8 +55,4 @@ function App() {
 					</Interprete>
 				</Pelicula>
 			</Contenedor>
-		</div>
-	);
-}
-
-export default App;
+*/
