@@ -8,7 +8,11 @@ const Listado = () => {
 
 	const generarNumero = () => {
 		let numAleatorio = Math.floor(Math.random() * 100) + 1; //Crear un número aleatorio entre el 1 y 100 incluidos
-		setListado([...listado, numAleatorio]);
+		if (listado.includes(numAleatorio)) {
+			generarNumero();
+		} else {
+			setListado([...listado, numAleatorio]);
+		}
 	};
 
 	const eliminarListado = () => {
