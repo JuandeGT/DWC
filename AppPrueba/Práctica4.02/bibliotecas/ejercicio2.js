@@ -1,17 +1,36 @@
-"use strict";
+'use strict';
 
 const crearTabla = () => {
 	let num = 1;
-	document.body.insertAdjacentHTML("beforeend", "<table>");
+	document.body.insertAdjacentHTML('beforeend', '<table id="tabla"></table>');
+	const table = document.getElementById('tabla');
 	for (let i = 0; i < 10; i++) {
-		document.body.insertAdjacentHTML("beforeend", "<tr>");
+		table.insertAdjacentHTML('beforeend', `<tr id="fila${i}"></tr>`);
+		const line = document.getElementById(`fila${i}`);
 		for (let i = 0; i < 10; i++) {
-			document.body.insertAdjacentHTML("beforeend", `<td>${num}</td>`);
+			line.insertAdjacentHTML('beforeend', `<td class="numero">${num}</td>`);
 			num++;
 		}
-		document.body.insertAdjacentHTML("beforeend", "</tr>");
 	}
-	document.body.insertAdjacentHTML("beforeend", "</table>");
 };
 
-export { crearTabla };
+const cambiarTabla = () => {
+	let dato = document.getElementsByClassName('numero');
+	for (let i = 0; i < dato.length; i++) {
+		const valor = dato[i].innerHTML; // Devuelve un String pero como luego hacemos una operación se pasa automáticamente a número, sino tendríamos que hacerlo a mano.
+		let primo = true;
+
+		if (valor == 1) primo = false; // No puede entrar al for ya que saldría primo y no lo es.
+		for (let j = 2; j * j <= valor; j++) {
+			if (valor % j === 0) {
+				primo = false;
+				break; // Usamos el break porque solo nos hace falta encontrar un divisor, da igual si tiene más.
+			}
+		}
+		if (primo) {
+			dato[i].classList.add('primo');
+		}
+	}
+};
+
+export { crearTabla, cambiarTabla };

@@ -2,3 +2,22 @@
 	color: red;
 	font-weight: bold;
 }
+
+table {
+	border-collapse: collapse;
+	margin: auto;
+}
+
+tr,
+td {
+	border: 1px solid #0252a8;
+	border-width: 2px;
+	padding: 10px;
+	text-align: center;
+	color: black;
+}
+
+.primo {
+	background-color: red;
+	font-weight: bold;
+}

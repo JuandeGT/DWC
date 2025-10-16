@@ -1,0 +1,15 @@
+p {
+	font-family: serif;
+	font-size: 18px;
+	line-height: 1.5;
+	margin: 0 0 12px 0;
+	max-width: 750px;
+	border: 2px solid;
+	border-width: 2px;
+	padding: 3px;
+	background-color: white;
+}
+
+body {
+	background-color: grey;
+}
