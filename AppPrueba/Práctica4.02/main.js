@@ -1,9 +1,10 @@
-'use strict';
+"use strict";
 
-import { censurarPalabra } from './bibliotecas/ejercicio1.js';
-import { crearTabla, cambiarTabla } from './bibliotecas/ejercicio2.js';
+import { censurarPalabra } from "./bibliotecas/ejercicio1.js";
+import { crearTabla, cambiarTabla } from "./bibliotecas/ejercicio2.js";
+import { carruselImg } from "./bibliotecas/ejercicio4.js";
 
-setTimeout(() => {
+/* setTimeout(() => {
 	censurarPalabra();
 }, 2000);
 
@@ -11,4 +12,6 @@ crearTabla();
 
 setTimeout(() => {
 	cambiarTabla();
-}, 2000);
+}, 2000); */
+
+carruselImg();
