@@ -14,4 +14,11 @@ setTimeout(() => {
 	cambiarTabla();
 }, 2000); */
 
-carruselImg();
+//Separar las dos funciones para que no cree todo el rato otro div y otra img
+let num = 0;
+carruselImg(num);
+num++;
+setInterval(() => {
+	carruselImg(num);
+	num++;
+}, 2000);
