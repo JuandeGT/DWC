@@ -1,23 +1,23 @@
-"use strict";
+'use strict';
 
 const crearTabla = () => {
 	let num = 1;
-	document.body.insertAdjacentHTML("beforeend", '<table id="tabla"></table>');
-	const table = document.getElementById("tabla");
+	document.body.insertAdjacentHTML('beforeend', '<table id="tabla"></table>');
+	const table = document.getElementById('tabla');
 	for (let i = 0; i < 10; i++) {
-		table.insertAdjacentHTML("beforeend", `<tr id="fila${i}"></tr>`);
+		table.insertAdjacentHTML('beforeend', `<tr id="fila${i}"></tr>`);
 		const line = document.getElementById(`fila${i}`);
 		for (let i = 0; i < 10; i++) {
-			line.insertAdjacentHTML("beforeend", `<td class="numero">${num}</td>`);
+			line.insertAdjacentHTML('beforeend', `<td class="numero">${num}</td>`);
 			num++;
 		}
 	}
 };
 
 const cambiarTabla = () => {
-	let dato = document.getElementsByClassName("numero");
+	let dato = document.getElementsByClassName('numero');
 	for (let i = 0; i < dato.length; i++) {
-		const valor = dato[i].innerHTML; // Devuelve un String pero como luego hacemos una operación se pasa automáticamente a número, sino tendríamos que hacerlo a mano.
+		const valor = parseInt(dato[i].innerHTML);
 		let primo = true; // Pasarle una función separada primo
 
 		if (valor == 1) primo = false; // No puede entrar al for ya que saldría primo y no lo es.
@@ -28,7 +28,7 @@ const cambiarTabla = () => {
 			}
 		}
 		if (primo) {
-			dato[i].classList.add("primo");
+			dato[i].classList.add('primo');
 		}
 	}
 };

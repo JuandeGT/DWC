@@ -21,3 +21,27 @@ td {
 	background-color: red;
 	font-weight: bold;
 }
+
+#carrusel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	max-width: 900px;
+	margin: 40px auto;
+	overflow: hidden;
+	position: relative;
+	border-radius: 20px;
+}
+
+#imagen {
+	width: 100%;
+	height: auto;
+	display: block;
+	opacity: 0;
+	transition: 1s ease-in-out;
+}
+
+#imagen.visible {
+	opacity: 1;
+}
