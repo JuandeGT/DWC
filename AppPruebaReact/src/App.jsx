@@ -16,12 +16,13 @@ function App() {
 					titulo="Grown Ups"
 					direccion="Lago Chebacco en Massachusetts"
 					cartela="https://upload.wikimedia.org/wikipedia/en/thumb/f/fe/Grownupsmovie.jpg/250px-Grownupsmovie.jpg"
-				>
-					La muerte de su entrenador de baloncesto durante su infancia provoca
+					descripcion="La muerte de su entrenador de baloncesto durante su infancia provoca
 					la reunión de algunos viejos amigos, quienes se ven en el lugar en el
 					que celebraron un campeonato años atrás. Los compañeros hablan sobre
 					sus esposas y sus hijos, y descubren que la edad no necesariamente va
-					de la mano con la madurez.
+					de la mano con la madurez."
+					taquilla="1000000"
+				>
 					<Interprete nombre="Adam Sandler" foto="">
 						Adam Sandler es un actor, comediante y productor estadounidense
 						nacido en 1966 en Brooklyn, Nueva York. Se hizo conocido en el
