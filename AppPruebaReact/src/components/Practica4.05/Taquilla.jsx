@@ -1,9 +1,15 @@
-import React from "react";
+import React from 'react';
 
-const Taquilla = (props) => {
-	//Formatear el dinero
+const Taquilla = ({ taquilla }) => {
+	const formatearDinero = (taquilla) => {
+		return new Intl.NumberFormat('es-ES', {
+			style: 'currency',
+			currency: 'EUR',
+			minimumFractionDigits: 2,
+		}).format(taquilla);
+	};
 
-	return <div>{props.taquilla}</div>;
+	return <>{formatearDinero(taquilla)}</>;
 };
 
 export default Taquilla;

@@ -1,28 +1,33 @@
 .interprete {
-	border: 2px solid green;
-	padding: 10px;
-	margin: 10px 0;
 	display: flex;
 	align-items: flex-start;
 	gap: 15px;
-	background-color: #ffffff;
+	background-color: #fff;
+	padding: 15px;
+	border-radius: 10px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+	margin-bottom: 15px;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.interprete:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
 .interprete img {
-	width: 80px;
+	width: 85px;
 	height: 120px;
+	border-radius: 8px;
 	object-fit: cover;
-	border: 2px solid green;
+	flex-shrink: 0;
 }
 
-.interprete-info {
-	flex: 1;
-}
-
-.interprete-info h2 {
-	margin: 0 0 5px;
-}
-
-.interprete-info p {
-	margin: 0;
+.interprete-info div {
+	color: #555;
+	font-size: 0.95rem;
+	line-height: 1.5;
+	text-align: justify;
 }
