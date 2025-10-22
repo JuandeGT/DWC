@@ -9,7 +9,7 @@ const carruselImg = (num) => {
 	];
 	document.body.insertAdjacentHTML("beforeend", '<div id="carrusel"></div>');
 	const carrusel = document.getElementById("carrusel");
-	carrusel.insertAdjacentHTML("beforeend", `<img id="imagen"></img>`);
+	carrusel.insertAdjacentHTML("beforeend", `<img id="imagen">`); // En html 5 no hace falta cerrar la etiqueta de img
 	const foto = document.getElementById("imagen");
 	foto.src = imagenes[num];
 };
