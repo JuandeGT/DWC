@@ -30,11 +30,11 @@ const Pelicula = (props) => {
 			>
 				Taquilla
 			</button>
-			<div ref={elencoRef} className="oculto">
-				{props.children}
-			</div>
 			<div ref={taquillaRef} className="oculto">
 				<Taquilla taquilla={props.taquilla} />
+			</div>
+			<div ref={elencoRef} className="oculto">
+				{props.children}
 			</div>
 		</div>
 	);

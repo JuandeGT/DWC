@@ -1,9 +1,9 @@
 import React from "react";
 
-const Taquilla = (taquilla) => {
+const Taquilla = (props) => {
 	//Formatear el dinero
 
-	return <div>{taquilla}</div>;
+	return <div>{props.taquilla}</div>;
 };
 
 export default Taquilla;
