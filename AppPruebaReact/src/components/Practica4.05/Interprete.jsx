@@ -1,5 +1,5 @@
-import React, { Children } from 'react';
-import './Interprete.css';
+import React, { Children } from "react";
+import "./Interprete.css";
 
 const Interprete = (props) => {
 	return (
@@ -7,7 +7,7 @@ const Interprete = (props) => {
 			<img src={props.foto} alt="Foto" />
 			<div className="interprete-info">
 				<h2>{props.nombre}</h2>
-				<p>{props.children}</p>
+				<div>{props.children}</div>
 			</div>
 		</div>
 	);
