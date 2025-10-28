@@ -1,21 +1,24 @@
-import React from 'react';
-import Peliculas from '../peliculas.json';
-import Interpretes from './Interpretes.jsx';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import DatosPeliculas from "../peliculas.json";
 
 const Peliculas = () => {
+	const navigate = useNavigate();
+
+	const detalle = (id) => {
+		navigate(`/peliculaDetalle:${id}`);
+	};
+
 	return (
 		<div className="peliculas">
-			{Peliculas.peliculas.map((peli) => {
-				<div>
-					<h2>{peli.nombre}</h2>
-					<p>Director: {peli.director}</p>
-					<p>Clasificación: {peli.clasificacion}</p>
-					<p>Recaudación: {peli.recaudacion}</p>
+			{DatosPeliculas.peliculas.map((peli) => {
+				<div
+					onClick={() => {
+						detalle(peli.id);
+					}}
+				>
+					<h2>Título: {peli.nombre}</h2>
 					<img src={peli.cartelera} alt="Cartelera" />
-					<p>Nota: {peli.nota}</p>
-					<p>Resumen: {peli.resumen}</p>
-					<h3>Actores:</h3>
-					<div>{<Interpretes id={peli.id} />}</div>
 				</div>;
 			})}
 		</div>

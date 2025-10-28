@@ -1,9 +1,9 @@
-import React from 'react';
-import Peliculas from '../peliculas.json';
+import React from "react";
+import DatosPeliculas from "../peliculas.json";
 
 const Interpretes = ({ id }) => {
-	const pelicula = Peliculas.peliculas.filter((peli) => {
-		p.id == id;
+	const pelicula = DatosPeliculas.peliculas.filter((peli) => {
+		peli.id == id;
 	});
 	return (
 		<div className="actores">
