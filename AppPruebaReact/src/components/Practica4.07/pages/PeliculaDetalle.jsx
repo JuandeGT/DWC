@@ -5,16 +5,15 @@ import InterpretesPeli from "./InterpretesPeli.jsx";
 import BotonInicio from "../estructura/BotonInicio.jsx";
 
 const PeliculaDetalle = () => {
-	const { id } = useParams();
+	const { id } = useParams(); // Recogemos el parámetro pasado por la url para identificar la película
 	const pelicula = datosPeliculas.peliculas.filter(
-		(p) => p.id === parseInt(id)
+		(p) => p.id === parseInt(id) //Usamos parseInt porque params devuelve siempre un string
 	);
 	return (
 		<>
 			<div className="peliculas">
 				{pelicula.map((peli) => (
 					<div key={crypto.randomUUID()}>
-						hola
 						<h2>{peli.nombre}</h2>
 						<p>Director: {peli.director}</p>
 						<p>Clasificación: {peli.clasificacion}</p>
