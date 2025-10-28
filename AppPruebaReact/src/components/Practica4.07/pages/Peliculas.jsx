@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import DatosPeliculas from "../peliculas.json";
+import datosPeliculas from "../peliculas.json";
 
 const Peliculas = () => {
 	const navigate = useNavigate();
@@ -11,16 +11,16 @@ const Peliculas = () => {
 
 	return (
 		<div className="peliculas">
-			{DatosPeliculas.peliculas.map((peli) => {
+			{datosPeliculas.peliculas.map((peli) => (
 				<div
 					onClick={() => {
 						detalle(peli.id);
 					}}
 				>
 					<h2>Título: {peli.nombre}</h2>
-					<img src={peli.cartelera} alt="Cartelera" />
-				</div>;
-			})}
+					<img src={peli.cartelera} />
+				</div>
+			))}
 		</div>
 	);
 };
