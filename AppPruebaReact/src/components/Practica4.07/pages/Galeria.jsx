@@ -1,6 +1,7 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
-import SubMenu from "../estructura/SubMenu";
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import SubMenu from '../estructura/SubMenu';
+import './Galeria.css';
 
 const Galeria = () => {
 	return (

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const Cabecera = () => {
-	return <div>Cabecera</div>;
+	return <div className="cabecera">Cabecera</div>;
 };
 
 export default Cabecera;

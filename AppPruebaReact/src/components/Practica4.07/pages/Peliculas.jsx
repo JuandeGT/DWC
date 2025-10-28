@@ -1,6 +1,7 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import datosPeliculas from "../assets/peliculas.json";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import datosPeliculas from '../assets/peliculas.json';
+import './Peliculas.css';
 
 const Peliculas = () => {
 	const navigate = useNavigate();

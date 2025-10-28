@@ -1,5 +1,5 @@
-import React from "react";
-import datosPeliculas from "../assets/peliculas.json";
+import React from 'react';
+import datosPeliculas from '../assets/peliculas.json';
 
 const Interpretes = () => {
 	return (
