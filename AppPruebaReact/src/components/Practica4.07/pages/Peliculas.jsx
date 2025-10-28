@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import datosPeliculas from "../peliculas.json";
+import datosPeliculas from "../assets/peliculas.json";
 
 const Peliculas = () => {
 	const navigate = useNavigate();
 
 	const detalle = (id) => {
-		navigate(`/peliculaDetalle:${id}`);
+		navigate(`/peliculaDetalle/${id}`);
 	};
 
 	return (
@@ -16,6 +16,7 @@ const Peliculas = () => {
 					onClick={() => {
 						detalle(peli.id);
 					}}
+					key={crypto.randomUUID()}
 				>
 					<h2>Título: {peli.nombre}</h2>
 					<img src={peli.cartelera} />

@@ -7,7 +7,7 @@ const Menu = () => {
 			<Link to="/">Inicio</Link>
 			<Link to="/peliculas">Peliculas</Link>
 			<Link to="/interpretes">Intérpretes</Link>
-			<Link to="/galeria">Galería</Link>
+			<Link to="/galeria/todas">Galería</Link>
 			<Link to="/acerca-de">Acerda de</Link>
 		</nav>
 	);
