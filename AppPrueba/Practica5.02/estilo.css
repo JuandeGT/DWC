@@ -1,0 +1,23 @@
+.oculto {
+	display: none;
+}
+
+.pestaña {
+	display: flex;
+	justify-self: center;
+	height: 40px;
+
+	border: 1px solid;
+	border-radius: 10px;
+	background-color: rgb(240, 240, 240);
+	padding: 1px;
+}
+
+.pestaña h2 {
+	padding: 10px;
+}
+
+div:last-of-type p {
+	justify-self: center;
+	font-size: 20px;
+}
