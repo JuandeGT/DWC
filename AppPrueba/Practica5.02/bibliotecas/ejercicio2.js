@@ -1,6 +1,6 @@
 "use strict";
 
-const contenidoPestaña = (evento, num) => {
+const contenidoPestana = (evento, num) => {
 	const contenido = evento.target.parentNode.nextElementSibling.children;
 	for (let i = 0; i < contenido.length; i++) {
 		if (i === num) {
@@ -11,4 +11,4 @@ const contenidoPestaña = (evento, num) => {
 	}
 };
 
-export { contenidoPestaña };
+export { contenidoPestana };
