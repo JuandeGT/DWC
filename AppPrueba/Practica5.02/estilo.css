@@ -2,19 +2,29 @@
 	display: none;
 }
 
+.ej2 {
+	justify-self: center;
+	margin-top: 50px;
+	border: 1px solid;
+	border-radius: 10px;
+}
+
 .pestaña {
 	display: flex;
 	justify-self: center;
 	height: 40px;
-
 	border: 1px solid;
-	border-radius: 10px;
 	background-color: rgb(240, 240, 240);
 	padding: 1px;
 }
 
 .pestaña h2 {
 	padding: 10px;
+	margin: 0;
+}
+
+.pestaña h2:not(:last-of-type) {
+	border-right: 1px solid;
 }
 
 div:last-of-type p {

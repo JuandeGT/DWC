@@ -17,9 +17,12 @@ window.onload = () => {
 	document.getElementsByClassName("pestaña")[0].addEventListener(
 		"click",
 		(evento) => {
-			if (evento.target.innerHTML === "Pestaña1") contenidoPestaña(evento, 0);
-			if (evento.target.innerHTML === "Pestaña2") contenidoPestaña(evento, 1);
-			if (evento.target.innerHTML === "Pestaña3") contenidoPestaña(evento, 2);
+			const pestañas = evento.target.parentNode.children;
+			for (let i = 0; i < pestañas.length; i++) {
+				//Hacemos el bucle para pasarle a la función como parámetro la posición del tarjet y así saber qué contenido mostrar
+				if (pestañas[i].innerHTML === evento.target.innerHTML)
+					contenidoPestaña(evento, i);
+			}
 		},
 		false
 	);
