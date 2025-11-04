@@ -11,7 +11,7 @@ const crearLienzo = () => {
 		for (let j = 1; j < 61; j++) {
 			fila.insertAdjacentHTML(
 				"beforeend",
-				`<td id=${i}elemento${j} class="elemento"></td>`
+				`<td id=elemento${j}_${i} class="elemento"></td>`
 			);
 		}
 	}
