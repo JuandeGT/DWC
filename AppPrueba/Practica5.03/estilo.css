@@ -1,14 +1,24 @@
 body {
 	display: flex;
 	justify-content: center;
+	background-color: lightgray;
+	gap: 100px;
 }
 
 #colores {
-	display: flex;
-	justify-content: center;
+	background-color: white;
+	border-radius: 5px;
+}
+
+#lienzo {
+	display: block;
+	width: fit-content;
+	background-color: white;
+	border-radius: 10px;
 }
 
 #tabla {
+	table-layout: fixed;
 	border-collapse: collapse;
 }
 

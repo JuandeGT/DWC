@@ -17,4 +17,17 @@ const crearLienzo = () => {
 	}
 };
 
-export { crearLienzo };
+const pintarLienzo = (event, color) => {
+	if (event.target.tagName === "TD") {
+		event.target.style.backgroundColor = color;
+	}
+};
+
+const reiniciarLienzo = () => {
+	const celdas = document.getElementsByTagName("td");
+	for (let i = 0; i < celdas.length; i++) {
+		celdas[i].style.backgroundColor = "white";
+	}
+};
+
+export { crearLienzo, pintarLienzo, reiniciarLienzo };
