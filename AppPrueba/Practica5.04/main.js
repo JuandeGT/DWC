@@ -23,11 +23,47 @@ window.onload = () => {
 		arrastables[i].setAttribute("draggable", true);
 	}
 
-	document.getElementById("piezas").addEventListener(
+	const piezas = document.getElementById("piezas");
+	piezas.addEventListener(
 		"dragstart",
 		(evento) => {
 			evento.dataTransfer.setData("id", evento.target.id);
 		},
 		false
 	);
+
+	piezas.addEventListener("dragover", (evento) => {
+		evento.preventDefault();
+	});
+
+	piezas.addEventListener("drop", (evento) => {
+		evento.preventDefault();
+		if (evento.target.classList.contains("soltable")) {
+			evento.target.appendChild(
+				document.getElementById(evento.dataTransfer.getData("id"))
+			);
+		}
+	});
+
+	const panel = document.getElementById("panel");
+	panel.addEventListener(
+		"dragstart",
+		(evento) => {
+			evento.dataTransfer.setData("id", evento.target.id);
+		},
+		false
+	);
+
+	panel.addEventListener("dragover", (evento) => {
+		evento.preventDefault();
+	});
+
+	panel.addEventListener("drop", (evento) => {
+		evento.preventDefault();
+		if (evento.target.classList.contains("soltable")) {
+			evento.target.appendChild(
+				document.getElementById(evento.dataTransfer.getData("id"))
+			);
+		}
+	});
 }; //Fin del window onload
