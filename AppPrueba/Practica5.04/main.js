@@ -1,77 +1,115 @@
-'use strict';
+"use strict";
 
-import { crearPiezas, crearBoton } from './bibliotecas/ejercicio1.js';
+import {
+	crearPiezas,
+	crearBoton,
+	comprobarImg,
+	crearPiezasMedio,
+} from "./bibliotecas/ejercicio1.js";
 
 window.onload = () => {
 	//Hacer temporizador
 	const imagenes = [
-		'./images/1.png',
-		'./images/2.png',
-		'./images/3.png',
-		'./images/4.png',
-		'./images/5.png',
-		'./images/6.png',
-		'./images/7.png',
-		'./images/8.png',
-		'./images/9.png',
+		"./images/facil/1.png",
+		"./images/facil/2.png",
+		"./images/facil/3.png",
+		"./images/facil/4.png",
+		"./images/facil/5.png",
+		"./images/facil/6.png",
+		"./images/facil/7.png",
+		"./images/facil/8.png",
+		"./images/facil/9.png",
+	];
+
+	const imagenesMedio = [
+		"./images/medio/1.png",
+		"./images/medio/2.png",
+		"./images/medio/3.png",
+		"./images/medio/4.png",
+		"./images/medio/5.png",
+		"./images/medio/6.png",
+		"./images/medio/7.png",
+		"./images/medio/8.png",
+		"./images/medio/9.png",
 	];
 
 	crearPiezas(imagenes);
 	crearBoton();
 
-	const arrastables = document.getElementsByClassName('arrastable');
+	const arrastables = document.getElementsByClassName("arrastable");
 	for (let i = 0; i < arrastables; i++) {
-		arrastables[i].setAttribute('draggable', true);
+		arrastables[i].setAttribute("draggable", true);
 	}
 
-	const piezas = document.getElementById('piezas');
+	const piezas = document.getElementById("piezas");
 	piezas.addEventListener(
-		'dragstart',
+		"dragstart",
 		(evento) => {
-			evento.dataTransfer.setData('id', evento.target.id);
+			evento.dataTransfer.setData("id", evento.target.id);
 		},
 		false
 	);
 
-	piezas.addEventListener('dragover', (evento) => {
+	piezas.addEventListener("dragover", (evento) => {
 		evento.preventDefault();
 	});
 
-	piezas.addEventListener('drop', (evento) => {
+	piezas.addEventListener("drop", (evento) => {
 		evento.preventDefault();
-		if (evento.target.classList.contains('soltable') || evento.target.id === 'piezas') {
-			evento.target.appendChild(document.getElementById(evento.dataTransfer.getData('id')));
+		const imagenArrastrada = document.getElementById(
+			evento.dataTransfer.getData("id")
+		);
+		if (
+			evento.target.classList.contains("soltable") ||
+			evento.target.id === "piezas"
+		) {
+			if (evento.target !== imagenArrastrada) {
+				evento.target.appendChild(imagenArrastrada);
+			}
 		}
 	});
 
-	const panel = document.getElementById('panel');
+	const panel = document.getElementById("panel");
 	panel.addEventListener(
-		'dragstart',
+		"dragstart",
 		(evento) => {
-			evento.dataTransfer.setData('id', evento.target.id);
+			evento.dataTransfer.setData("id", evento.target.id);
 		},
 		false
 	);
 
-	panel.addEventListener('dragover', (evento) => {
+	panel.addEventListener("dragover", (evento) => {
 		evento.preventDefault();
 	});
 
-	panel.addEventListener('drop', (evento) => {
+	panel.addEventListener("drop", (evento) => {
 		evento.preventDefault();
-		if (evento.target.classList.contains('soltable')) {
-			evento.target.appendChild(document.getElementById(evento.dataTransfer.getData('id')));
+		if (evento.target.classList.contains("soltable")) {
+			evento.target.appendChild(
+				document.getElementById(evento.dataTransfer.getData("id"))
+			);
+		}
+
+		if (comprobarImg(panel.children)) {
+			panel.insertAdjacentHTML(
+				"beforebegin",
+				"<h2 id='resuelto'>Puzzle resuelto!!!</h2>"
+			);
+			crearPiezasMedio(piezas, panel, imagenesMedio);
 		}
 	});
 
-	document.getElementsByTagName('button')[0].addEventListener('click', () => {
+	document.getElementsByTagName("button")[0].addEventListener("click", () => {
 		// Vaciamos el div con las imágenes para volver a crearlo.
-		piezas.innerHTML = '';
+		piezas.innerHTML = "";
 		crearPiezas(imagenes);
 		// Vaciamos el panel para que no tenga imágenes
 		let panelImg = panel.children;
 		for (let i = 0; i < panelImg.length; i++) {
-			panelImg[i].innerHTML = '';
+			panelImg[i].innerHTML = "";
+		}
+		if (document.getElementById("resuelto")) {
+			document.getElementById("resuelto").remove();
 		}
 	});
 }; //Fin del window onload
