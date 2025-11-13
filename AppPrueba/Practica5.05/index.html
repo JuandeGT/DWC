@@ -9,37 +9,58 @@
 	<body>
 		<div>
 			<form id="formulario" name="formulario">
-				<label for="nombre">Nombre del disco:</label>
-				<input type="text" id="nombre" name="nombre" placeholder="Nombre..." />
-				<label for="caratula">Carátula del disco:</label>
-				<input
-					type="url"
-					id="caratula"
-					name="caratula"
-					placeholder="URL de la carátula..."
-				/>
-				<label for="musico">Grupo de música o músico:</label>
-				<input
-					type="text"
-					id="musico"
-					name="musico"
-					placeholder="Crupo o músico..."
-				/>
-				<label for="fecha">Año de publicación:</label>
-				<input
-					type="date"
-					id="fecha"
-					name="fecha"
-					placeholder="Fecha publicación..."
-				/>
-				<label for="genero">Género:</label>
-				<select id="genero" name="genero">
-					<option value="rock">Rock</option>
-					<option value="pop">Pop</option>
-					<option value="clasica">Clásica</option>
-					<option value="jazz">Jazz</option>
-					<option value="electronica">Electrónica</option>
-				</select>
+				<fieldset>
+					<legend>Formulario:</legend>
+					<label for="nombre">Nombre del disco:</label>
+					<input
+						type="text"
+						id="nombre"
+						name="nombre"
+						placeholder="Nombre..."
+					/>
+					<br />
+					<label for="caratula">Carátula del disco:</label>
+					<input
+						type="url"
+						id="caratula"
+						name="caratula"
+						placeholder="URL de la carátula..."
+					/>
+					<br />
+					<label for="musico">Grupo de música o músico:</label>
+					<input
+						type="text"
+						id="musico"
+						name="musico"
+						placeholder="Crupo o músico..."
+					/>
+					<br />
+					<label for="fecha">Año de publicación:</label>
+					<input
+						type="date"
+						id="fecha"
+						name="fecha"
+						placeholder="Fecha publicación..."
+					/>
+					<hr />
+					<label for="genero"><strong>Género:</strong></label>
+					<br />
+					<label for="Rock">Rock</label>
+					<input type="checkbox" id="genero" name="genero" value="rock" />
+					<label for="Pop">Pop</label>
+					<input type="checkbox" id="genero" name="genero" value="pop" />
+					<label for="Clasica">Clásica</label>
+					<input type="checkbox" id="genero" name="genero" value="clasica" />
+					<label for="Jazz">Jazz</label>
+					<input type="checkbox" id="genero" name="genero" value="jazz" />
+					<label for="Electronica">Electronica</label>
+					<input
+						type="checkbox"
+						id="genero"
+						name="genero"
+						value="electronica"
+					/>
+				</fieldset>
 			</form>
 		</div>
 		<script type="module" src="./main.js"></script>
