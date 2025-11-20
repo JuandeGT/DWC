@@ -1,0 +1,23 @@
+.pelicula {
+	padding: 20px;
+	margin-bottom: 30px;
+	background-color: #ffffff;
+}
+
+.pelicula h2 {
+	color: #2c3e50;
+	margin-bottom: 10px;
+	color: rgb(0, 0, 0);
+}
+
+.pelicula p {
+	font-style: italic;
+	margin-bottom: 15px;
+	color: rgb(0, 0, 0);
+}
+
+.pelicula img {
+	max-width: 250px;
+	border-radius: 8px;
+	margin-bottom: 15px;
+}

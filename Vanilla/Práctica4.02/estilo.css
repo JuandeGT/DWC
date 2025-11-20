@@ -1,0 +1,47 @@
+.contenidoExplicito {
+	color: red;
+	font-weight: bold;
+}
+
+table {
+	border-collapse: collapse;
+	margin: auto;
+}
+
+tr,
+td {
+	border: 1px solid #0252a8;
+	border-width: 2px;
+	padding: 10px;
+	text-align: center;
+	color: black;
+}
+
+.primo {
+	background-color: red;
+	font-weight: bold;
+}
+
+#carrusel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	max-width: 900px;
+	margin: 40px auto;
+	overflow: hidden;
+	position: relative;
+	border-radius: 20px;
+}
+
+#imagen {
+	width: 100%;
+	height: auto;
+	display: block;
+	opacity: 0;
+	transition: 1s ease-in-out;
+}
+
+#imagen.visible {
+	opacity: 1;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="./estilo.css" rel="stylesheet" type="text/css" />
+		<title>Paint</title>
+	</head>
+	<body>
+		<div class="seccion">
+			<h2>Colores</h2>
+			<div id="colores">
+				<div class="white">
+					<svg width="50" height="50">
+						<circle cx="25" cy="25" r="10" stroke="grey" stroke-width="1" fill="white" />
+					</svg>
+				</div>
+				<div class="black">
+					<svg width="50" height="50">
+						<circle cx="25" cy="25" r="10" stroke="grey" stroke-width="1" fill="black" />
+					</svg>
+				</div>
+				<div class="red">
+					<svg width="50" height="50">
+						<circle cx="25" cy="25" r="10" stroke="grey" stroke-width="1" fill="red" />
+					</svg>
+				</div>
+				<div class="yellow">
+					<svg width="50" height="50">
+						<circle cx="25" cy="25" r="10" stroke="grey" stroke-width="1" fill="yellow" />
+					</svg>
+				</div>
+				<div class="chartreuse">
+					<svg width="50" height="50">
+						<circle cx="25" cy="25" r="10" stroke="grey" stroke-width="1" fill="chartreuse" />
+					</svg>
+				</div>
+				<div class="aqua">
+					<svg width="50" height="50">
+						<circle cx="25" cy="25" r="10" stroke="grey" stroke-width="1" fill="aqua" />
+					</svg>
+				</div>
+				<div class="seleccionar"><input type="color" /></div>
+				<button>Reiniciar</button>
+				<p id="texto">Color seleccionado:</p>
+			</div>
+		</div>
+		<div id="lienzo"></div>
+		<script type="module" src="./main.js"></script>
+	</body>
+</html>

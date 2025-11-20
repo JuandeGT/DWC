@@ -1,0 +1,28 @@
+.interprete {
+	border: 2px solid green;
+	padding: 10px;
+	margin: 10px 0;
+	display: flex;
+	align-items: flex-start;
+	gap: 15px;
+	background-color: #ffffff;
+}
+
+.interprete img {
+	width: 80px;
+	height: 120px;
+	object-fit: cover;
+	border: 2px solid green;
+}
+
+.interprete-info {
+	flex: 1;
+}
+
+.interprete-info h2 {
+	margin: 0 0 5px;
+}
+
+.interprete-info p {
+	margin: 0;
+}

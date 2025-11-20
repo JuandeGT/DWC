@@ -1,0 +1,62 @@
+.peliculas {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 20px;
+}
+
+.peliculas > div {
+	background-color: #f9fafb;
+	border: 1px solid #dce3eb;
+	border-radius: 10px;
+	padding: 15px;
+	text-align: center;
+	transition: transform 0.2s, box-shadow 0.2s;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.peliculas > div:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.peliculas img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.peliculas > div:only-child {
+	max-width: 900px;
+	margin: 0 auto;
+	text-align: left;
+	background-color: #ffffff;
+	padding: 25px;
+}
+
+.peliculas > div:only-child img {
+	width: 300px;
+	margin-left: 20px;
+	border-radius: 10px;
+}
+
+.actores {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
+	gap: 15px;
+}
+
+.actores > div {
+	background-color: #ffffff;
+	border: 1px solid #dce3eb;
+	border-radius: 8px;
+	padding: 10px;
+	text-align: center;
+}
+
+.actores img {
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+	border-radius: 6px;
+}

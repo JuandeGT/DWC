@@ -1,0 +1,28 @@
+.listado_container {
+	text-align: center;
+	margin: 20px 0;
+}
+
+h1 {
+	margin-bottom: 10px;
+	font-size: 1.4rem;
+}
+
+button {
+	margin: 5px;
+	padding: 6px 12px;
+	cursor: pointer;
+}
+
+.numeros_container {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+p {
+	margin: 0;
+	font-weight: bold;
+}

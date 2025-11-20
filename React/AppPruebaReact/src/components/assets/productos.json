@@ -1,0 +1,24 @@
+{
+	"productos": [
+		{
+			"id": 1,
+			"nombre": "Feo",
+			"descripcion": "De verdad de la buena"
+		},
+		{
+			"id": 2,
+			"nombre": "Fea",
+			"descripcion": "También De verdad"
+		},
+		{
+			"id": 3,
+			"nombre": "Horrible",
+			"descripcion": "De verdad"
+		},
+		{
+			"id": 4,
+			"nombre": "Horrible2",
+			"descripcion": "De verdad2"
+		}
+	]
+}

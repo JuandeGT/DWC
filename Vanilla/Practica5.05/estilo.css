@@ -1,0 +1,48 @@
+body {
+	background-color: lightgray;
+	font-family: Cambria;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+#divForm {
+	background-color: white;
+	padding: 20px;
+	padding-top: 5px;
+	border-radius: 10px;
+	width: 470px;
+}
+
+#errores {
+	border: 1px solid grey;
+	border-radius: 10px;
+	background-color: lightcoral;
+	font-weight: bold;
+	padding-left: 10px;
+	width: 470px;
+}
+
+.columna {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+#mostrar {
+	width: 470px;
+	height: auto;
+	background-color: white;
+	border-radius: 10px;
+	padding-left: 25px;
+}
+
+.error {
+	background-color: lightcoral;
+}
+
+img {
+	width: 15px;
+	height: 15px;
+}

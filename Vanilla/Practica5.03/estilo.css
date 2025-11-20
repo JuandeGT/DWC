@@ -1,0 +1,64 @@
+body {
+	display: flex;
+	justify-content: center;
+	background-color: lightgray;
+	gap: 100px;
+	margin-top: 50px;
+}
+
+.seccion {
+	background-color: white;
+	border-radius: 5px;
+	width: 300px;
+}
+
+#colores {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+h2 {
+	padding-top: auto;
+	padding-left: 10px;
+}
+
+#lienzo {
+	display: block;
+	width: fit-content;
+	background-color: white;
+	border-radius: 10px;
+}
+
+#tabla {
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+.elemento {
+	width: 10px;
+	height: 10px;
+	border: 1px solid lightgray;
+}
+
+.seleccionar {
+	flex-basis: 45%;
+	margin-top: 5px;
+	padding-left: 50px;
+}
+
+button {
+	margin-top: 10px;
+}
+
+.seleccionado circle {
+	filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.6));
+}
+
+#texto {
+	font-family: Cambria;
+	font-weight: bold;
+	padding: 5px;
+	background-color: grey;
+}

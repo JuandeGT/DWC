@@ -1,0 +1,21 @@
+.contador_container {
+	text-align: center;
+	margin: 20px 0;
+}
+
+h1 {
+	margin-bottom: 10px;
+	font-size: 1.4rem;
+}
+
+button {
+	padding: 6px 12px;
+	margin: 5px;
+	cursor: pointer;
+}
+
+div {
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin-top: 10px;
+}

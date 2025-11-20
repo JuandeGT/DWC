@@ -1,0 +1,74 @@
+.pelicula {
+	background-color: #fafafa;
+	padding: 25px 30px;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+	overflow: auto;
+}
+
+.pelicula:hover {
+	transform: translateY(-7px);
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.pelicula h2 {
+	display: flex;
+	font-size: 1.6rem;
+	font-weight: 600;
+	color: #1e1e1e;
+	margin-bottom: 0.3rem;
+}
+
+.pelicula .contenido {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+.pelicula p {
+	color: #555;
+	margin-top: 10%;
+	text-align: justify;
+}
+
+.pelicula img {
+	max-width: 260px;
+	border-radius: 10px;
+	object-fit: cover;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pelicula button:hover {
+	background-color: #1d1f24;
+	transform: scale(1.03);
+}
+
+.pelicula button:focus {
+	outline: none;
+}
+
+.pelicula button:nth-of-type(2) + div {
+	padding: 6px 14px;
+	color: #222;
+}
+
+.taquilla-area {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	position: relative;
+}
+
+.taquilla-area > div:nth-of-type(1) {
+	flex: 1;
+}
+
+.oculto {
+	display: none;
+}
