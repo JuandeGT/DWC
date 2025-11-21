@@ -1,0 +1,12 @@
+#columna {
+	display: flex;
+	justify-self: center;
+	margin-top: 20px;
+	width: 500px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+#divForm {
+	margin-left: 20px;
+}

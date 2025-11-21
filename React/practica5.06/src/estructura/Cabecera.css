@@ -1,0 +1,10 @@
+#cabecera {
+	display: flex;
+	justify-content: center;
+	background-color: white;
+}
+
+#menu {
+	padding-left: 200px;
+	padding-top: 20px;
+}
