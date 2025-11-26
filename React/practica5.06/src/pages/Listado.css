@@ -1,0 +1,53 @@
+#busqueda {
+	display: flex;
+	flex-direction: column;
+	justify-self: center;
+	margin-top: 100px;
+	padding: 20px;
+	width: auto;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.discos {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin-top: 40px;
+	justify-self: center;
+	width: 1200px;
+	background-color: #fdfdfd;
+	border-radius: 10px;
+}
+
+.discoListado {
+	display: flex;
+	background-color: blanchedalmond;
+	color: #2c2c2c;
+	border-radius: 10px;
+	margin: 20px;
+	padding: 10px;
+	width: 500px;
+}
+.izquierda {
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+}
+
+.derecha {
+	display: flex;
+	flex-direction: column;
+	padding-left: 20px;
+	padding-top: 50px;
+	width: 60%;
+}
+
+.imagen {
+	max-width: 200px;
+	border-radius: 10px;
+}
+
+.icono {
+	width: 20px;
+}

@@ -1,0 +1,36 @@
+.detalleDisco {
+	display: flex;
+	background-color: blanchedalmond;
+	color: #2c2c2c;
+	border-radius: 10px;
+	margin: 20px;
+	padding: 10px;
+	width: 500px;
+}
+.izquierda {
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+}
+
+.derecha {
+	display: flex;
+	flex-direction: column;
+	padding-left: 20px;
+	padding-top: 50px;
+	width: 60%;
+}
+
+.imagen {
+	max-width: 200px;
+	border-radius: 10px;
+}
+
+.icono {
+	width: 20px;
+}
+
+.boton {
+	background-color: aqua;
+	font-weight: bold;
+}
