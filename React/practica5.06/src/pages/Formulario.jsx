@@ -67,6 +67,7 @@ const Formulario = (props) => {
 			let disco = recogerDatos(formulario);
 			setDiscos([...discos, disco]);
 			setFormulario(formularioVacio);
+			setErrores([]);
 			// mostrar mensaje disco guardado durante un tiempo
 		}
 	};

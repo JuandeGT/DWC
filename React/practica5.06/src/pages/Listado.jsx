@@ -22,7 +22,7 @@ const Listado = (props) => {
 	};
 
 	const limpiarDiscos = () => {
-		setDiscos([]);
+		setDiscosMostrar(discos);
 	};
 
 	const borrarDisco = (id) => {
