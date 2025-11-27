@@ -1,0 +1,21 @@
+#videoFondo {
+	position: fixed; /* Fija el video a la ventana */
+	right: 0;
+	bottom: 0;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -1; /* Lo envía detrás de todo */
+	object-fit: cover; /* Asegura que cubra toda la pantalla sin deformarse */
+}
+
+#div_listado {
+	display: flex;
+	align-self: center;
+	background-color: white;
+	border-radius: 10px;
+	width: 200px;
+
+	padding: 10px;
+}
