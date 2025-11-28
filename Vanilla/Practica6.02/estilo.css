@@ -1,21 +1,92 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Cambria";
+}
+
 #videoFondo {
 	position: fixed; /* Fija el video a la ventana */
+	top: 0;
+	left: 0;
 	right: 0;
 	bottom: 0;
-	min-width: 100%;
-	min-height: 100%;
-	width: auto;
-	height: auto;
+	width: 100vw;
+	height: 100vh;
 	z-index: -1; /* Lo envía detrás de todo */
 	object-fit: cover; /* Asegura que cubra toda la pantalla sin deformarse */
 }
 
-#div_listado {
+#contenido {
 	display: flex;
-	align-self: center;
-	background-color: white;
+}
+
+.sidebar {
+	display: flex;
+	align-items: center;
+	background-color: rgba(50, 50, 50, 0.7);
+	color: #e0e0e0;
 	border-radius: 10px;
 	width: 200px;
-
 	padding: 10px;
+	height: 100vh; /* Ocupa toda la altura visible */
+	z-index: 1; /* Asegura que esté sobre el video */
+	position: relative;
+}
+
+#listado {
+	margin: 0;
+	padding: 0;
+}
+
+.item {
+	list-style: none; /* quita el punto por defecto */
+	background-image: url("./assets/icons8-bebe-yoda.svg");
+	background-repeat: no-repeat;
+	background-size: 16px 16px; /* tamaño del icono */
+	padding-left: 24px; /* deja espacio para el icono */
+	margin: 40px 0;
+}
+
+.item:hover {
+	color: #fff;
+	cursor: pointer;
+	transform: translateX(2px);
+	transition: 0.15s ease;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 4px;
+}
+
+#detalle {
+	display: flex;
+	margin-left: 10vw;
+	width: 400px;
+	background-color: rgba(50, 50, 50, 0.7);
+	color: white;
+}
+
+#gif {
+	display: flex;
+	align-self: center;
+	margin-left: 10vw;
+	width: 400px;
+}
+
+.caminante {
+	position: relative; /* si quieres colocar contenido encima */
+	width: 100%; /* o el ancho que necesites */
+	height: 400px; /* ajusta la altura */
+	background-image: url("./assets/star-wars-unscreen.gif");
+	background-repeat: no-repeat; /* evita que se repita */
+	background-position: bottom center; /* se pega a la parte inferior */
+	background-size: contain; /* ajusta para que quepa dentro del div */
+}
+
+.circulo {
+	position: relative; /* si quieres colocar contenido encima */
+	width: 100%; /* o el ancho que necesites */
+	height: 400px; /* ajusta la altura */
+	background-image: url("./assets/circulo.gif");
+	background-repeat: no-repeat; /* evita que se repita */
+	background-position: bottom center; /* se pega a la parte inferior */
+	background-size: contain; /* ajusta para que quepa dentro del div */
 }
