@@ -23,8 +23,14 @@ window.onload = () => {
 	datos();
 
 	listado.addEventListener("click", (evento) => {
-		if (evento.target.tagName === "H4") {
+		if (evento.target.tagName === "LI") {
 			detalle.innerHTML = dibujarDetalle(datosPeli, evento.target.id);
+		}
+		if (evento.target.tagName === "H4" || evento.target.tagName === "P") {
+			detalle.innerHTML = dibujarDetalle(
+				datosPeli,
+				evento.target.parentNode.id
+			);
 		}
 	});
 }; // Fin del window onload
