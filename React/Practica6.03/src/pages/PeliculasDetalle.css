@@ -1,0 +1,143 @@
+.detalle-contenido {
+	max-width: 900px;
+	margin: 0 auto;
+	animation: fadeIn 0.5s ease;
+}
+
+.detalle-contenido:empty {
+	display: none;
+}
+
+.detalle-header {
+	border-bottom: 2px solid #ffe81f;
+	padding-bottom: 20px;
+	margin-bottom: 25px;
+}
+
+.titulo {
+	font-family: 'Impact', sans-serif;
+	font-size: 3rem;
+	color: #ffe81f;
+	text-transform: uppercase;
+	margin: 0 0 10px 0;
+	letter-spacing: 2px;
+}
+
+.info {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	color: #aaa;
+	font-size: 0.95rem;
+}
+
+.info p,
+.info span {
+	margin: 0;
+	padding-right: 15px;
+	border-right: 1px solid #444;
+}
+
+.info p:last-child {
+	border-right: none;
+}
+
+.sinopsis {
+	background-color: rgba(255, 255, 255, 0.05);
+	padding: 20px;
+	border-radius: 6px;
+	border-left: 4px solid #555;
+	font-style: italic;
+	line-height: 1.6;
+	color: #e0e0e0;
+	margin-bottom: 40px;
+}
+
+.personajes h3 {
+	color: #ffe81f;
+	text-transform: uppercase;
+	font-family: 'Impact', sans-serif;
+	letter-spacing: 1px;
+	margin-bottom: 15px;
+}
+
+.personajes ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.personajes li {
+	background-color: #2a2a2a;
+	padding: 8px 16px;
+	border-radius: 20px;
+	font-size: 0.9rem;
+	color: #ccc;
+	border: 1px solid #444;
+	transition: all 0.2s;
+}
+
+.personajes li:hover {
+	background-color: #ffe81f;
+	color: #000;
+	font-weight: bold;
+	transform: translateY(-2px);
+	box-shadow: 0 0 10px rgba(255, 232, 31, 0.5);
+}
+
+.ficha-personaje {
+	margin-top: 40px;
+	background: rgba(0, 0, 0, 0.8);
+	border: 1px solid #ffe81f;
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+	animation: slideUp 0.3s ease-out;
+}
+
+.ficha-personaje h4 {
+	margin-top: 0;
+	font-size: 1.8rem;
+	color: #ffe81f;
+	font-family: 'Impact', sans-serif;
+	border-bottom: 1px solid #444;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+}
+
+.datos {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+	gap: 15px;
+}
+
+.datos p {
+	margin: 0;
+	color: #bbb;
+	background: rgba(255, 255, 255, 0.03);
+	padding: 10px;
+	border-radius: 4px;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideUp {
+	from {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
