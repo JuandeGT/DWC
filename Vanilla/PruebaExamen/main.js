@@ -1,47 +1,53 @@
-"use strict";
+'use strict';
 
-import { recogerFormulario } from "./bibliotecas/formulario.js";
-import { mostrarPlanetas } from "./bibliotecas/listarPlanetas.js";
-import { traerDatosRapido } from "./bibliotecas/api.js";
+import {
+	obtenerDatosFormulario,
+	validarDatos,
+	divInformacion,
+	mostrarInfo,
+	limpiarInfo,
+} from './biblioteca/formulario.js';
+import { guardarLocalStorage, obtenerLocalStorage, traerDatos } from './biblioteca/datos.js';
 
 window.onload = () => {
 	const formulario = document.forms.agregarPlaneta;
-	const listaPlanetas = document.getElementsByClassName("listaPlanetas")[0];
+	const listarPlanetas = document.getElementsByTagName('script')[0].previousElementSibling;
+	let url = 'https://swapi.py4e.com/api/planets/';
 	let planetas = [];
-	let url = "http://swapi.py4e.com/api/people/"; // results
-	let urls = [
-		"https://swapi.py4e.com/api/people/",
-		"https://swapi.info/api/people",
-	];
 
-	if (typeof Storage !== "undefined") {
-		const datos = async () => {
+	if (typeof Storage !== 'undefined') {
+		const cargarDatos = async () => {
 			try {
-				const personajes = await traerDatosRapido(urls);
+				planetas = obtenerLocalStorage();
+				if (planetas.length === 0) {
+					planetas = await traerDatos(url);
+					guardarLocalStorage(planetas);
+				}
 			} catch (error) {
-				console.log(error.message);
+				document.body.innerHTML = '<h1>No se puede cargar la api</h1>';
 			}
-			formulario.addEventListener("click", (evento) => {
-				if (evento.target.type === "button") {
-					// Botón Guardar Planetas
-					if (evento.target.nextElementSibling) {
-						let planetaNuevo = recogerFormulario(formulario);
-						planetas = [...planetas, planetaNuevo];
-					}
-					// Botón Mostrar Planetas
-					if (evento.target.nextElementSibling === null) {
-						if (planetas.length > 0) {
-							// Comprobar si tiene la clase
-							listaPlanetas.classList.remove("ocultar");
-							listaPlanetas.insertAdjacentHTML(
-								"beforeend",
-								mostrarPlanetas(planetas)
-							);
+
+			formulario.addEventListener(
+				'click',
+				(evento) => {
+					divInformacion(formulario);
+					const divInfo = document.getElementById('informacion');
+					// Logica botones
+					if (evento.target.type === 'button') {
+						if (evento.target.nextElementSibling && evento.target.nextElementSibling.type === 'button') {
+							let planetaNuevo = obtenerDatosFormulario(formulario);
+							if (validarDatos(planetaNuevo)) {
+								planetas = [...planetas, planetaNuevo];
+								guardarLocalStorage(planetas);
+							}
+							mostrarInfo(divInfo, formulario);
+						} else {
 						}
 					}
-				}
-			});
+				},
+				false
+			);
 		};
-		datos();
+		cargarDatos();
 	}
-};
+}; //Fin del window.onload
