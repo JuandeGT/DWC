@@ -1,0 +1,44 @@
+{
+	"discos": [
+		{
+			"id": "1",
+			"nombre": "Feo",
+			"caratula": "De verdad de la buena",
+			"musico": "2DAW",
+			"fecha": "DWC, DWS, DIW, DEc",
+			"genero": "Ninguna",
+			"localizacion": "Macarrones",
+			"prestado": "false"
+		},
+		{
+			"id": "2",
+			"nombre": "Fea",
+			"caratula": "También De verdad",
+			"musico": "2DAW",
+			"fecha": "DWC, DWS, DIW",
+			"genero": "Ninguna",
+			"localizacion": "Macarrones",
+			"prestado": "false"
+		},
+		{
+			"id": "3",
+			"nombre": "Horrible",
+			"caratula": "De verdad",
+			"musico": "2DAW",
+			"fecha": "DWC",
+			"genero": "Ninguna",
+			"localizacion": "Macarrones",
+			"prestado": "false"
+		},
+		{
+			"id": "4",
+			"nombre": "Horrible2",
+			"caratula": "De verdad2",
+			"musico": "2DAW",
+			"fecha": "DWC",
+			"genero": "Ninguna",
+			"localizacion": "Macarrones",
+			"prestado": "false"
+		}
+	]
+}
