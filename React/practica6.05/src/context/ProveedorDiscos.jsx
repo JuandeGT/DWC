@@ -7,7 +7,7 @@ import useAPI from "../hooks/useAPI.js";
 const ContextoDiscos = createContext();
 
 const ProveedorDiscos = ({ children }) => {
-	const [discentes, setDiscentes] = useState([]);
+	const [discos, setDiscos] = useState([]);
 
 	/**
 	 * Constante con la URL de la API.
@@ -21,26 +21,10 @@ const ProveedorDiscos = ({ children }) => {
 	const { obtener, guardar, borrar, editarPUT, editarPATCH, cargando, error } =
 		useAPI();
 
-	const obtenerDiscentes_OLD = async () => {
-		try {
-			const respuesta = await fetch(API_URL);
-			if (!respuesta.ok) {
-				throw new Error(
-					`Error en traerDiscentes: ${respuesta.status} - ${respuesta.statusText}`
-				);
-			}
-			const datos = await respuesta.json();
-			// Se devuelven los datos en lugar de modificar el estado directamente.
-			return datos;
-		} catch (error) {
-			throw error;
-		}
-	};
-
 	const obtenerDiscos = async () => {
 		try {
 			const datos = await obtener(API_URL);
-			setDiscentes(datos);
+			setDiscos(datos);
 		} catch (error) {
 			throw error;
 		}
@@ -62,29 +46,12 @@ const ProveedorDiscos = ({ children }) => {
 	 *
 	 */
 
-	const guardarDiscente_OLD = async (datos) => {
-		try {
-			const respuesta = await fetch(API_URL, {
-				method: "POST",
-				body: JSON.stringify(datos),
-			});
-
-			if (!respuesta.ok) {
-				throw new Error(
-					`Error en guardarDiscentes: ${respuesta.status} - ${respuesta.statusText}`
-				);
-			}
-		} catch (error) {
-			throw error;
-		}
-	};
-
-	const guardarDiscente = async (datos) => {
+	const guardarDisco = async (datos) => {
 		try {
 			const respuesta = await guardar(API_URL, datos);
 			console.log(respuesta);
-			obtenerDiscentes();
-			//setDiscentes(...discentes, datos);
+			obtenerDiscos();
+			//setDiscos(...discos, datos);
 		} catch (error) {
 			throw error;
 		}
@@ -94,26 +61,10 @@ const ProveedorDiscos = ({ children }) => {
 	 * Es necesario, además de la URL, el id del discente a eliminar.
 	 */
 
-	const borrarDiscente_OLD = async (id) => {
-		try {
-			const respuesta = await fetch(`${API_URL}/${id}`, {
-				method: "DELETE",
-			});
-
-			if (!respuesta.ok) {
-				throw new Error(
-					`Error en guardarDiscentes: ${respuesta.status} - ${respuesta.statusText}`
-				);
-			}
-		} catch (error) {
-			throw error;
-		}
-	};
-
-	const borrarDiscente = async (id) => {
+	const borrarDisco = async (id) => {
 		try {
 			const respuesta = await borrar(`${API_URL}/${id}`);
-			obtenerDiscentes();
+			obtenerDiscos();
 		} catch (error) {
 			throw error;
 		}
