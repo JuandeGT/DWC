@@ -41,6 +41,7 @@
 	padding-left: 20px;
 	padding-top: 50px;
 	width: 60%;
+	align-items: flex-start;
 }
 
 .imagen {
@@ -50,4 +51,11 @@
 
 .icono {
 	width: 20px;
+}
+
+button {
+	margin-top: 10px;
+	background-color: aqua;
+	font-weight: bold;
+	width: fit-content;
 }

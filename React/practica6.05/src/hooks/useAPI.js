@@ -1,88 +1,77 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export const useAPI = () => {
-	/**
-	 * Estados para las fases de la comunicación con la API.
-	 */
 	const [cargando, setCargando] = useState(false);
-	const [error, setError] = useState(null);
+	const [notificacion, setNotificacion] = useState(null);
 
-	/**
-	 * Función genérica para hacer solicitudes a la API pasado como parámetro.
-	 */
 	const solicitud = async (url, options = {}) => {
-		// 1 -> Se pone cargando = true y se borran los errores al comenzar la solicitud nueva.
 		setCargando(true);
-		setError(null);
-		// 2 -> Se intenta hacer la solicitud.
 		try {
 			const respuesta = await fetch(url, {
 				headers: {
-					"Content-Type": "application/json",
-					//...options.headers, -> Si es necesario añadir algo más a headers.
+					'Content-Type': 'application/json',
 				},
 				...options,
 			});
-			// 3 -> Se controla el error en la respuesta.
 			if (!respuesta.ok) {
-				throw new Error(
-					`Error en la solicitud ${respuesta.status}: ${respuesta.statusText}`
-				);
+				throw new Error(`Error en la solicitud ${respuesta.status}: ${respuesta.statusText}`);
 			}
-			// 4 -> Se convierten los datos a JSON.
 			const datos = await respuesta.json();
-			// 5 -> Se devuelven los datos (pasos 4 y 5 se pueden hacer juntos).
 			return datos;
 		} catch (error) {
-			// 6 -> Si se ha producido error se cambia el estado y se lanza el error.
-			setError(error.message || "Error al conectar con la API.");
+			lanzarError(error.message || 'Error al conectar con la API.');
 			throw error;
 		} finally {
-			// 7 -> Al terminar la comunicación (correcta o no) se quita el estado cargando.
 			setCargando(false);
 		}
 	};
 
-	// Función para GET.
 	const obtener = (url) => {
-		return solicitud(url, { method: "GET" });
+		return solicitud(url, { method: 'GET' });
 	};
 
-	// Función para POST.
 	const guardar = (url, body) => {
 		return solicitud(url, {
-			method: "POST",
+			method: 'POST',
 			body: JSON.stringify(body),
 		});
 	};
 
-	// Función para PUT.
-	const editarPUT = (url, body) =>
+	const editar = (url, body) => {
 		solicitud(url, {
-			method: "PUT",
+			method: 'PUT',
 			body: JSON.stringify(body),
 		});
-	// Función para PATCH.
-	const editarPATCH = (url, body) =>
-		solicitud(url, {
-			method: "PATCH",
-			body: JSON.stringify(body),
-		});
+	};
 
-	// Fución para DELETE.
-	const borrar = (url) =>
+	const borrar = (url) => {
 		solicitud(url, {
-			method: "DELETE",
+			method: 'DELETE',
 		});
+	};
+
+	const limpiarNotificacion = () => {
+		setNotificacion(null);
+	};
+
+	const lanzarExito = (mensaje) => {
+		setNotificacion({ mensaje, tipo: 'exito' });
+	};
+
+	const lanzarError = (mensaje) => {
+		setNotificacion({ mensaje, tipo: 'error' });
+	};
 
 	return {
 		cargando,
-		error,
+		notificacion,
 		obtener,
 		guardar,
-		editarPUT,
-		editarPATCH,
+		editar,
 		borrar,
+		limpiarNotificacion,
+		lanzarExito,
+		lanzarError,
 	};
 };
 

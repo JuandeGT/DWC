@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './Formulario.css';
-import Errores from './Errores.jsx';
+import useDiscos from '../hooks/useDiscos.js';
 
-const Formulario = (props) => {
-	const { discos, setDiscos } = props;
+const Formulario = () => {
+	const { guardarDisco, lanzarError, lanzarExito } = useDiscos();
 
 	const formularioVacio = {
 		nombre: '',
@@ -16,8 +16,6 @@ const Formulario = (props) => {
 	};
 
 	const [formulario, setFormulario] = useState(formularioVacio);
-
-	const [errores, setErrores] = useState([]);
 
 	const actualizarForm = (evento) => {
 		if (evento.target.name === 'prestado') {
@@ -62,13 +60,12 @@ const Formulario = (props) => {
 	const guardarForm = () => {
 		let erroresVal = validarFormulario();
 		if (erroresVal.length > 0) {
-			setErrores(erroresVal);
+			lanzarError(erroresVal);
 		} else {
 			let disco = recogerDatos(formulario);
-			setDiscos([...discos, disco]);
+			guardarDisco(disco);
 			setFormulario(formularioVacio);
-			setErrores([]);
-			// mostrar mensaje disco guardado durante un tiempo
+			lanzarExito('Disco guardado correctamente');
 		}
 	};
 
@@ -215,7 +212,6 @@ const Formulario = (props) => {
 						}}
 					/>
 				</form>
-				<div className="errores">{<Errores errores={errores} />}</div>
 			</div>
 		</>
 	);

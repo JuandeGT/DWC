@@ -1,0 +1,65 @@
+/* Ayuda con gemini */
+.cargando-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(4px);
+	z-index: 9900;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+
+	animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.spinner {
+	width: 50px;
+	height: 50px;
+	border: 4px solid rgba(255, 255, 255, 0.1);
+	border-left-color: #00e676;
+	border-radius: 50%;
+	animation: girar 1s linear infinite;
+	box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+}
+
+@keyframes girar {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.cargando-texto {
+	color: white;
+	font-size: 16px;
+	font-weight: 500;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	animation: palpito 1.5s ease-in-out infinite;
+}
+
+@keyframes palpito {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.6;
+	}
+}

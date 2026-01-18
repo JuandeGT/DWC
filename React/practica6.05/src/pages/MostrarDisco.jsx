@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import DiscoDetalle from './DiscoDetalle.jsx';
 
 const MostrarDisco = (props) => {
@@ -7,14 +8,21 @@ const MostrarDisco = (props) => {
 
 	const [discoSeleccionado, setDiscoSeleccionado] = useState(null); // Crearmos el estado para pasarle a DiscoDetalle
 
-	// A discoDetalle le pasamos una funcion para quitar el disco seleccionado y volver al listado norma l
+	const gestionarCLick = (evento, disco) => {
+		if (evento.target.tagName === 'IMG') {
+			return;
+		}
+		setDiscoSeleccionado(disco);
+	};
+
+	// A discoDetalle le pasamos una funcion para quitar el disco seleccionado y volver al listado normal
 	return (
 		<>
 			{discoSeleccionado ? (
 				<DiscoDetalle disco={discoSeleccionado} volver={() => setDiscoSeleccionado(null)} />
 			) : (
 				discos.map((d) => (
-					<div className="discoListado" key={d.id} onClick={() => setDiscoSeleccionado(d)}>
+					<div className="discoListado" key={d.id} onClick={(e) => gestionarCLick(e, d)}>
 						<div className="izquierda">
 							<h2>{d.nombre}</h2>
 							{d.caratula !== '' && <img src={d.caratula} alt={`Carátula de ${d.nombre}`} className="imagen" />}
@@ -32,6 +40,9 @@ const MostrarDisco = (props) => {
 								className="icono"
 								onClick={() => borrarDisco(d.id)}
 							/>
+							<Link to={`/discos/${d.id}`}>
+								<button>Editar</button>
+							</Link>
 						</div>
 					</div>
 				))

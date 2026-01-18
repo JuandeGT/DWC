@@ -1,104 +1,114 @@
 {
-	"discos": [
-		{
-			"id": "1",
-			"nombre": "The Dark Side of the Moon",
-			"caratula": "https://ejemplo.com/img/pink_floyd.jpg",
-			"musico": "Pink Floyd",
-			"fecha": "1973",
-			"genero": "Rock Progresivo",
-			"localizacion": "ES-001AA",
-			"prestado": "false"
-		},
-		{
-			"id": "2",
-			"nombre": "Thriller",
-			"caratula": "https://ejemplo.com/img/thriller.jpg",
-			"musico": "Michael Jackson",
-			"fecha": "1982",
-			"genero": "Pop",
-			"localizacion": "ES-002AB",
-			"prestado": "true"
-		},
-		{
-			"id": "3",
-			"nombre": "Motomami",
-			"caratula": "https://ejemplo.com/img/motomami.jpg",
-			"musico": "Rosalia",
-			"fecha": "2022",
-			"genero": "Urbano",
-			"localizacion": "ES-105XY",
-			"prestado": "false"
-		},
-		{
-			"id": "4",
-			"nombre": "Master of Puppets",
-			"caratula": "https://ejemplo.com/img/metallica.jpg",
-			"musico": "Metallica",
-			"fecha": "1986",
-			"genero": "Thrash Metal",
-			"localizacion": "",
-			"prestado": "false"
-		},
-		{
-			"id": "5",
-			"nombre": "Nevermind",
-			"caratula": "https://ejemplo.com/img/nevermind.jpg",
-			"musico": "Nirvana",
-			"fecha": "1991",
-			"genero": "Grunge",
-			"localizacion": "ES-099CD",
-			"prestado": "true"
-		},
-		{
-			"id": "6",
-			"nombre": "Random Access Memories",
-			"caratula": "https://ejemplo.com/img/daft_punk.jpg",
-			"musico": "Daft Punk",
-			"fecha": "2013",
-			"genero": "Electrónica",
-			"localizacion": "ES-500ZZ",
-			"prestado": "false"
-		},
-		{
-			"id": "7",
-			"nombre": "Abbey Road",
-			"caratula": "https://ejemplo.com/img/abbey_road.jpg",
-			"musico": "The Beatles",
-			"fecha": "1969",
-			"genero": "Rock",
-			"localizacion": "ES-777BR",
-			"prestado": "false"
-		},
-		{
-			"id": "8",
-			"nombre": "Hotel California",
-			"caratula": "https://ejemplo.com/img/eagles.jpg",
-			"musico": "The Eagles",
-			"fecha": "1976",
-			"genero": "Rock",
-			"localizacion": "",
-			"prestado": "false"
-		},
-		{
-			"id": "9",
-			"nombre": "Back in Black",
-			"caratula": "https://ejemplo.com/img/acdc.jpg",
-			"musico": "AC/DC",
-			"fecha": "1980",
-			"genero": "Hard Rock",
-			"localizacion": "ES-666HR",
-			"prestado": "false"
-		},
-		{
-			"id": "10",
-			"nombre": "Future Nostalgia",
-			"caratula": "https://ejemplo.com/img/dua_lipa.jpg",
-			"musico": "Dua Lipa",
-			"fecha": "2020",
-			"genero": "Pop",
-			"localizacion": "ES-202FN",
-			"prestado": "true"
-		}
-	]
+  "discos": [
+    {
+      "id": "1",
+      "nombre": "The Dark Side of the Moon",
+      "caratula": "https://www.salon.com/app/uploads/2023/03/the_dark_side_of_the_moon_album_cover_74290244.jpg",
+      "musico": "Pink Floyd",
+      "fecha": "1973",
+      "genero": "Rock Progresivo",
+      "localizacion": "ES-001AA",
+      "prestado": true
+    },
+    {
+      "id": "2",
+      "nombre": "Thriller",
+      "caratula": "https://ejemplo.com/img/thriller.jpg",
+      "musico": "Michael Jackson",
+      "fecha": "1982",
+      "genero": "Pop",
+      "localizacion": "ES-002AB",
+      "prestado": true
+    },
+    {
+      "id": "3",
+      "nombre": "Motomami",
+      "caratula": "https://ejemplo.com/img/motomami.jpg",
+      "musico": "Rosalia",
+      "fecha": "2022",
+      "genero": "Urbano",
+      "localizacion": "ES-105XY",
+      "prestado": false
+    },
+    {
+      "id": "4",
+      "nombre": "Master of Puppets",
+      "caratula": "https://ejemplo.com/img/metallica.jpg",
+      "musico": "Metallica",
+      "fecha": "1986",
+      "genero": "Thrash Metal",
+      "localizacion": "",
+      "prestado": false
+    },
+    {
+      "id": "5",
+      "nombre": "Nevermind",
+      "caratula": "https://ejemplo.com/img/nevermind.jpg",
+      "musico": "Nirvana",
+      "fecha": "1991",
+      "genero": "Grunge",
+      "localizacion": "ES-099CD",
+      "prestado": true
+    },
+    {
+      "id": "6",
+      "nombre": "Random Access Memories",
+      "caratula": "https://ejemplo.com/img/daft_punk.jpg",
+      "musico": "Daft Punk",
+      "fecha": "2013",
+      "genero": "Electrónica",
+      "localizacion": "ES-500ZZ",
+      "prestado": false
+    },
+    {
+      "id": "7",
+      "nombre": "Abbey Road",
+      "caratula": "https://ejemplo.com/img/abbey_road.jpg",
+      "musico": "The Beatles",
+      "fecha": "1969",
+      "genero": "Rock",
+      "localizacion": "ES-777BR",
+      "prestado": false
+    },
+    {
+      "id": "8",
+      "nombre": "Hotel California",
+      "caratula": "https://ejemplo.com/img/eagles.jpg",
+      "musico": "The Eagles",
+      "fecha": "1976",
+      "genero": "Rock",
+      "localizacion": "",
+      "prestado": false
+    },
+    {
+      "id": "9",
+      "nombre": "Back in Black",
+      "caratula": "https://ejemplo.com/img/acdc.jpg",
+      "musico": "AC/DC",
+      "fecha": "1980",
+      "genero": "Hard Rock",
+      "localizacion": "ES-666HR",
+      "prestado": false
+    },
+    {
+      "id": "10",
+      "nombre": "Future Nostalgia",
+      "caratula": "https://ejemplo.com/img/dua_lipa.jpg",
+      "musico": "Dua Lipa",
+      "fecha": "2020",
+      "genero": "Pop",
+      "localizacion": "ES-202FN",
+      "prestado": true
+    },
+    {
+      "id": "cca0fa31-3a8b-4548-be3c-2dc91703a1b0",
+      "nombre": "HASTA EL CIELO",
+      "caratula": "https://i.scdn.co/image/ab67616d0000b273796f6be366cd6b4436c662a5",
+      "musico": "SAAAAAAAAAAAAAA",
+      "fecha": "2034",
+      "genero": "clasica",
+      "localizacion": "ES-001AA",
+      "prestado": true
+    }
+  ]
 }

@@ -1,24 +1,14 @@
-import React, { useState, useEffect, createContext } from "react";
-import useAPI from "../hooks/useAPI.js";
+import React, { useState, useEffect, createContext } from 'react';
+import useAPI from '../hooks/useAPI.js';
 
-/**
- * Se crea el contexto (la caja) a proveer.
- */
 const ContextoDiscos = createContext();
 
 const ProveedorDiscos = ({ children }) => {
 	const [discos, setDiscos] = useState([]);
 
-	/**
-	 * Constante con la URL de la API.
-	 * */
-	const API_URL = "http://localhost:3000/discos";
+	const API_URL = 'http://localhost:3000/discos';
 
-	/**
-	 * Listado de datos del servidor (nada nuevo).
-	 */
-
-	const { obtener, guardar, borrar, editarPUT, editarPATCH, cargando, error } =
+	const { obtener, guardar, borrar, editar, cargando, notificacion, limpiarNotificacion, lanzarError, lanzarExito } =
 		useAPI();
 
 	const obtenerDiscos = async () => {
@@ -30,36 +20,14 @@ const ProveedorDiscos = ({ children }) => {
 		}
 	};
 
-	/** Obtención de datos desde un formulario.
-	 *
-	 *   -> En Vanilla se puede construir directamente cogiendo los datos desde formulario
-	 *       uno a uno (si son pocos):
-	 *       const datosNuevos = {
-	 *     		email: document.getElementById('nombre').value,
-	 *         comentarios: document.getElementById('apellidos').value
-	 *       }
-	 *
-	 *   -> O de una sola vez con FormData:
-	 *     const datosNuevos = new FormData(document.getElementById('formulario-discente'));
-	 *
-	 *   -> En React siempre se trabajará con estados (recuerda que todos los formularios deben ser controlados).
-	 *
-	 */
-
 	const guardarDisco = async (datos) => {
 		try {
 			const respuesta = await guardar(API_URL, datos);
-			console.log(respuesta);
 			obtenerDiscos();
-			//setDiscos(...discos, datos);
 		} catch (error) {
 			throw error;
 		}
 	};
-
-	/**
-	 * Es necesario, además de la URL, el id del discente a eliminar.
-	 */
 
 	const borrarDisco = async (id) => {
 		try {
@@ -70,99 +38,35 @@ const ProveedorDiscos = ({ children }) => {
 		}
 	};
 
-	/**
-	 * El flujo para esta acción es:
-	 *  -> se obtienen los datos de un discentes,
-	 *  -> se meten en un estado que controla un formulario,
-	 *  -> se recogen los datos del formulario (se comprueban),
-	 *      se actualizan en la BBDD (total o parcialmente) y
-	 *  -> se informa al/la usuario/a de forma correcta.
-	 */
-
-	const editarDiscenteCompleto_OLD = async (id, datos) => {
+	const editarDisco = async (id, datos) => {
 		try {
-			const respuesta = await fetch(`${API_URL}/${id}`, {
-				method: "PUT",
-				body: JSON.stringify(datos),
-			});
-
-			if (!respuesta.ok) {
-				throw new Error(
-					`Error en editarDiscentesCompleto: ${respuesta.status} - ${respuesta.statusText}`
-				);
-				obtenerDiscentes();
-			}
+			const respuesta = await editar(`${API_URL}/${id}`, datos);
+			obtenerDiscos();
 		} catch (error) {
 			throw error;
 		}
 	};
-
-	const editarDiscenteCompleto = async (id, datos) => {
-		try {
-			const respuesta = await editarPUT(`${API_URL}/${id}`, datos);
-			obtenerDiscentes();
-		} catch (error) {
-			throw error;
-		}
-	};
-
-	const editarDiscenteParcial_OLD = async (id, datos) => {
-		try {
-			const respuesta = await fetch(`${API_URL}/${id}`, {
-				method: "PATCH",
-				body: JSON.stringify(datos),
-			});
-
-			if (!respuesta.ok) {
-				throw new Error(
-					`Error en editarDiscentesParcial: ${respuesta.status} - ${respuesta.statusText}`
-				);
-			}
-		} catch (error) {
-			throw error;
-		}
-	};
-
-	const editarDiscenteParcial = async (id, datos) => {
-		try {
-			const respuesta = await editarPATCH(`${API_URL}/${id}`, datos);
-			obtenerDiscentes();
-		} catch (error) {
-			throw error;
-		}
-	};
-
-	/**
-	 * Función asíncrona para ejecutarse en el montaje del componente.
-	 * Se encapsula el setter del estado en una función
-	 * para que el contexto mantenga el control del estado.
-	 */
 
 	useEffect(() => {
 		obtenerDiscos();
 	}, []);
 
-	/**
-	 * Pregunta de diseño.
-	 * Tras cada modificación, creación o elimincación de los datos
-	 * ¿es preferible volver a traer los datos o modificar el estado local?
-	 */
 	const datosAProveer = {
-		discentes,
-		obtenerDiscentes,
-		guardarDiscente,
-		borrarDiscente,
-		editarDiscenteCompleto,
-		editarDiscenteParcial,
+		discos,
+		obtenerDiscos,
+		guardarDisco,
+		borrarDisco,
+		editarDisco,
 		cargando,
-		error,
+		notificacion,
+		limpiarNotificacion,
+		lanzarExito,
+		lanzarError,
 	};
 
 	return (
 		<>
-			<ContextoDiscos.Provider value={datosAProveer}>
-				{children}
-			</ContextoDiscos.Provider>
+			<ContextoDiscos.Provider value={datosAProveer}>{children}</ContextoDiscos.Provider>
 		</>
 	);
 };
