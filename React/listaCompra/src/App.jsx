@@ -9,8 +9,6 @@ import Rutas from "./routes/Rutas.jsx";
 import Pie from "./estructura/Pie.jsx";
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
 		<>
 			<Cabecera />
