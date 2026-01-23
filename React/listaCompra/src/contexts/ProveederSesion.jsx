@@ -6,7 +6,8 @@ import useSupabase from "../hooks/useSupabase.js";
 const contextoSesion = createContext();
 
 const ProveederSesion = ({ children }) => {
-	const { crearCuenta } = useSupabase;
+	const { crearCuentaSupa, iniciarSesionSupa, cerrarSesionSupa } = useSupabase;
+
 	const sesionInicial = {
 		email: "",
 		password: "",
@@ -19,26 +20,37 @@ const ProveederSesion = ({ children }) => {
 	const [errorUsuario, setErrorUsuario] = useState("");
 	const [sesionIniciada, setSesionIniciada] = useState(false);
 
-	// está en el useSupabase, modificarlo
-	/* const crearCuenta = async () => {
+	const crearCuenta = async () => {
+		setErrorUsuario("");
 		try {
-			const { data, error } = await supabaseConexion.auth.signUp({
-				email: datosSesion.email,
-				password: datosSesion.password,
-			});
-
-			if (error) {
-				throw error;
-			} else {
-				setErrorUsuario(
-					"Recibirás por correo electrónico la verificación de la cuenta.",
-				);
-			}
-			console.log(data);
+			crearCuentaSupa(datosSesion.email, datosSesion.password);
 		} catch (error) {
 			setErrorUsuario(error.message);
 		}
-	}; */
+		setErrorUsuario(
+			"Recibirás por correo electrónico la verificación de la cuenta.",
+		);
+	};
+
+	const iniciarSesion = async () => {
+		setErrorUsuario("");
+		try {
+			iniciarSesionSupa(datosSesion.email, datosSesion.password);
+		} catch (error) {
+			setErrorUsuario(error.message);
+		}
+	};
+
+	const cerrarSesion = async () => {
+		setErrorUsuario("");
+		try {
+			await cerrarSesionSupa;
+			// Se redirige al usuario a la parte pública.
+			navegar("/");
+		} catch (error) {
+			setErrorUsuario(error.message);
+		}
+	};
 
 	return <div>ProveederSesion</div>;
 };
