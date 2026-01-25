@@ -1,11 +1,17 @@
+import { supabaseConexion } from '../supabase/supabase.js';
+
 const useSupabase = () => {
-	const crearCuentaSupa = async (email, password) => {
+	const crearCuentaSupa = async ({ email, password, name }) => {
 		try {
 			const { data, error } = await supabaseConexion.auth.signUp({
 				email: email,
 				password: password,
+				options: {
+					data: {
+						display_name: name,
+					},
+				},
 			});
-			console.log(data);
 			if (error) {
 				throw error;
 			}
@@ -14,25 +20,15 @@ const useSupabase = () => {
 		}
 	};
 
-	const iniciarSesionSupa = async (email, password) => {
+	const iniciarSesionSupa = async ({ email, password }) => {
 		try {
 			const { data, error } = await supabaseConexion.auth.signInWithPassword({
 				email: email,
 				password: password,
-				/**
-				 *  No es necesario especificar la ruta de redirección
-				 *  ya que se encuentra especificada en el servidor.
-				 *  Es posible indicar una redirección diferente desde aquí si
-				 *  el diseño de la aplicación así lo requiere.
-				 * */
-				options: {
-					emailRedirectTo: "http://localhost:5173/",
-				},
 			});
 			if (error) {
 				throw error;
 			}
-			console.log(data);
 		} catch (error) {
 			throw error;
 		}
@@ -46,6 +42,23 @@ const useSupabase = () => {
 		}
 	};
 
-	return (crearCuentaSupa, iniciarSesionSupa, cerrarSesionSupa);
+	const obtenerUsuarioSupa = async () => {
+		try {
+			const { data, error } = await supabaseConexion.auth.getUser();
+			if (error) {
+				throw error;
+			}
+			return data.user;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	const suscripcion = (f) => {
+		return supabaseConexion.auth.onAuthStateChange(f);
+	};
+
+	return { crearCuentaSupa, iniciarSesionSupa, cerrarSesionSupa, obtenerUsuarioSupa, suscripcion };
 };
+
 export default useSupabase;

@@ -1,33 +1,58 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./InicioSesion.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import useSesion from '../hooks/useSesion.js';
+import useNotificacion from '../hooks/useNotificacion.js';
+import './InicioSesion.css';
 
 const InicioSesion = () => {
+	const { iniciarSesion, actualizarDato, datosSesion } = useSesion();
+	const { notificar } = useNotificacion();
+
+	const enviarDatos = () => {
+		// Validamos que no estén vacíos
+		if (!datosSesion.email.trim() || !datosSesion.password.trim()) {
+			notificar('Por favor, rellena todos los campos.', 'error');
+			return;
+		}
+		iniciarSesion();
+	};
 	return (
 		<>
 			<div id="div-form">
 				<form id="formulario" name="formulario">
 					<h3>Formulario:</h3>
-					<label htmlFor="correo">Correo :</label>
+					<label htmlFor="email">Correo electrónico: </label>
 					<input
 						type="email"
-						id="correo"
-						name="correo"
-						placeholder="Correo..."
-						required
+						id="email"
+						name="email"
+						placeholder="nombreapellidos@gmail.com"
+						onChange={actualizarDato}
+						value={datosSesion.email}
 					/>
 					<br />
+					<label htmlFor="password">Contraseña: </label>
+					<input
+						type="password"
+						id="password"
+						name="password"
+						placeholder="Contraseña..."
+						onChange={actualizarDato}
+						value={datosSesion.password}
+					/>
 					<input
 						type="button"
 						id="botonGuardar"
-						value="Guardar"
+						value="Iniciar Sesión"
 						onClick={() => {
-							guardarForm();
+							enviarDatos();
 						}}
 					/>
 				</form>
+				<div style={{ marginTop: '10px' }}>
+					<Link to="/registrarse">¿No tienes cuenta? Regístrate aquí.</Link>
+				</div>
 			</div>
-			<Link to="registrarse">No tienes cuenta: Registrarse</Link>
 		</>
 	);
 };

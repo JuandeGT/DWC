@@ -1,0 +1,70 @@
+#div-form,
+.register_container {
+	max-width: 400px;
+	margin: 50px auto;
+	padding: 40px;
+	border: 1px solid #333;
+	border-radius: 8px;
+	background-color: #1e1e1e;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+form h3 {
+	margin-top: 0;
+	color: #fff;
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+form label {
+	display: block;
+	margin-bottom: 8px;
+	color: #aaa;
+}
+
+form input[type='email'],
+form input[type='password'],
+form input[type='text'] {
+	width: 100%;
+	padding: 12px;
+	margin-bottom: 20px;
+	background-color: #2d2d2d;
+	border: 1px solid #444;
+	border-radius: 4px;
+	color: #fff;
+	box-sizing: border-box;
+}
+
+form input:focus {
+	outline: none;
+	border-color: #bb86fc;
+}
+
+#botonGuardar,
+#logIn {
+	width: 100%;
+	padding: 12px;
+	background-color: #bb86fc;
+	color: #000;
+	border: none;
+	border-radius: 4px;
+	font-size: 1rem;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: 10px;
+	transition: 0.3s;
+}
+
+#botonGuardar:hover,
+#logIn:hover {
+	background-color: #9965f4;
+}
+
+a {
+	color: #bb86fc;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}

@@ -1,0 +1,43 @@
+.listado-grid {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 20px;
+	height: 100%;
+}
+
+.panel-izquierda {
+	border: 1px solid #333;
+	padding: 20px;
+	border-radius: 8px;
+	background-color: #1e1e1e;
+}
+
+.panel-derecha {
+	border: 1px solid #333;
+	padding: 20px;
+	border-radius: 8px;
+	background-color: #1e1e1e;
+}
+
+.panel-izquierda h2,
+.panel-derecha h2 {
+	color: #bb86fc;
+	margin-top: 0;
+	border-bottom: 1px solid #333;
+	padding-bottom: 10px;
+}
+
+.item-ejemplo {
+	padding: 15px;
+	margin-bottom: 10px;
+	background-color: #2d2d2d;
+	border-radius: 4px;
+	color: #fff;
+	border-left: 4px solid #03dac6;
+}
+
+@media (max-width: 768px) {
+	.listado-grid {
+		grid-template-columns: 1fr;
+	}
+}

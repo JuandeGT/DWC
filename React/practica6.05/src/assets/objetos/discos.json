@@ -11,16 +11,6 @@
       "prestado": true
     },
     {
-      "id": "2",
-      "nombre": "Thriller",
-      "caratula": "https://ejemplo.com/img/thriller.jpg",
-      "musico": "Michael Jackson",
-      "fecha": "1982",
-      "genero": "Pop",
-      "localizacion": "ES-002AB",
-      "prestado": true
-    },
-    {
       "id": "3",
       "nombre": "Motomami",
       "caratula": "https://ejemplo.com/img/motomami.jpg",
