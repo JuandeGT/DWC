@@ -1,6 +1,6 @@
-import React from 'react';
-import useNotificacion from '../hooks/useNotificacion'; // Asegúrate de la ruta
-import './Notificaciones.css';
+import React from "react";
+import useNotificacion from "../hooks/useNotificacion"; // Asegúrate de la ruta
+import "./Notificaciones.css";
 
 const Notificaciones = () => {
 	const { lista } = useNotificacion();
@@ -12,7 +12,7 @@ const Notificaciones = () => {
 			{lista.map((item) => (
 				<div key={item.id} className={`alerta-item tipo-${item.tipo}`}>
 					<div className="alerta-icono">
-						{item.tipo === 'error' ? (
+						{item.tipo === "error" ? (
 							<svg
 								width="24"
 								height="24"
@@ -44,13 +44,15 @@ const Notificaciones = () => {
 					</div>
 
 					<div className="alerta-contenido">
-						<div className="alerta-titulo">{item.tipo === 'error' ? 'Error' : 'Éxito'}</div>
 						<div className="alerta-mensaje">{item.mensaje}</div>
 					</div>
 
 					{/* Sin botón de cerrar, se cierra solo */}
 
-					<div className="alerta-barra" style={{ animationDuration: '3000ms' }} />
+					<div
+						className="alerta-barra"
+						style={{ animationDuration: "3000ms" }}
+					/>
 				</div>
 			))}
 		</div>
