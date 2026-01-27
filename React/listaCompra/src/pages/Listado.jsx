@@ -7,6 +7,7 @@ const Listado = () => {
 	const { productosListado } = useProductos();
 
 	if (!productosListado) return null;
+	// hacer el cargando
 	return (
 		<>
 			<div className="listado-grid">

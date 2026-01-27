@@ -1,43 +1,127 @@
+/* --- ESTRUCTURA PRINCIPAL (IGUAL QUE ANTES) --- */
 .listado-grid {
 	display: grid;
+	/* Divide la pantalla: 2 partes izquierda, 1 parte derecha */
 	grid-template-columns: 2fr 1fr;
 	gap: 20px;
-	height: 100%;
+	height: 100%; /* O min-height: 80vh; si prefieres */
+	align-items: start; /* Para que los paneles no se estiren innecesariamente */
 }
 
-.panel-izquierda {
-	border: 1px solid #333;
-	padding: 20px;
-	border-radius: 8px;
-	background-color: #1e1e1e;
-}
-
+.panel-izquierda,
 .panel-derecha {
 	border: 1px solid #333;
 	padding: 20px;
 	border-radius: 8px;
-	background-color: #1e1e1e;
+	background-color: #1e1e1e; /* Fondo gris oscuro */
 }
 
+/* Títulos de las secciones */
 .panel-izquierda h2,
 .panel-derecha h2 {
-	color: #bb86fc;
+	color: #bb86fc; /* Morado neón */
 	margin-top: 0;
 	border-bottom: 1px solid #333;
-	padding-bottom: 10px;
+	padding-bottom: 15px;
+	margin-bottom: 20px;
 }
 
-.item-ejemplo {
+/* --- GRID DE PRODUCTOS (DENTRO DEL PANEL IZQUIERDO) --- */
+/* Esto hace que las tarjetas se ordenen automáticamente */
+.lista-items {
+	display: grid;
+	/* Crea columnas de mínimo 200px. Si caben más, pone más. */
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 20px;
+}
+
+/* --- TARJETA DE PRODUCTO --- */
+.producto-card {
+	background-color: #2d2d2d; /* Un gris un poco más claro que el fondo */
+	border: 1px solid #444;
+	border-radius: 8px;
+	overflow: hidden; /* Para que la imagen no se salga de las esquinas redondeadas */
+	transition:
+		transform 0.2s,
+		box-shadow 0.2s,
+		border-color 0.2s;
+	display: flex;
+	flex-direction: column;
+	cursor: pointer; /* Indica que es clickeable */
+}
+
+/* Efecto Hover: Levanta la tarjeta y cambia el borde */
+.producto-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+	border-color: #bb86fc;
+}
+
+/* --- IMAGEN DEL PRODUCTO --- */
+.producto-imagen {
+	width: 100%;
+	height: 180px; /* Altura fija para que todas sean iguales */
+	background-color: #fff; /* Fondo blanco para que el producto resalte */
+	padding: 10px;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.producto-imagen img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain; /* La imagen se ajusta sin recortarse ni deformarse */
+}
+
+/* --- INFORMACIÓN DEL PRODUCTO --- */
+.producto-info {
 	padding: 15px;
-	margin-bottom: 10px;
-	background-color: #2d2d2d;
-	border-radius: 4px;
-	color: #fff;
-	border-left: 4px solid #03dac6;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1; /* Ocupa el espacio restante */
+	justify-content: space-between; /* Empuja el precio hacia abajo si sobra espacio */
 }
 
+.producto-info h3 {
+	font-size: 0.95rem;
+	color: #e0e0e0; /* Texto blanco suave */
+	margin: 0 0 10px 0;
+	line-height: 1.4;
+
+	/* Limitamos el título a 2 líneas para que no rompa el diseño */
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* Detalles (Peso y Precio) */
+.producto-info .peso {
+	font-size: 0.85rem;
+	color: #999; /* Gris suave */
+	background-color: #383838;
+	padding: 2px 6px;
+	border-radius: 4px;
+	align-self: flex-start; /* Alineado a la izquierda */
+	margin-bottom: 8px;
+}
+
+.producto-info .precio {
+	font-size: 1.1rem;
+	font-weight: bold;
+	color: #03dac6; /* Turquesa neón para el precio */
+	align-self: flex-end; /* Alineado a la derecha */
+}
+
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
 	.listado-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: 1fr; /* Una sola columna en móviles */
+	}
+
+	.panel-derecha {
+		margin-top: 20px; /* Separación si se ponen uno debajo del otro */
 	}
 }
