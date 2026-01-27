@@ -1,4 +1,4 @@
-import { supabaseConexion } from '../supabase/supabase.js';
+import { supabaseConexion } from "../supabase/supabase.js";
 
 const useSupabase = () => {
 	const crearCuentaSupa = async ({ email, password, name }) => {
@@ -58,7 +58,13 @@ const useSupabase = () => {
 		return supabaseConexion.auth.onAuthStateChange(f);
 	};
 
-	return { crearCuentaSupa, iniciarSesionSupa, cerrarSesionSupa, obtenerUsuarioSupa, suscripcion };
+	return {
+		crearCuentaSupa,
+		iniciarSesionSupa,
+		cerrarSesionSupa,
+		obtenerUsuarioSupa,
+		suscripcion,
+	};
 };
 
 export default useSupabase;
