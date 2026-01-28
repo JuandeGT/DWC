@@ -8,7 +8,8 @@ const Registrarse = () => {
 	const { crearCuenta, actualizarDato, datosSesion } = useSesion();
 	const { notificar } = useNotificacion();
 
-	const enviarDatos = () => {
+	const enviarDatos = (e) => {
+		e.preventDefault();
 		if (!datosSesion.email || !datosSesion.password || !datosSesion.name) {
 			notificar('Todos los campos son obligatorios.', 'error');
 			return;
@@ -18,7 +19,7 @@ const Registrarse = () => {
 
 	return (
 		<div className="register_container">
-			<form>
+			<form onSubmit={enviarDatos}>
 				<h3>Crear cuenta</h3>
 
 				<label htmlFor="name">Nombre: </label>
@@ -51,14 +52,7 @@ const Registrarse = () => {
 					value={datosSesion.password}
 				/>
 
-				<input
-					type="button"
-					id="botonGuardar"
-					value="Registrarse"
-					onClick={() => {
-						enviarDatos();
-					}}
-				/>
+				<input type="submit" id="botonGuardar" value="Registrarse" />
 			</form>
 			<div style={{ marginTop: '10px' }}>
 				<Link to="/inicio-sesion">¿Ya tienes cuenta? Inicia sesión.</Link>

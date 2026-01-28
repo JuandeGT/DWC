@@ -1,0 +1,42 @@
+/* Contenedor del loader */
+.cargando-overlay {
+	/* CAMBIO CLAVE: Quitamos fixed para que no tape toda la pantalla */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+
+	/* Le damos una altura mínima para que no se vea aplastado */
+	min-height: 200px;
+	width: 100%;
+
+	/* Fondo transparente o muy sutil para integrarse */
+	background-color: transparent;
+	color: #e0e0e0;
+}
+
+/* El círculo giratorio */
+.spinner {
+	width: 40px;
+	height: 40px;
+	border: 3px solid rgba(255, 255, 255, 0.1);
+	/* Usamos el morado neón de tu tema o el turquesa */
+	border-top-color: #bb86fc;
+	border-radius: 50%;
+	animation: girar 0.8s ease-in-out infinite;
+}
+
+@keyframes girar {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Texto debajo */
+.cargando-texto {
+	font-size: 0.9rem;
+	color: #b0b0b0;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+}

@@ -1,0 +1,93 @@
+.filtros-panel {
+	background-color: #252525; /* Un poco más claro que el fondo negro */
+	border: 1px solid #333;
+	padding: 15px;
+	border-radius: 8px;
+	margin-bottom: 20px;
+	color: #e0e0e0;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.titulo-filtro {
+	font-weight: bold;
+	color: #bb86fc; /* Tu color de acento */
+	margin-right: 10px;
+	font-size: 0.9rem;
+}
+
+/* --- ORDENAR (RADIO BUTTONS) --- */
+.grupo-ordenar {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	flex-wrap: wrap;
+}
+
+.grupo-ordenar label {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 0.9rem;
+	cursor: pointer;
+	color: #bbb;
+}
+
+.grupo-ordenar label:hover {
+	color: white;
+}
+
+/* Esto pinta el circulito del radio button de tu color morado */
+.grupo-ordenar input[type='radio'] {
+	accent-color: #bb86fc;
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+}
+
+.separador {
+	border: 0;
+	height: 1px;
+	background: #444;
+	margin: 15px 0;
+}
+
+/* --- FILTROS (INPUTS) --- */
+.grupo-filtrar {
+	display: flex;
+	gap: 15px;
+	flex-wrap: wrap; /* Para que baje en móvil */
+}
+
+.input-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	flex: 1; /* Todos ocupan el mismo ancho */
+	min-width: 120px;
+}
+
+.input-wrapper label {
+	font-size: 0.8rem;
+	color: #888;
+}
+
+.input-wrapper input {
+	background-color: #1e1e1e;
+	border: 1px solid #444;
+	color: white;
+	padding: 8px 10px;
+	border-radius: 4px;
+	outline: none;
+	transition: border-color 0.2s;
+}
+
+.input-wrapper input:focus {
+	border-color: #bb86fc;
+}
+
+/* Ajuste móvil */
+@media (max-width: 600px) {
+	.grupo-filtrar {
+		flex-direction: column;
+	}
+}

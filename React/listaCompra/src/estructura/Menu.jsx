@@ -10,11 +10,7 @@ const Menu = () => {
 			<nav>
 				<div id="links">
 					<Link to="/">Inicio</Link>
-					{sesionIniciada && (
-						<>
-							<Link to="/listado">Lista</Link>
-						</>
-					)}
+					<Link to="/listado">Lista</Link>
 				</div>
 			</nav>
 		</>

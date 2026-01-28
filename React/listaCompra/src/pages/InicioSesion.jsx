@@ -8,7 +8,8 @@ const InicioSesion = () => {
 	const { iniciarSesion, actualizarDato, datosSesion } = useSesion();
 	const { notificar } = useNotificacion();
 
-	const enviarDatos = () => {
+	const enviarDatos = (e) => {
+		e.preventDefault();
 		// Validamos que no estén vacíos
 		if (!datosSesion.email.trim() || !datosSesion.password.trim()) {
 			notificar('Por favor, rellena todos los campos.', 'error');
@@ -19,7 +20,7 @@ const InicioSesion = () => {
 	return (
 		<>
 			<div id="div-form">
-				<form id="formulario" name="formulario">
+				<form id="formulario" name="formulario" onSubmit={enviarDatos}>
 					<h3>Formulario:</h3>
 					<label htmlFor="email">Correo electrónico: </label>
 					<input
@@ -40,14 +41,7 @@ const InicioSesion = () => {
 						onChange={actualizarDato}
 						value={datosSesion.password}
 					/>
-					<input
-						type="button"
-						id="botonGuardar"
-						value="Iniciar Sesión"
-						onClick={() => {
-							enviarDatos();
-						}}
-					/>
+					<input type="submit" id="botonGuardar" value="Iniciar Sesión" />
 				</form>
 				<div style={{ marginTop: '10px' }}>
 					<Link to="/registrarse">¿No tienes cuenta? Regístrate aquí.</Link>
