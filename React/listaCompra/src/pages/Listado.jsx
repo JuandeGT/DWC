@@ -7,8 +7,14 @@ import FiltrarProducto from './FiltrarProducto.jsx';
 import './Listado.css';
 
 const Listado = () => {
-	const { productosListado, cargando, filtrar } = useProductos();
+	const { productosListado, cargando } = useProductos();
 	const { sesionIniciada } = useSesion();
+
+	const calcularPrecio = () => {
+		let precioMedio = 0;
+		productosListado.forEach((producto) => (precioMedio += producto.precio));
+		return precioMedio / productosListado.length || 0;
+	};
 	return (
 		<>
 			<div className="listado-grid">
@@ -25,6 +31,16 @@ const Listado = () => {
 								) : (
 									<MostrarProducto productosListado={productosListado} />
 								)}
+							</div>
+							<div className="resumen-box">
+								<div className="dato-resumen">
+									<span>Cantidad:</span>
+									<strong>{productosListado.length} prods.</strong>
+								</div>
+								<div className="dato-resumen">
+									<span>Precio Medio:</span>
+									<strong>{calcularPrecio().toFixed(2)} €</strong>
+								</div>
 							</div>
 						</>
 					)}

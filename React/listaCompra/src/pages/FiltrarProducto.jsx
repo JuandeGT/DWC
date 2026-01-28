@@ -3,29 +3,37 @@ import useProductos from '../hooks/useProductos.js';
 import './FiltrarProducto.css';
 
 const FiltrarProducto = () => {
-	const { filtrar } = useProductos();
+	const { filtrar, ordenar } = useProductos();
 
-	const [filtros, setFiltros] = useState({
+	const filtrosInicial = {
 		nombre: '',
-		precioMax: '',
-		pesoMax: '',
-	});
-
-	const [orden, setOrden] = useState('nombre');
-
-	useEffect(() => {
-		filtrar(filtros, orden);
-	}, [filtros, orden]);
-
-	const handleInput = (e) => {
-		const { name, value } = e.target;
-		setFiltros({ ...filtros, [name]: value });
+		precio: '',
+		peso: '',
 	};
 
+	const [filtros, setFiltros] = useState(filtrosInicial);
+
+	const [orden, setOrden] = useState('');
+
+	const ordenarBien = (valor) => {
+		setOrden(valor);
+		ordenar(valor);
+	};
+
+	const filtrarBien = (tipo, valor) => {
+		setFiltros({ ...filtrosInicial, [tipo]: valor });
+		filtrar(tipo, valor);
+	};
+
+	const limpiar = () => {
+		setFiltros(filtrosInicial);
+		setOrden('');
+		filtrar('nombre', '');
+		ordenar('');
+	};
 	return (
 		<>
 			<div className="filtros-panel">
-				{/* SECCIÓN 1: ORDENAR (Radio Buttons) */}
 				<div className="grupo-ordenar">
 					<span className="titulo-filtro">Ordenar por:</span>
 					<label>
@@ -34,7 +42,7 @@ const FiltrarProducto = () => {
 							name="orden"
 							value="nombre"
 							checked={orden === 'nombre'}
-							onChange={(e) => setOrden(e.target.value)}
+							onChange={(e) => ordenarBien(e.target.value)}
 						/>
 						A-Z
 					</label>
@@ -42,41 +50,65 @@ const FiltrarProducto = () => {
 						<input
 							type="radio"
 							name="orden"
-							value="precioAsc"
-							checked={orden === 'precioAsc'}
-							onChange={(e) => setOrden(e.target.value)}
+							value="precio"
+							checked={orden === 'precio'}
+							onChange={(e) => ordenarBien(e.target.value)}
 						/>
-						Precio Bajo
+						Precio
 					</label>
 					<label>
 						<input
 							type="radio"
 							name="orden"
-							value="precioDesc"
-							checked={orden === 'precioDesc'}
-							onChange={(e) => setOrden(e.target.value)}
+							value="peso"
+							checked={orden === 'peso'}
+							onChange={(e) => ordenarBien(e.target.value)}
 						/>
-						Precio Alto
+						Peso
 					</label>
+					<button onClick={limpiar}>Limpiar</button>
 				</div>
 
 				<hr className="separador" />
 
-				{/* SECCIÓN 2: FILTRAR (Inputs separados) */}
 				<div className="grupo-filtrar">
 					<div className="input-wrapper">
-						<label>Nombre</label>
-						<input type="text" name="nombre" placeholder="Buscar..." value={filtros.nombre} onChange={handleInput} />
+						<label>Nombre:</label>
+						<input
+							type="text"
+							name="nombre"
+							placeholder="Buscar..."
+							value={filtros.nombre}
+							onChange={(e) => {
+								filtrarBien('nombre', e.target.value);
+							}}
+						/>
 					</div>
 
 					<div className="input-wrapper">
-						<label>Precio Máx (€)</label>
-						<input type="number" name="precioMax" placeholder="0.00" value={filtros.precioMax} onChange={handleInput} />
+						<label>Precio Máx (€):</label>
+						<input
+							type="number"
+							name="precio"
+							placeholder="0.00"
+							value={filtros.precio}
+							onChange={(e) => {
+								filtrarBien('precio', e.target.value);
+							}}
+						/>
 					</div>
 
 					<div className="input-wrapper">
-						<label>Peso Máx (kg)</label>
-						<input type="number" name="pesoMax" placeholder="0.00" value={filtros.pesoMax} onChange={handleInput} />
+						<label>Peso Máx (kg):</label>
+						<input
+							type="number"
+							name="peso"
+							placeholder="0.00"
+							value={filtros.peso}
+							onChange={(e) => {
+								filtrarBien('peso', e.target.value);
+							}}
+						/>
 					</div>
 				</div>
 			</div>

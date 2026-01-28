@@ -1,5 +1,5 @@
 .filtros-panel {
-	background-color: #252525; /* Un poco más claro que el fondo negro */
+	background-color: #252525;
 	border: 1px solid #333;
 	padding: 15px;
 	border-radius: 8px;
@@ -10,12 +10,11 @@
 
 .titulo-filtro {
 	font-weight: bold;
-	color: #bb86fc; /* Tu color de acento */
+	color: #bb86fc;
 	margin-right: 10px;
 	font-size: 0.9rem;
 }
 
-/* --- ORDENAR (RADIO BUTTONS) --- */
 .grupo-ordenar {
 	display: flex;
 	align-items: center;
@@ -36,12 +35,47 @@
 	color: white;
 }
 
-/* Esto pinta el circulito del radio button de tu color morado */
 .grupo-ordenar input[type='radio'] {
 	accent-color: #bb86fc;
 	cursor: pointer;
 	width: 16px;
 	height: 16px;
+}
+
+.grupo-ordenar button {
+	margin-left: auto;
+
+	background-color: transparent;
+	border: 1px solid #bb86fc;
+	color: #bb86fc;
+	font-size: 0.85rem;
+	font-weight: 600;
+	padding: 6px 14px;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.grupo-ordenar button:hover {
+	background-color: #bb86fc;
+	color: #121212;
+	box-shadow: 0 0 10px rgba(187, 134, 252, 0.4);
+	transform: translateY(-1px);
+}
+
+.grupo-ordenar button:active {
+	transform: translateY(1px);
+}
+
+@media (max-width: 600px) {
+	.grupo-ordenar button {
+		margin-left: 0;
+		width: 100%;
+		text-align: center;
+		margin-top: 10px;
+	}
 }
 
 .separador {
@@ -51,18 +85,17 @@
 	margin: 15px 0;
 }
 
-/* --- FILTROS (INPUTS) --- */
 .grupo-filtrar {
 	display: flex;
 	gap: 15px;
-	flex-wrap: wrap; /* Para que baje en móvil */
+	flex-wrap: wrap;
 }
 
 .input-wrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
-	flex: 1; /* Todos ocupan el mismo ancho */
+	flex: 1;
 	min-width: 120px;
 }
 
@@ -85,7 +118,6 @@
 	border-color: #bb86fc;
 }
 
-/* Ajuste móvil */
 @media (max-width: 600px) {
 	.grupo-filtrar {
 		flex-direction: column;

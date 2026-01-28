@@ -28,37 +28,35 @@ const ProveedorProductos = ({ children }) => {
 		}
 	};
 
-	const filtrar = (filtros, orden) => {
-		/* let filtrado = [];
-		if (tipo === 'nombre') {
-			filtrado = productos.filter((p) => p.nombre.toLowerCase().includes(dato.toLowerCase()));
+	const filtrar = (filtro, valor) => {
+		if (valor === 0 || valor === '') {
+			setProductosListado(productos);
 		} else {
-			filtrado = productos.filter((p) => p[tipo] <= dato);
+			let resultado;
+			if (filtro === 'nombre') {
+				resultado = productos.filter((p) => p.nombre.toLowerCase().includes(valor.toLowerCase()));
+			}
+			if (filtro === 'precio') {
+				resultado = productos.filter((p) => p.precio <= Number(valor));
+			}
+			if (filtro === 'peso') {
+				resultado = productos.filter((p) => p.peso <= Number(valor));
+			}
+			setProductosListado(resultado);
 		}
-		setProductosListado(filtrado); */
-		let resultado = [...productos];
+	};
 
-		// 2. Aplicamos filtros (Si hay valor, filtramos)
-		if (filtros.nombre) {
-			resultado = resultado.filter((p) => p.nombre.toLowerCase().includes(filtros.nombre.toLowerCase()));
-		}
-		if (filtros.precioMax) {
-			resultado = resultado.filter((p) => p.precio <= parseFloat(filtros.precioMax));
-		}
-		if (filtros.pesoMax) {
-			resultado = resultado.filter((p) => p.peso <= parseFloat(filtros.pesoMax));
-		}
-
-		// 3. Aplicamos Ordenamiento
-		if (orden === 'precioAsc') {
-			resultado.sort((a, b) => a.precio - b.precio);
-		} else if (orden === 'precioDesc') {
-			resultado.sort((a, b) => b.precio - a.precio);
+	const ordenar = (orden) => {
+		let resultado;
+		if (orden === 'precio') {
+			resultado = [...productosListado].sort((a, b) => a.precio - b.precio);
+		} else if (orden === 'peso') {
+			resultado = [...productosListado].sort((a, b) => a.peso - b.peso);
 		} else if (orden === 'nombre') {
-			resultado.sort((a, b) => a.nombre.localeCompare(b.nombre));
+			resultado = [...productosListado].sort((a, b) => a.nombre.localeCompare(b.nombre));
+		} else {
+			resultado = [...productos];
 		}
-
-		// 4. Guardamos
 		setProductosListado(resultado);
 	};
 
@@ -70,6 +68,7 @@ const ProveedorProductos = ({ children }) => {
 		productos,
 		productosListado,
 		filtrar,
+		ordenar,
 		cargando,
 	};
 
