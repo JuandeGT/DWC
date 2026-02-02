@@ -25,6 +25,7 @@ const ProveedorSesion = ({ children }) => {
 	const crearCuenta = async () => {
 		try {
 			await crearCuentaSupa(datosSesion);
+
 			notificar('Recibirás un correo para confirmar la cuenta.');
 			setDatosSesion(sesionInicial);
 		} catch (error) {
@@ -37,6 +38,7 @@ const ProveedorSesion = ({ children }) => {
 			await iniciarSesionSupa(datosSesion);
 			notificar('Sesión iniciada correctamente.');
 			setDatosSesion(sesionInicial);
+			navegar('/listado');
 		} catch (error) {
 			notificar(error.message, 'error');
 		}
@@ -60,7 +62,7 @@ const ProveedorSesion = ({ children }) => {
 			if (user) {
 				setUsuario(user);
 			} else {
-				notificar('No se encuentra el usuario actual', 'exito');
+				notificar('No se encuentra el usuario actual', 'error');
 			}
 		} catch (error) {
 			notificar(error.message, 'error');
@@ -75,7 +77,6 @@ const ProveedorSesion = ({ children }) => {
 	useEffect(() => {
 		const sus = suscripcion((event, session) => {
 			if (session) {
-				navegar('/listado');
 				setSesionIniciada(true);
 				obtenerUsuario();
 			} else {

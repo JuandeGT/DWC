@@ -1,13 +1,13 @@
-import React, { createContext, useEffect, useState } from "react";
-import useNotificacion from "../hooks/useNotificacion.js";
-import useSupaCRUD from "../hooks/useSupaCRUD.js";
+import React, { createContext, useEffect, useState } from 'react';
+import useNotificacion from '../hooks/useNotificacion.js';
+import useSupaCRUD from '../hooks/useSupaCRUD.js';
 
 const contextoProductos = createContext();
 
 const ProveedorProductos = ({ children }) => {
-	const { cargando, obtenerSupa, crearSupa } = useSupaCRUD("productos");
+	const { cargando, obtenerSupa, crearSupa, editarSupa, eliminarSupa } = useSupaCRUD('productos');
 
-	const notificar = useNotificacion();
+	const { notificar } = useNotificacion();
 
 	const [productos, setProductos] = useState([]);
 	const [productosListado, setProductosListado] = useState([]);
@@ -16,28 +16,25 @@ const ProveedorProductos = ({ children }) => {
 		try {
 			const datos = await obtenerSupa();
 			if (datos) {
-				setProductos(datos);
-				setProductosListado(datos);
+				cambiarProductos(datos);
 			}
 		} catch (error) {
-			notificar(error.message, "error");
+			notificar(error.message, 'error');
 		}
 	};
 
 	const filtrar = (filtro, valor) => {
-		if (valor === 0 || valor === "") {
+		if (valor === 0 || valor === '') {
 			setProductosListado(productos);
 		} else {
 			let resultado;
-			if (filtro === "nombre") {
-				resultado = productos.filter((p) =>
-					p.nombre.toLowerCase().includes(valor.toLowerCase()),
-				);
+			if (filtro === 'nombre') {
+				resultado = productos.filter((p) => p.nombre.toLowerCase().includes(valor.toLowerCase()));
 			}
-			if (filtro === "precio") {
+			if (filtro === 'precio') {
 				resultado = productos.filter((p) => p.precio <= Number(valor));
 			}
-			if (filtro === "peso") {
+			if (filtro === 'peso') {
 				resultado = productos.filter((p) => p.peso <= Number(valor));
 			}
 			setProductosListado(resultado);
@@ -46,18 +43,59 @@ const ProveedorProductos = ({ children }) => {
 
 	const ordenar = (orden) => {
 		let resultado;
-		if (orden === "precio") {
+		if (orden === 'precio') {
 			resultado = [...productosListado].sort((a, b) => a.precio - b.precio);
-		} else if (orden === "peso") {
+		} else if (orden === 'peso') {
 			resultado = [...productosListado].sort((a, b) => a.peso - b.peso);
-		} else if (orden === "nombre") {
-			resultado = [...productosListado].sort((a, b) =>
-				a.nombre.localeCompare(b.nombre),
-			);
+		} else if (orden === 'nombre') {
+			resultado = [...productosListado].sort((a, b) => a.nombre.localeCompare(b.nombre));
 		} else {
 			resultado = [...productos];
 		}
 		setProductosListado(resultado);
+	};
+
+	const crearProductos = async (datos) => {
+		try {
+			await crearSupa(datos);
+			cambiarProductos([...productos, datos]);
+		} catch (error) {
+			notificar(error.message, 'error');
+		}
+	};
+
+	const editarProductos = async (datos) => {
+		try {
+			await editarSupa(datos);
+
+			let productosNuevos = productos.map((p) => {
+				return p.id === datos.id ? datos : p;
+			});
+			cambiarProductos(productosNuevos);
+		} catch (error) {
+			notificar(error.message, 'error');
+		}
+	};
+
+	const eliminarProducto = async (id) => {
+		try {
+			await eliminarSupa(id);
+
+			let productosNuevos = productos.filter((p) => {
+				if (p.id !== id) {
+					return p;
+				}
+			});
+			cambiarProductos(productosNuevos);
+		} catch (error) {
+			notificar(error.message, 'error');
+		}
+	};
+
+	// Creo esta función ya que se repite mucho en el código
+	const cambiarProductos = (datos) => {
+		setProductos(datos);
+		setProductosListado(datos);
 	};
 
 	useEffect(() => {
@@ -70,13 +108,12 @@ const ProveedorProductos = ({ children }) => {
 		cargando,
 		filtrar,
 		ordenar,
+		crearProductos,
+		editarProductos,
+		eliminarProducto,
 	};
 
-	return (
-		<contextoProductos.Provider value={datosProveer}>
-			{children}
-		</contextoProductos.Provider>
-	);
+	return <contextoProductos.Provider value={datosProveer}>{children}</contextoProductos.Provider>;
 };
 
 export default ProveedorProductos;

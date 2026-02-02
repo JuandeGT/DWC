@@ -1,0 +1,117 @@
+.formulario-container {
+	max-width: 500px;
+	margin: 40px auto;
+	padding: 30px;
+	background-color: #1e1e1e; /* Fondo oscuro */
+	border: 1px solid #333;
+	border-radius: 8px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+	color: #e0e0e0;
+}
+
+.formulario-container h2 {
+	text-align: center;
+	color: #bb86fc; /* Morado del tema */
+	margin-top: 0;
+	margin-bottom: 25px;
+	border-bottom: 1px solid #333;
+	padding-bottom: 15px;
+}
+
+/* Estructura del formulario en columna */
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px; /* Espacio entre elementos */
+}
+
+label {
+	font-weight: bold;
+	font-size: 0.9rem;
+	color: #bbb;
+	margin-bottom: -10px; /* Acercamos un poco el label al input */
+}
+
+/* Estilo común para Inputs y Textarea */
+form input[type='text'],
+form input[type='number'],
+form textarea {
+	padding: 12px;
+	background-color: #2d2d2d;
+	border: 1px solid #444;
+	border-radius: 4px;
+	color: white;
+	font-size: 1rem;
+	font-family: inherit; /* Para que el textarea tenga la misma fuente */
+}
+
+form input:focus,
+form textarea:focus {
+	outline: none;
+	border-color: #bb86fc;
+}
+
+form textarea {
+	resize: vertical; /* Permite estirar solo hacia abajo */
+	min-height: 80px;
+}
+
+/* Previsualización de imagen */
+.previsualizacion {
+	text-align: center;
+	margin: 10px 0;
+	background-color: #000;
+	padding: 10px;
+	border-radius: 4px;
+	border: 1px dashed #444;
+}
+
+.previsualizacion img {
+	max-height: 150px;
+	max-width: 100%;
+	object-fit: contain;
+}
+
+/* --- BOTONES (Inputs) --- */
+.acciones-form {
+	display: flex;
+	gap: 15px;
+	margin-top: 10px;
+}
+
+/* Botón Cancelar */
+.btn-cancelar {
+	background-color: transparent;
+	border: 1px solid #cf6679;
+	color: #cf6679;
+	padding: 12px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: bold;
+	flex: 1; /* Ocupa la mitad */
+	transition: 0.3s;
+	text-align: center;
+}
+
+.btn-cancelar:hover {
+	background-color: #cf6679;
+	color: #000;
+}
+
+/* Botón Guardar */
+.btn-guardar {
+	background-color: #bb86fc;
+	border: 1px solid #bb86fc;
+	color: #000;
+	padding: 12px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: bold;
+	flex: 1; /* Ocupa la mitad */
+	transition: 0.3s;
+}
+
+.btn-guardar:hover {
+	background-color: #9965f4;
+	box-shadow: 0 0 10px rgba(187, 134, 252, 0.4);
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useSesion from '../hooks/useSesion';
 import useNotificacion from '../hooks/useNotificacion';
@@ -8,12 +8,21 @@ const Registrarse = () => {
 	const { crearCuenta, actualizarDato, datosSesion } = useSesion();
 	const { notificar } = useNotificacion();
 
+	const [confirmPasswd, setConfirmPasswd] = useState('');
+
 	const enviarDatos = (e) => {
 		e.preventDefault();
-		if (!datosSesion.email || !datosSesion.password || !datosSesion.name) {
+
+		if (!datosSesion.name || !datosSesion.email || !datosSesion.password || !confirmPasswd) {
 			notificar('Todos los campos son obligatorios.', 'error');
 			return;
 		}
+
+		if (datosSesion.password !== confirmPasswd) {
+			notificar('Las contraseñas no coinciden.', 'error');
+			return;
+		}
+
 		crearCuenta();
 	};
 
@@ -50,6 +59,16 @@ const Registrarse = () => {
 					placeholder="Contraseña..."
 					onChange={actualizarDato}
 					value={datosSesion.password}
+				/>
+
+				<label htmlFor="confirm">Repetir contraseña: </label>
+				<input
+					id="confirm"
+					name="confirm"
+					type="password"
+					placeholder="Confirmar contraseña..."
+					onChange={(e) => setConfirmPasswd(e.target.value)}
+					value={confirmPasswd}
 				/>
 
 				<input type="submit" id="botonGuardar" value="Registrarse" />
