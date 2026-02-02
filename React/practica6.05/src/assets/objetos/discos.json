@@ -11,16 +11,6 @@
       "prestado": true
     },
     {
-      "id": "3",
-      "nombre": "Motomami",
-      "caratula": "https://ejemplo.com/img/motomami.jpg",
-      "musico": "Rosalia",
-      "fecha": "2022",
-      "genero": "Urbano",
-      "localizacion": "ES-105XY",
-      "prestado": false
-    },
-    {
       "id": "4",
       "nombre": "Master of Puppets",
       "caratula": "https://ejemplo.com/img/metallica.jpg",

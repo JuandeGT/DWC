@@ -1,10 +1,10 @@
-import React from 'react';
-import useProductos from '../hooks/useProductos.js';
-import useSesion from '../hooks/useSesion.js';
-import MostrarProducto from './MostrarProducto.jsx';
-import Cargando from './Cargando.jsx';
-import FiltrarProducto from './FiltrarProducto.jsx';
-import './Listado.css';
+import React from "react";
+import useProductos from "../hooks/useProductos.js";
+import useSesion from "../hooks/useSesion.js";
+import MostrarProducto from "./MostrarProducto.jsx";
+import Cargando from "./Cargando.jsx";
+import FiltrarProducto from "./FiltrarProducto.jsx";
+import "./Listado.css";
 
 const Listado = () => {
 	const { productosListado, cargando } = useProductos();
