@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import useSesion from "../hooks/useSesion.js";
-import useProductos from "../hooks/useProductos.js";
-import { formatearDecimal, formatearPrecio } from "../utils/formatear.js";
-import Confirmacion from "../estructura/Confirmacion.jsx";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useSesion from '../hooks/useSesion.js';
+import useProductos from '../hooks/useProductos.js';
+import { formatearDecimal, formatearPrecio } from '../utils/formatear.js';
+import Confirmacion from '../estructura/Confirmacion.jsx';
 
 const Producto = (props) => {
 	const { producto } = props;
@@ -15,7 +15,7 @@ const Producto = (props) => {
 	const [confirmar, setConfirmar] = useState(false);
 
 	const editar = (evento) => {
-		if (evento.target.className !== "imagen-borrar" && sesionIniciada) {
+		if (evento.target.className === 'icono-editar' && sesionIniciada) {
 			navegar(`/editar-producto/${producto.id}`);
 		}
 	};
@@ -42,31 +42,39 @@ const Producto = (props) => {
 					onCancelar={cancelarBorrado}
 				/>
 			)}
-			<div
-				className="producto-card"
-				onClick={(e) => {
-					editar(e);
-				}}
-				style={{ cursor: sesionIniciada ? "pointer" : "default" }}
-			>
-				{sesionIniciada && (
-					<img
-						className="imagen-borrar"
-						onClick={borrar}
-						src="https://cdn-icons-png.freepik.com/512/8568/8568248.png"
-						alt="Borrar"
-					></img>
-				)}
+			<div className="producto-card">
 				<div className="producto-imagen">
-					<img
-						src={producto.imagen_url ? producto.imagen_url : "https://"}
-						alt={producto.nombre}
-					/>
+					<img src={producto.imagen_url ? producto.imagen_url : 'https://'} alt={producto.nombre} />
 				</div>
+
 				<div className="producto-info">
 					<h3>{producto.nombre}</h3>
 					<span className="peso">{formatearDecimal(producto.peso)} kg</span>
-					<span className="precio">{formatearPrecio(producto.precio)}</span>
+					<div className="card-footer">
+						<div className="iconos-acciones">
+							{sesionIniciada && (
+								<>
+									<img
+										className="icono-editar"
+										src="https://cdn-icons-png.flaticon.com/512/5996/5996831.png"
+										alt="Editar"
+										title="Editar"
+										onClick={(e) => {
+											editar(e);
+										}}
+									/>
+									<img
+										className="icono-borrar"
+										onClick={borrar}
+										src="https://cdn-icons-png.freepik.com/512/8568/8568248.png"
+										alt="Borrar"
+										title="Borrar"
+									/>
+								</>
+							)}
+						</div>
+						<span className="precio">{formatearPrecio(producto.precio)}</span>
+					</div>
 				</div>
 			</div>
 		</>
