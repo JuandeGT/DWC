@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Producto from './Producto';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Producto from "./Producto";
 
 const MostrarProducto = (props) => {
 	const { productosListado } = props;

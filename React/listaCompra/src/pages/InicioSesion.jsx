@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import useSesion from '../hooks/useSesion.js';
-import useNotificacion from '../hooks/useNotificacion.js';
-import './InicioSesion.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import useSesion from "../hooks/useSesion.js";
+import useNotificacion from "../hooks/useNotificacion.js";
+import "./InicioSesion.css";
 
 const InicioSesion = () => {
 	const { iniciarSesion, actualizarDato, datosSesion } = useSesion();
@@ -12,16 +12,16 @@ const InicioSesion = () => {
 		e.preventDefault();
 		// Validamos que no estén vacíos
 		if (!datosSesion.email.trim() || !datosSesion.password.trim()) {
-			notificar('Por favor, rellena todos los campos.', 'error');
+			notificar("Por favor, rellena todos los campos.", "error");
 			return;
 		}
 		iniciarSesion();
 	};
 	return (
 		<>
-			<div id="div-form">
+			<div className="login-container">
 				<form id="formulario" name="formulario" onSubmit={enviarDatos}>
-					<h3>Formulario:</h3>
+					<h3>Iniciar Sesión:</h3>
 					<label htmlFor="email">Correo electrónico: </label>
 					<input
 						type="email"
@@ -41,9 +41,9 @@ const InicioSesion = () => {
 						onChange={actualizarDato}
 						value={datosSesion.password}
 					/>
-					<input type="submit" id="botonGuardar" value="Iniciar Sesión" />
+					<input type="submit" className="login-btn" value="Iniciar Sesión" />
 				</form>
-				<div style={{ marginTop: '10px' }}>
+				<div className="login-footer">
 					<Link to="/registrarse">¿No tienes cuenta? Regístrate aquí.</Link>
 				</div>
 			</div>

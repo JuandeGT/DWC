@@ -35,7 +35,7 @@
 	color: white;
 }
 
-.grupo-ordenar input[type='radio'] {
+.grupo-ordenar input[type="radio"] {
 	accent-color: #bb86fc;
 	cursor: pointer;
 	width: 16px;
@@ -94,7 +94,7 @@
 .input-wrapper {
 	display: flex;
 	flex-direction: column;
-	gap: 5px;
+	gap: 16px;
 	flex: 1;
 	min-width: 120px;
 }

@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import useSesion from '../hooks/useSesion';
-import useNotificacion from '../hooks/useNotificacion';
-import './Registrarse.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import useSesion from "../hooks/useSesion";
+import useNotificacion from "../hooks/useNotificacion";
+import "./Registrarse.css";
 
 const Registrarse = () => {
 	const { crearCuenta, actualizarDato, datosSesion } = useSesion();
 	const { notificar } = useNotificacion();
 
-	const [confirmPasswd, setConfirmPasswd] = useState('');
+	const [confirmPasswd, setConfirmPasswd] = useState("");
 
 	const enviarDatos = (e) => {
 		e.preventDefault();
 
-		if (!datosSesion.name || !datosSesion.email || !datosSesion.password || !confirmPasswd) {
-			notificar('Todos los campos son obligatorios.', 'error');
+		if (
+			!datosSesion.name ||
+			!datosSesion.email ||
+			!datosSesion.password ||
+			!confirmPasswd
+		) {
+			notificar("Todos los campos son obligatorios.", "error");
 			return;
 		}
 
 		if (datosSesion.password !== confirmPasswd) {
-			notificar('Las contraseñas no coinciden.', 'error');
+			notificar("Las contraseñas no coinciden.", "error");
 			return;
 		}
 
@@ -27,7 +32,7 @@ const Registrarse = () => {
 	};
 
 	return (
-		<div className="register_container">
+		<div className="register-container">
 			<form onSubmit={enviarDatos}>
 				<h3>Crear cuenta</h3>
 
@@ -71,9 +76,9 @@ const Registrarse = () => {
 					value={confirmPasswd}
 				/>
 
-				<input type="submit" id="botonGuardar" value="Registrarse" />
+				<input type="submit" className="register-btn" value="Registrarse" />
 			</form>
-			<div style={{ marginTop: '10px' }}>
+			<div className="register-footer">
 				<Link to="/inicio-sesion">¿Ya tienes cuenta? Inicia sesión.</Link>
 			</div>
 		</div>

@@ -1,14 +1,14 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import useProductos from '../hooks/useProductos.js';
-import useSesion from '../hooks/useSesion.js';
-import MostrarProducto from './MostrarProducto.jsx';
-import Cargando from './Cargando.jsx';
-import FiltrarProducto from './FiltrarProducto.jsx';
-import './Listado.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import useProductos from "../hooks/useProductos.js";
+import useSesion from "../hooks/useSesion.js";
+import MostrarProducto from "./MostrarProducto.jsx";
+import Cargando from "./Cargando.jsx";
+import FiltrarProducto from "./FiltrarProducto.jsx";
+import { formatearPrecio } from "../utils/formatear.js";
+import "./Listado.css";
 
 const Listado = () => {
-	// formatear numeros
 	const { productosListado, cargando } = useProductos();
 	const { sesionIniciada } = useSesion();
 
@@ -16,7 +16,9 @@ const Listado = () => {
 
 	const calcularPrecio = () => {
 		let precioMedio = 0;
-		productosListado.forEach((producto) => (precioMedio += Number(producto.precio)));
+		productosListado.forEach(
+			(producto) => (precioMedio += Number(producto.precio)),
+		);
 		return precioMedio / productosListado.length || 0;
 	};
 	return (
@@ -26,8 +28,11 @@ const Listado = () => {
 					<div className="cabecera-lista">
 						<h2>Lista Productos</h2>
 						{sesionIniciada && (
-							<button className="btn-crear-nuevo" onClick={() => navegar('/crear-producto')}>
-								Crear Porducto
+							<button
+								className="btn-crear-nuevo"
+								onClick={() => navegar("/crear-producto")}
+							>
+								Crear Producto
 							</button>
 						)}
 					</div>
@@ -50,7 +55,7 @@ const Listado = () => {
 								</div>
 								<div className="dato-resumen">
 									<span>Precio Medio:</span>
-									<strong>{calcularPrecio().toFixed(2)} €</strong>
+									<strong>{formatearPrecio(calcularPrecio())}</strong>
 								</div>
 							</div>
 						</>

@@ -25,8 +25,8 @@
 
 .btn-login {
 	text-decoration: none;
-	color: #ffffff;
-	background-color: #3700b3;
+	color: black;
+	background-color: #bb86fc;
 	padding: 8px 16px;
 	border-radius: 4px;
 	font-weight: bold;
@@ -34,6 +34,7 @@
 }
 
 .btn-login:hover {
+	color: white;
 	background-color: #5600e8;
 }
 
@@ -49,5 +50,6 @@
 }
 
 .btn-cerrar:hover {
-	background-color: #ff8a9d;
+	color: white;
+	background-color: #5c1f29;
 }

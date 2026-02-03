@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import useProductos from '../hooks/useProductos.js';
-import useNotificacion from '../hooks/useNotificacion.js';
-import './FormularioProducto.css';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import useProductos from "../hooks/useProductos.js";
+import useNotificacion from "../hooks/useNotificacion.js";
+import "./FormularioProducto.css";
 
 const FormularioProducto = () => {
 	const { id } = useParams(); // Si hay un ID en la URL, estamos editando, sino estamos creando
@@ -12,11 +12,11 @@ const FormularioProducto = () => {
 	const navegar = useNavigate();
 
 	const formularioVacio = {
-		nombre: '',
-		precio: '',
-		peso: '',
-		imagen_url: '',
-		descripcion: '',
+		nombre: "",
+		precio: "",
+		peso: "",
+		imagen_url: "",
+		descripcion: "",
 	};
 
 	const [formulario, setFormulario] = useState(formularioVacio);
@@ -27,8 +27,8 @@ const FormularioProducto = () => {
 			if (productoEditar) {
 				setFormulario(productoEditar);
 			} else {
-				notificar('El producto no existe.', 'error');
-				navegar('/listado');
+				notificar("El producto no existe.", "error");
+				navegar("/listado");
 			}
 		}
 	}, [id, productos]);
@@ -42,22 +42,27 @@ const FormularioProducto = () => {
 		e.preventDefault();
 
 		if (!formulario.nombre || !formulario.precio || !formulario.peso) {
-			notificar('Rellena los campos obligatorios (nombre, precio, peso).', 'error');
+			notificar(
+				"Rellena los campos obligatorios (nombre, precio, peso).",
+				"error",
+			);
 			return;
 		}
 
 		if (id) {
 			// Editar
 			editarProducto(id, formulario);
+			navegar("/listado");
 		} else {
 			// Crear
 			crearProducto(formulario);
+			navegar("/listado");
 		}
 	};
 
 	return (
 		<div className="formulario-container">
-			<h2>{id ? 'Editar Producto' : 'Nuevo Producto'}</h2>
+			<h2>{id ? "Editar Producto" : "Nuevo Producto"}</h2>
 
 			<form onSubmit={guardarForm}>
 				<label>Nombre del producto:</label>
@@ -95,10 +100,12 @@ const FormularioProducto = () => {
 					onChange={actualizarForm}
 					placeholder="https://..."
 				/>
-				{/* Previsualización de la imagen si la hay */}
 				{formulario.imagen_url && (
 					<div className="previsualizacion">
-						<img src={formulario.imagen_url} alt={formulario.nombre} />
+						<img
+							src={formulario.imagen_url}
+							alt={"La imágen no se puede previsualizar."}
+						/>
 					</div>
 				)}
 
@@ -110,8 +117,18 @@ const FormularioProducto = () => {
 					placeholder="Detalles del producto..."
 				/>
 
-				<input type="button" value="Cancelar" onClick={() => navegar('/listado')} className="btn-cancelar" />
-				<input type="submit" id="botonGuardar" className="btn-guardar" value={id ? 'Actualizar' : 'Crear'} />
+				<input
+					type="button"
+					value="Cancelar"
+					onClick={() => navegar("/listado")}
+					className="btn-cancelar"
+				/>
+				<input
+					type="submit"
+					id="botonGuardar"
+					className="btn-guardar"
+					value={id ? "Actualizar" : "Crear"}
+				/>
 			</form>
 		</div>
 	);

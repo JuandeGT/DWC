@@ -1,5 +1,4 @@
-#div-form,
-.register_container {
+.register-container {
 	max-width: 400px;
 	margin: 50px auto;
 	padding: 40px;
@@ -7,24 +6,28 @@
 	border-radius: 8px;
 	background-color: #1e1e1e;
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+	color: #e0e0e0;
 }
 
-form h3 {
+.register-container h3 {
 	margin-top: 0;
-	color: #fff;
+	color: #bb86fc;
 	text-align: center;
 	margin-bottom: 25px;
+	border-bottom: 1px solid #333;
+	padding-bottom: 15px;
 }
 
-form label {
+.register-container label {
 	display: block;
 	margin-bottom: 8px;
 	color: #aaa;
+	font-size: 0.9rem;
 }
 
-form input[type='email'],
-form input[type='password'],
-form input[type='text'] {
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
 	width: 100%;
 	padding: 12px;
 	margin-bottom: 20px;
@@ -33,15 +36,15 @@ form input[type='text'] {
 	border-radius: 4px;
 	color: #fff;
 	box-sizing: border-box;
+	font-size: 1rem;
 }
 
-form input:focus {
+.register-container input:focus {
 	outline: none;
 	border-color: #bb86fc;
 }
 
-#botonGuardar,
-#logIn {
+.register-btn {
 	width: 100%;
 	padding: 12px;
 	background-color: #bb86fc;
@@ -52,19 +55,24 @@ form input:focus {
 	font-weight: bold;
 	cursor: pointer;
 	margin-top: 10px;
-	transition: 0.3s;
+	transition: background-color 0.3s;
 }
 
-#botonGuardar:hover,
-#logIn:hover {
+.register-btn:hover {
 	background-color: #9965f4;
 }
 
-a {
-	color: #bb86fc;
+.register-footer {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 0.9rem;
+}
+
+.register-footer a {
+	color: #03dac6;
 	text-decoration: none;
 }
 
-a:hover {
+.register-footer a:hover {
 	text-decoration: underline;
 }

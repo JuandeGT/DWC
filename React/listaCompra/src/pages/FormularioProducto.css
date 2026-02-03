@@ -2,7 +2,7 @@
 	max-width: 500px;
 	margin: 40px auto;
 	padding: 30px;
-	background-color: #1e1e1e; /* Fondo oscuro */
+	background-color: #1e1e1e;
 	border: 1px solid #333;
 	border-radius: 8px;
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -11,30 +11,28 @@
 
 .formulario-container h2 {
 	text-align: center;
-	color: #bb86fc; /* Morado del tema */
+	color: #bb86fc;
 	margin-top: 0;
 	margin-bottom: 25px;
 	border-bottom: 1px solid #333;
 	padding-bottom: 15px;
 }
 
-/* Estructura del formulario en columna */
 form {
 	display: flex;
 	flex-direction: column;
-	gap: 15px; /* Espacio entre elementos */
+	gap: 15px;
 }
 
 label {
 	font-weight: bold;
 	font-size: 0.9rem;
 	color: #bbb;
-	margin-bottom: -10px; /* Acercamos un poco el label al input */
+	margin-bottom: -10px;
 }
 
-/* Estilo común para Inputs y Textarea */
-form input[type='text'],
-form input[type='number'],
+form input[type="text"],
+form input[type="number"],
 form textarea {
 	padding: 12px;
 	background-color: #2d2d2d;
@@ -42,7 +40,7 @@ form textarea {
 	border-radius: 4px;
 	color: white;
 	font-size: 1rem;
-	font-family: inherit; /* Para que el textarea tenga la misma fuente */
+	font-family: inherit;
 }
 
 form input:focus,
@@ -52,11 +50,10 @@ form textarea:focus {
 }
 
 form textarea {
-	resize: vertical; /* Permite estirar solo hacia abajo */
+	resize: vertical;
 	min-height: 80px;
 }
 
-/* Previsualización de imagen */
 .previsualizacion {
 	text-align: center;
 	margin: 10px 0;
@@ -72,14 +69,12 @@ form textarea {
 	object-fit: contain;
 }
 
-/* --- BOTONES (Inputs) --- */
 .acciones-form {
 	display: flex;
 	gap: 15px;
 	margin-top: 10px;
 }
 
-/* Botón Cancelar */
 .btn-cancelar {
 	background-color: transparent;
 	border: 1px solid #cf6679;
@@ -88,7 +83,7 @@ form textarea {
 	border-radius: 4px;
 	cursor: pointer;
 	font-weight: bold;
-	flex: 1; /* Ocupa la mitad */
+	flex: 1;
 	transition: 0.3s;
 	text-align: center;
 }
@@ -107,11 +102,12 @@ form textarea {
 	border-radius: 4px;
 	cursor: pointer;
 	font-weight: bold;
-	flex: 1; /* Ocupa la mitad */
+	flex: 1;
 	transition: 0.3s;
 }
 
 .btn-guardar:hover {
-	background-color: #9965f4;
+	background-color: #452e6b;
+	color: white;
 	box-shadow: 0 0 10px rgba(187, 134, 252, 0.4);
 }

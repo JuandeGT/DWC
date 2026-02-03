@@ -1,11 +1,12 @@
-import React, { createContext, useEffect, useState } from 'react';
-import useNotificacion from '../hooks/useNotificacion.js';
-import useSupaCRUD from '../hooks/useSupaCRUD.js';
+import React, { createContext, useEffect, useState } from "react";
+import useNotificacion from "../hooks/useNotificacion.js";
+import useSupaCRUD from "../hooks/useSupaCRUD.js";
 
 const contextoProductos = createContext();
 
 const ProveedorProductos = ({ children }) => {
-	const { cargando, obtenerSupa, crearSupa, editarSupa, eliminarSupa } = useSupaCRUD('productos');
+	const { cargando, obtenerSupa, crearSupa, editarSupa, eliminarSupa } =
+		useSupaCRUD("productos");
 
 	const { notificar } = useNotificacion();
 
@@ -19,22 +20,24 @@ const ProveedorProductos = ({ children }) => {
 				cambiarProductos(datos);
 			}
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		}
 	};
 
 	const filtrar = (filtro, valor) => {
-		if (valor === 0 || valor === '') {
+		if (valor === 0 || valor === "") {
 			setProductosListado(productos);
 		} else {
 			let resultado;
-			if (filtro === 'nombre') {
-				resultado = productos.filter((p) => p.nombre.toLowerCase().includes(valor.toLowerCase()));
+			if (filtro === "nombre") {
+				resultado = productos.filter((p) =>
+					p.nombre.toLowerCase().includes(valor.toLowerCase()),
+				);
 			}
-			if (filtro === 'precio') {
+			if (filtro === "precio") {
 				resultado = productos.filter((p) => p.precio <= Number(valor));
 			}
-			if (filtro === 'peso') {
+			if (filtro === "peso") {
 				resultado = productos.filter((p) => p.peso <= Number(valor));
 			}
 			setProductosListado(resultado);
@@ -43,37 +46,41 @@ const ProveedorProductos = ({ children }) => {
 
 	const ordenar = (orden) => {
 		let resultado;
-		if (orden === 'precio') {
+		if (orden === "precio") {
 			resultado = [...productosListado].sort((a, b) => a.precio - b.precio);
-		} else if (orden === 'peso') {
+		} else if (orden === "peso") {
 			resultado = [...productosListado].sort((a, b) => a.peso - b.peso);
-		} else if (orden === 'nombre') {
-			resultado = [...productosListado].sort((a, b) => a.nombre.localeCompare(b.nombre));
+		} else if (orden === "nombre") {
+			resultado = [...productosListado].sort((a, b) =>
+				a.nombre.localeCompare(b.nombre),
+			);
 		} else {
 			resultado = [...productos];
 		}
 		setProductosListado(resultado);
 	};
 
-	const crearProductos = async (datos) => {
+	const crearProducto = async (datos) => {
 		try {
 			await crearSupa(datos);
 			cambiarProductos([...productos, datos]);
+			notificar("Producto creado correctamente.");
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		}
 	};
 
-	const editarProductos = async (datos) => {
+	const editarProducto = async (id, datos) => {
 		try {
 			await editarSupa(datos);
 
 			let productosNuevos = productos.map((p) => {
-				return p.id === datos.id ? datos : p;
+				return p.id === id ? datos : p;
 			});
 			cambiarProductos(productosNuevos);
+			notificar("Producto modificado correctamente.");
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		}
 	};
 
@@ -88,7 +95,7 @@ const ProveedorProductos = ({ children }) => {
 			});
 			cambiarProductos(productosNuevos);
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		}
 	};
 
@@ -108,12 +115,16 @@ const ProveedorProductos = ({ children }) => {
 		cargando,
 		filtrar,
 		ordenar,
-		crearProductos,
-		editarProductos,
+		crearProducto,
+		editarProducto,
 		eliminarProducto,
 	};
 
-	return <contextoProductos.Provider value={datosProveer}>{children}</contextoProductos.Provider>;
+	return (
+		<contextoProductos.Provider value={datosProveer}>
+			{children}
+		</contextoProductos.Provider>
+	);
 };
 
 export default ProveedorProductos;
