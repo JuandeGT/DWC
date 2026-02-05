@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useSesion from '../hooks/useSesion.js';
-import useProductos from '../hooks/useProductos.js';
-import { formatearDecimal, formatearPrecio } from '../utils/formatear.js';
-import Confirmacion from '../estructura/Confirmacion.jsx';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useSesion from "../hooks/useSesion.js";
+import useProductos from "../hooks/useProductos.js";
+import { formatearDecimal, formatearPrecio } from "../utils/formatear.js";
+import Confirmacion from "../estructura/Confirmacion.jsx";
 
 const Producto = (props) => {
 	const { producto } = props;
@@ -15,7 +15,7 @@ const Producto = (props) => {
 	const [confirmar, setConfirmar] = useState(false);
 
 	const editar = (evento) => {
-		if (evento.target.className === 'icono-editar' && sesionIniciada) {
+		if (evento.target.className === "icono-editar") {
 			navegar(`/editar-producto/${producto.id}`);
 		}
 	};
@@ -44,7 +44,10 @@ const Producto = (props) => {
 			)}
 			<div className="producto-card">
 				<div className="producto-imagen">
-					<img src={producto.imagen_url ? producto.imagen_url : 'https://'} alt={producto.nombre} />
+					<img
+						src={producto.imagen_url ? producto.imagen_url : "https://"}
+						alt={producto.nombre}
+					/>
 				</div>
 
 				<div className="producto-info">
