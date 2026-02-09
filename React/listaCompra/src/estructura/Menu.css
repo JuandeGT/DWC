@@ -16,6 +16,9 @@ nav {
 	padding: 8px 12px;
 	border-radius: 4px;
 	transition: 0.2s;
+	border: 1px solid;
+	background-color: #bb86fc;
+	color: black;
 }
 
 #links a:hover {

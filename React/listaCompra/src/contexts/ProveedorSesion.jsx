@@ -1,19 +1,25 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useSupabase from '../hooks/useSupabase.js';
-import useNotificacion from '../hooks/useNotificacion.js';
+import React, { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useSupabase from "../hooks/useSupabase.js";
+import useNotificacion from "../hooks/useNotificacion.js";
 
 const contextoSesion = createContext();
 
 const ProveedorSesion = ({ children }) => {
-	const { crearCuentaSupa, iniciarSesionSupa, obtenerUsuarioSupa, cerrarSesionSupa, suscripcion } = useSupabase();
+	const {
+		crearCuentaSupa,
+		iniciarSesionSupa,
+		obtenerUsuarioSupa,
+		cerrarSesionSupa,
+		suscripcion,
+	} = useSupabase();
 
 	const { notificar } = useNotificacion();
 
 	const sesionInicial = {
-		email: '',
-		password: '',
-		name: '',
+		email: "",
+		password: "",
+		name: "",
 	};
 
 	const navegar = useNavigate();
@@ -26,21 +32,21 @@ const ProveedorSesion = ({ children }) => {
 		try {
 			await crearCuentaSupa(datosSesion);
 
-			notificar('Recibirás un correo para confirmar la cuenta.');
+			notificar("Recibirás un correo para confirmar la cuenta.");
 			setDatosSesion(sesionInicial);
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		}
 	};
 
 	const iniciarSesion = async () => {
 		try {
 			await iniciarSesionSupa(datosSesion);
-			notificar('Sesión iniciada correctamente.');
+			notificar("Sesión iniciada correctamente.");
 			setDatosSesion(sesionInicial);
-			navegar('/listado');
+			navegar("/listado-productos");
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		}
 	};
 
@@ -49,10 +55,10 @@ const ProveedorSesion = ({ children }) => {
 			await cerrarSesionSupa();
 			setDatosSesion(sesionInicial);
 			// Se redirige al usuario a la parte pública.
-			navegar('/');
-			notificar('Sesión cerrada correctamente.');
+			navegar("/");
+			notificar("Sesión cerrada correctamente.");
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		}
 	};
 
@@ -62,10 +68,10 @@ const ProveedorSesion = ({ children }) => {
 			if (user) {
 				setUsuario(user);
 			} else {
-				notificar('No se encuentra el usuario actual', 'error');
+				notificar("No se encuentra el usuario actual", "error");
 			}
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		}
 	};
 
@@ -95,7 +101,11 @@ const ProveedorSesion = ({ children }) => {
 		usuario,
 	};
 
-	return <contextoSesion.Provider value={datosProveer}>{children}</contextoSesion.Provider>;
+	return (
+		<contextoSesion.Provider value={datosProveer}>
+			{children}
+		</contextoSesion.Provider>
+	);
 };
 
 export default ProveedorSesion;

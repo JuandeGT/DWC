@@ -28,7 +28,7 @@ const FormularioProducto = () => {
 				setFormulario(productoEditar);
 			} else {
 				notificar("El producto no existe.", "error");
-				navegar("/listado");
+				navegar("/listado-productos");
 			}
 		}
 	}, [id, productos]);
@@ -52,11 +52,11 @@ const FormularioProducto = () => {
 		if (id) {
 			// Editar
 			editarProducto(id, formulario);
-			navegar("/listado");
+			navegar("/listado-productos");
 		} else {
 			// Crear
 			crearProducto(formulario);
-			navegar("/listado");
+			navegar("/listado-productos");
 		}
 	};
 
@@ -120,7 +120,7 @@ const FormularioProducto = () => {
 				<input
 					type="button"
 					value="Cancelar"
-					onClick={() => navegar("/listado")}
+					onClick={() => navegar("/listado-productos")}
 					className="btn-cancelar"
 				/>
 				<input

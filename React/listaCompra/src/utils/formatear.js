@@ -7,7 +7,7 @@ const formatearPrecio = (cantidad) => {
 
 const formatearDecimal = (cantidad) => {
 	return Number(cantidad).toLocaleString("es-ES", {
-		minimumFractionDigits: 2,
+		minimumFractionDigits: 0,
 		maximumFractionDigits: 2,
 	});
 };

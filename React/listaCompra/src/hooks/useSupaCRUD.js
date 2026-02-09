@@ -21,6 +21,12 @@ const useSupaCRUD = (tabla) => {
 		return await consulta(supabaseConexion.from(tabla).select("*"));
 	};
 
+	const obtenerColumnaSupa = async (columna, valor) => {
+		return await consulta(
+			supabaseConexion.from(tabla).select("*").eq(columna, valor),
+		);
+	};
+
 	const crearSupa = async (datos) => {
 		await consulta(supabaseConexion.from(tabla).insert(datos));
 	};
@@ -35,7 +41,14 @@ const useSupaCRUD = (tabla) => {
 		await consulta(supabaseConexion.from(tabla).delete().eq("id", id));
 	};
 
-	return { cargando, obtenerSupa, crearSupa, editarSupa, eliminarSupa };
+	return {
+		cargando,
+		obtenerSupa,
+		obtenerColumnaSupa,
+		crearSupa,
+		editarSupa,
+		eliminarSupa,
+	};
 };
 
 export default useSupaCRUD;
