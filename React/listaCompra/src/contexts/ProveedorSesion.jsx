@@ -25,7 +25,7 @@ const ProveedorSesion = ({ children }) => {
 	const navegar = useNavigate();
 
 	const [datosSesion, setDatosSesion] = useState(sesionInicial);
-	const [usuario, setUsuario] = useState({});
+	const [usuario, setUsuario] = useState(null);
 	const [sesionIniciada, setSesionIniciada] = useState(false);
 
 	const crearCuenta = async () => {

@@ -27,6 +27,15 @@ const useSupaCRUD = (tabla) => {
 		);
 	};
 
+	const obtenerMultitabla = async (nombreColumna, valorColumna, sentencia) => {
+		return await consulta(
+			supabaseConexion
+				.from(tabla)
+				.select(sentencia)
+				.eq(nombreColumna, valorColumna),
+		);
+	};
+
 	const crearSupa = async (datos) => {
 		await consulta(supabaseConexion.from(tabla).insert(datos));
 	};
@@ -45,6 +54,7 @@ const useSupaCRUD = (tabla) => {
 		cargando,
 		obtenerSupa,
 		obtenerColumnaSupa,
+		obtenerMultitabla,
 		crearSupa,
 		editarSupa,
 		eliminarSupa,

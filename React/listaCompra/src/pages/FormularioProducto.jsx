@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useProductos from "../hooks/useProductos.js";
 import useNotificacion from "../hooks/useNotificacion.js";
-import "./FormularioProducto.css";
+import "./Formulario.css";
 
 const FormularioProducto = () => {
 	const { id } = useParams(); // Si hay un ID en la URL, estamos editando, sino estamos creando
@@ -61,76 +61,78 @@ const FormularioProducto = () => {
 	};
 
 	return (
-		<div className="formulario-container">
-			<h2>{id ? "Editar Producto" : "Nuevo Producto"}</h2>
+		<>
+			<div className="formulario-container">
+				<h2>{id ? "Editar Producto" : "Nuevo Producto"}</h2>
 
-			<form onSubmit={guardarForm}>
-				<label>Nombre del producto:</label>
-				<input
-					type="text"
-					name="nombre"
-					value={formulario.nombre}
-					onChange={actualizarForm}
-					placeholder="Ej: Proteína Whey..."
-				/>
-				<label>Precio (€):</label>
-				<input
-					type="number"
-					name="precio"
-					value={formulario.precio}
-					onChange={actualizarForm}
-					step="0.01"
-					placeholder="0.00"
-				/>
-				<label>Peso (kg):</label>
-				<input
-					type="number"
-					name="peso"
-					value={formulario.peso}
-					onChange={actualizarForm}
-					step="0.01"
-					placeholder="0.00"
-				/>
+				<form onSubmit={guardarForm}>
+					<label>Nombre del producto:</label>
+					<input
+						type="text"
+						name="nombre"
+						value={formulario.nombre}
+						onChange={actualizarForm}
+						placeholder="Ej: Proteína Whey..."
+					/>
+					<label>Precio (€):</label>
+					<input
+						type="number"
+						name="precio"
+						value={formulario.precio}
+						onChange={actualizarForm}
+						step="0.01"
+						placeholder="0.00"
+					/>
+					<label>Peso (kg):</label>
+					<input
+						type="number"
+						name="peso"
+						value={formulario.peso}
+						onChange={actualizarForm}
+						step="0.01"
+						placeholder="0.00"
+					/>
 
-				<label>URL de la imagen:</label>
-				<input
-					type="text"
-					name="imagen_url"
-					value={formulario.imagen_url}
-					onChange={actualizarForm}
-					placeholder="https://..."
-				/>
-				{formulario.imagen_url && (
-					<div className="previsualizacion">
-						<img
-							src={formulario.imagen_url}
-							alt={"La imágen no se puede previsualizar."}
-						/>
-					</div>
-				)}
+					<label>URL de la imagen:</label>
+					<input
+						type="text"
+						name="imagen_url"
+						value={formulario.imagen_url}
+						onChange={actualizarForm}
+						placeholder="https://..."
+					/>
+					{formulario.imagen_url && (
+						<div className="previsualizacion">
+							<img
+								src={formulario.imagen_url}
+								alt={"La imágen no se puede previsualizar."}
+							/>
+						</div>
+					)}
 
-				<label>Descripción:</label>
-				<textarea
-					name="descripcion"
-					value={formulario.descripcion}
-					onChange={actualizarForm}
-					placeholder="Detalles del producto..."
-				/>
+					<label>Descripción:</label>
+					<textarea
+						name="descripcion"
+						value={formulario.descripcion}
+						onChange={actualizarForm}
+						placeholder="Detalles del producto..."
+					/>
 
-				<input
-					type="button"
-					value="Cancelar"
-					onClick={() => navegar("/listado-productos")}
-					className="btn-cancelar"
-				/>
-				<input
-					type="submit"
-					id="botonGuardar"
-					className="btn-guardar"
-					value={id ? "Actualizar" : "Crear"}
-				/>
-			</form>
-		</div>
+					<input
+						type="button"
+						value="Cancelar"
+						onClick={() => navegar("/listado-productos")}
+						className="btn-cancelar"
+					/>
+					<input
+						type="submit"
+						id="botonGuardar"
+						className="btn-guardar"
+						value={id ? "Actualizar" : "Crear"}
+					/>
+				</form>
+			</div>
+		</>
 	);
 };
 

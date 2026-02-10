@@ -11,7 +11,7 @@ const Menu = () => {
 				<div id="links">
 					<Link to="/">Inicio</Link>
 					<Link to="/listado-productos">Productos</Link>
-					{sesionIniciada && <Link to="/lista-compra">Lista Compra</Link>}
+					{sesionIniciada && <Link to="/listas-compra">Lista Compra</Link>}
 				</div>
 			</nav>
 		</>

@@ -1,0 +1,135 @@
+/* Contenedor principal específico para Listas */
+.listado-listas-grid {
+	display: grid;
+	grid-template-columns: 1fr; /* Una sola columna ancha */
+	gap: 20px;
+	height: 100%;
+	align-items: start;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.panel-lista {
+	border: 1px solid #333;
+	padding: 20px;
+	border-radius: 8px;
+	background-color: #1e1e1e;
+}
+
+.cabecera-lista-compra {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #333;
+	padding-bottom: 15px;
+	margin-bottom: 20px;
+}
+
+.cabecera-lista-compra h2 {
+	color: #bb86fc;
+	margin: 0;
+}
+
+/* Botón crear (Reutilizamos estilo o lo definimos específico) */
+.btn-crear-lista {
+	background-color: #03dac6;
+	border: none;
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 0 10px rgba(3, 218, 198, 0.4);
+	transition: all 0.4s ease;
+}
+
+.btn-crear-lista img {
+	width: 24px;
+	height: 24px;
+}
+
+.btn-crear-lista:hover {
+	transform: rotate(180deg) scale(1.1);
+	background-color: #01bda7;
+	box-shadow: 0 0 15px rgba(3, 218, 198, 0.7);
+}
+
+/* Contenedor vertical de items */
+.contenedor-listas-vertical {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+/* --- TARJETA DE LISTA (FILA) --- */
+/* Usamos un nombre distinto a 'producto-card' para no romper el otro */
+.lista-compra-card {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #2d2d2d;
+	border: 1px solid #444;
+	border-radius: 8px;
+	padding: 20px 25px;
+	transition:
+		transform 0.2s,
+		box-shadow 0.2s,
+		border-color 0.2s;
+}
+
+.lista-compra-card:hover {
+	transform: translateX(5px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	border-color: #bb86fc;
+	cursor: pointer;
+}
+
+.lista-compra-info h3 {
+	font-size: 1.1rem;
+	color: #e0e0e0;
+	margin: 0;
+	font-weight: 500;
+}
+
+/* Iconos específicos para listas */
+.acciones-lista {
+	display: flex;
+	gap: 15px;
+	align-items: center;
+}
+
+.icono-lista-editar {
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	object-fit: contain;
+	/* Filtro Lila */
+	filter: invert(66%) sepia(35%) saturate(885%) hue-rotate(224deg)
+		brightness(99%) contrast(96%);
+}
+
+.icono-lista-editar:hover {
+	transform: scale(1.15);
+	filter: invert(66%) sepia(35%) saturate(885%) hue-rotate(224deg)
+		brightness(120%) contrast(96%) drop-shadow(0 0 5px #bb86fc);
+}
+
+.icono-lista-borrar {
+	width: 28px;
+	height: 28px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	object-fit: contain;
+	/* Filtro Rojo */
+	filter: invert(56%) sepia(61%) saturate(541%) hue-rotate(308deg)
+		brightness(87%) contrast(93%);
+}
+
+.icono-lista-borrar:hover {
+	transform: scale(1.15);
+	filter: invert(56%) sepia(61%) saturate(541%) hue-rotate(308deg)
+		brightness(110%) contrast(93%) drop-shadow(0 0 5px #cf6679);
+}

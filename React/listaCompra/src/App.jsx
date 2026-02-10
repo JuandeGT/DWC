@@ -9,6 +9,7 @@ import Rutas from "./routes/Rutas.jsx";
 import Pie from "./estructura/Pie.jsx";
 import Notificaciones from "./estructura/Notificaciones.jsx";
 import ProveedorProductos from "./contexts/ProveedorProductos.jsx";
+import ProveedorListas from "./contexts/ProveedorListas.jsx";
 
 function App() {
 	return (
@@ -17,9 +18,11 @@ function App() {
 			<Menu />
 			<Notificaciones />
 			<ProveedorProductos>
-				<Contenido>
-					<Rutas />
-				</Contenido>
+				<ProveedorListas>
+					<Contenido>
+						<Rutas />
+					</Contenido>
+				</ProveedorListas>
 			</ProveedorProductos>
 			<Pie />
 		</>
