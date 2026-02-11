@@ -50,6 +50,16 @@ const useSupaCRUD = (tabla) => {
 		await consulta(supabaseConexion.from(tabla).delete().eq("id", id));
 	};
 
+	const editarSupa2Columnas = async (columna1, columna2, datos) => {
+		await consulta(
+			supabaseConexion
+				.from(tabla)
+				.update(datos)
+				.eq(columna1, datos[columna1])
+				.eq(columna2, datos[columna2]),
+		);
+	};
+
 	return {
 		cargando,
 		obtenerSupa,
@@ -58,6 +68,7 @@ const useSupaCRUD = (tabla) => {
 		crearSupa,
 		editarSupa,
 		eliminarSupa,
+		editarSupa2Columnas,
 	};
 };
 

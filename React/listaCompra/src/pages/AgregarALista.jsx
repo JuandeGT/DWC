@@ -6,18 +6,21 @@ import useListas from "../hooks/useListas";
 
 const AgregarALista = () => {
 	const { id } = useParams();
-	const { listas } = useListas();
+	const { listas, seleccionarListaId } = useListas();
 
 	const [lista, setLista] = useState();
 
 	useEffect(() => {
 		if (listas.length > 0 && id) {
-			console.log(listas);
 			const listaActual = listas.find((l) => l.id === id);
-			setLista(listaActual);
-			console.log(lista);
+			if (listaActual) {
+				setLista(listaActual);
+				seleccionarListaId(id);
+			} else {
+				notificar("La lista no existe.", "error");
+			}
 		}
-	}, [id]);
+	}, [id, listas]);
 
 	return (
 		<>
@@ -25,7 +28,7 @@ const AgregarALista = () => {
 				<ListadoProductosAgregar />
 				<div className="panel-derecha">
 					<h2>Lista</h2>
-					<ListaDetalle />
+					<ListaDetalle lista={lista} />
 				</div>
 			</div>
 		</>

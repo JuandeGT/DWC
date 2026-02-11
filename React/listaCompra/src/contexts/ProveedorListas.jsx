@@ -12,6 +12,7 @@ const ProveedorListas = ({ children }) => {
 	// Se renombran los métodos para poder usar el hook con distinta tabla por parámetro
 	const {
 		obtenerMultitabla: obtenerArtSupa,
+		editarSupa2Columnas,
 		crearSupa: crearArtSupa,
 		editarSupa: editarArtSupa,
 		eliminarSupa: eliminarArtSupa,
@@ -21,6 +22,7 @@ const ProveedorListas = ({ children }) => {
 	const { notificar } = useNotificacion();
 
 	const [listas, setListas] = useState([]);
+	const [listaActual, setListaActual] = useState([]);
 	const [productosLista, setProductosLista] = useState([]);
 	const [cargandoInicial, setCargandoInicial] = useState(true);
 
@@ -32,6 +34,17 @@ const ProveedorListas = ({ children }) => {
 			notificar(error.message, "error");
 		} finally {
 			setCargandoInicial(false);
+		}
+	};
+
+	const seleccionarListaId = async (id) => {
+		try {
+			const datos = await obtenerColumnaSupa("id", id);
+			if (datos) {
+				setListaActual(datos);
+			}
+		} catch (error) {
+			notificar(error.message, "error");
 		}
 	};
 
@@ -92,6 +105,48 @@ const ProveedorListas = ({ children }) => {
 		}
 	};
 
+	const agregarArticuloLista = async (id_producto, cantidad) => {
+		try {
+			await obtenerProductosLista(listaActual.id);
+			if (productosLista) {
+				const producto = productosLista.find((p) => p.id === id_producto);
+
+				if (producto) {
+					const productoAumentado = {
+						lista_id: listaActual.id,
+						producto_id: id_producto,
+						cantidad: producto.cantidad + cantidad,
+					};
+
+					await editarSupa2Columnas(
+						"lista_id",
+						"producto_id",
+						productoAumentado,
+					);
+
+					const productosNuevos = productosLista.map((p) => {
+						if (p.producto_id === id_producto) {
+							return { ...p, cantidad: productoAumentado.cantidad };
+						}
+						return p;
+					});
+					setProductosLista(productosNuevos);
+					notificar("Cantidad aumentada correctamente.");
+				} else {
+					const productoNuevo = {
+						lista_id: listaActual.id,
+						producto_id: id_producto,
+						cantidad: cantidad,
+					};
+
+					await crearArtSupa(productoNuevo);
+					await obtenerProductosLista(listaActual.id);
+					notificar("Producto añadido a la lista.");
+				}
+			}
+		} catch (error) {}
+	};
+
 	useEffect(() => {
 		if (usuario) {
 			obtenerListas();
@@ -101,12 +156,14 @@ const ProveedorListas = ({ children }) => {
 	// Se combinan los cargando, uno del hook y el que verifica si llega o no el usuario, así evitamos que se pete el componente
 	const datosProveer = {
 		listas,
+		listaActual,
 		productosLista,
 		cargando: cargando || cargandoInicial,
+		seleccionarListaId,
 		crearLista,
 		editarLista,
 		eliminarLista,
-		obtenerProductosLista,
+		agregarArticuloLista,
 	};
 
 	return (
