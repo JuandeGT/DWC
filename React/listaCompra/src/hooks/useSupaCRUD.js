@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { supabaseConexion } from "../supabase/supabase.js";
+import { useState } from 'react';
+import { supabaseConexion } from '../supabase/supabase.js';
 
 const useSupaCRUD = (tabla) => {
 	const [cargando, setCargando] = useState(false);
@@ -18,22 +18,15 @@ const useSupaCRUD = (tabla) => {
 	};
 
 	const obtenerSupa = async () => {
-		return await consulta(supabaseConexion.from(tabla).select("*"));
+		return await consulta(supabaseConexion.from(tabla).select('*'));
 	};
 
 	const obtenerColumnaSupa = async (columna, valor) => {
-		return await consulta(
-			supabaseConexion.from(tabla).select("*").eq(columna, valor),
-		);
+		return await consulta(supabaseConexion.from(tabla).select('*').eq(columna, valor));
 	};
 
 	const obtenerMultitabla = async (nombreColumna, valorColumna, sentencia) => {
-		return await consulta(
-			supabaseConexion
-				.from(tabla)
-				.select(sentencia)
-				.eq(nombreColumna, valorColumna),
-		);
+		return await consulta(supabaseConexion.from(tabla).select(sentencia).eq(nombreColumna, valorColumna));
 	};
 
 	const crearSupa = async (datos) => {
@@ -41,22 +34,16 @@ const useSupaCRUD = (tabla) => {
 	};
 
 	const editarSupa = async (datos) => {
-		await consulta(
-			supabaseConexion.from(tabla).update(datos).eq("id", datos.id),
-		);
+		await consulta(supabaseConexion.from(tabla).update(datos).eq('id', datos.id));
 	};
 
 	const eliminarSupa = async (id) => {
-		await consulta(supabaseConexion.from(tabla).delete().eq("id", id));
+		await consulta(supabaseConexion.from(tabla).delete().eq('id', id));
 	};
 
 	const editarSupa2Columnas = async (columna1, columna2, datos) => {
 		await consulta(
-			supabaseConexion
-				.from(tabla)
-				.update(datos)
-				.eq(columna1, datos[columna1])
-				.eq(columna2, datos[columna2]),
+			supabaseConexion.from(tabla).update(datos).eq(columna1, datos[columna1]).eq(columna2, datos[columna2]),
 		);
 	};
 

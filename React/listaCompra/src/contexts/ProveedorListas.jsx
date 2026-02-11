@@ -1,13 +1,12 @@
-import React, { createContext, useEffect, useState } from "react";
-import useSupaCRUD from "../hooks/useSupaCRUD.js";
-import useNotificacion from "../hooks/useNotificacion.js";
-import useSesion from "../hooks/useSesion.js";
+import React, { createContext, useEffect, useState } from 'react';
+import useSupaCRUD from '../hooks/useSupaCRUD.js';
+import useNotificacion from '../hooks/useNotificacion.js';
+import useSesion from '../hooks/useSesion.js';
 
 const contextoListas = createContext();
 
 const ProveedorListas = ({ children }) => {
-	const { cargando, obtenerColumnaSupa, crearSupa, editarSupa, eliminarSupa } =
-		useSupaCRUD("lista_compra");
+	const { cargando, obtenerColumnaSupa, crearSupa, editarSupa, eliminarSupa } = useSupaCRUD('lista_compra');
 
 	// Se renombran los métodos para poder usar el hook con distinta tabla por parámetro
 	const {
@@ -16,28 +15,28 @@ const ProveedorListas = ({ children }) => {
 		crearSupa: crearArtSupa,
 		editarSupa: editarArtSupa,
 		eliminarSupa: eliminarArtSupa,
-	} = useSupaCRUD("lista_articulos");
+	} = useSupaCRUD('lista_articulos');
 
 	const { usuario } = useSesion();
 	const { notificar } = useNotificacion();
 
 	const [listas, setListas] = useState([]);
-	const [listaActual, setListaActual] = useState([]);
+	/* const [listaActual, setListaActual] = useState([]); */
 	const [productosLista, setProductosLista] = useState([]);
 	const [cargandoInicial, setCargandoInicial] = useState(true);
 
 	const obtenerListas = async () => {
 		try {
-			const datos = await obtenerColumnaSupa("usuario_id", usuario.id);
+			const datos = await obtenerColumnaSupa('usuario_id', usuario.id);
 			if (datos) setListas(datos);
 		} catch (error) {
-			notificar(error.message, "error");
+			notificar(error.message, 'error');
 		} finally {
 			setCargandoInicial(false);
 		}
 	};
 
-	const seleccionarListaId = async (id) => {
+	/* const seleccionarListaId = async (id) => {
 		try {
 			const datos = await obtenerColumnaSupa("id", id);
 			if (datos) {
@@ -46,15 +45,15 @@ const ProveedorListas = ({ children }) => {
 		} catch (error) {
 			notificar(error.message, "error");
 		}
-	};
+	}; */
 
 	const crearLista = async (nombreLista) => {
 		try {
 			await crearSupa({ nombre: nombreLista, usuario_id: usuario.id });
 			obtenerListas(); // Hay que traerlos sí o sí para traer el id de la base de datos.
-			notificar("Lista creada correctamente.");
+			notificar('Lista creada correctamente.');
 		} catch (error) {
-			notificar(error.message, "error");
+			notificar(error.message, 'error');
 		}
 	};
 
@@ -64,13 +63,13 @@ const ProveedorListas = ({ children }) => {
 
 			await editarSupa(datos);
 
-			let listasNuevas = listas.map((l) => {
+			const listasNuevas = listas.map((l) => {
 				return l.id === id ? datos : l;
 			});
 			setListas(listasNuevas);
-			notificar("Lista modificada correctamente.");
+			notificar('Lista modificada correctamente.');
 		} catch (error) {
-			notificar(error.message, "error");
+			notificar(error.message, 'error');
 		}
 	};
 
@@ -78,51 +77,60 @@ const ProveedorListas = ({ children }) => {
 		try {
 			await eliminarSupa(id);
 
-			let listasNuevas = listas.filter((l) => {
-				if (l.id !== id) return l;
-			});
+			const listasNuevas = listas.filter((l) => l.id !== id);
 			setListas(listasNuevas);
-			notificar("Lista borrada correctamente.");
+			notificar('Lista borrada correctamente.');
 		} catch (error) {
-			notificar(error.message, "error");
+			notificar(error.message, 'error');
+		}
+	};
+
+	const eliminarArticuloLista = async (id) => {
+		try {
+			await eliminarArtSupa(id);
+
+			const productosNuevos = productosLista.filter((p) => p.id !== id);
+
+			setProductosLista(productosNuevos);
+			notificar('Producto eliminado de la lista.');
+		} catch (error) {
+			notificar(error.message, 'error');
 		}
 	};
 
 	const obtenerProductosLista = async (id) => {
 		try {
 			const datos = await obtenerArtSupa(
-				"lista_id",
+				'lista_id',
 				id,
-				"producto_id, cantidad, productos(id, nombre, peso, precio, imagen_url, descripcion)",
+				'id, producto_id, cantidad, productos(id, nombre, peso, precio, imagen_url, descripcion)',
 			);
 
 			if (datos) {
 				setProductosLista(datos);
+				return datos;
 			}
 		} catch (error) {
-			notificar(error.message, "error");
+			notificar(error.message, 'error');
 			setProductosLista([]);
 		}
 	};
 
-	const agregarArticuloLista = async (id_producto, cantidad) => {
+	const agregarArticuloLista = async (id_lista, id_producto, cantidad) => {
 		try {
-			await obtenerProductosLista(listaActual.id);
-			if (productosLista) {
-				const producto = productosLista.find((p) => p.id === id_producto);
+			const productos = await obtenerProductosLista(id_lista);
+			if (productos) {
+				const producto = productos.find((p) => p.producto_id === id_producto);
 
 				if (producto) {
+					// Actualizar cantidad del producto porque ya existe
 					const productoAumentado = {
-						lista_id: listaActual.id,
+						lista_id: id_lista,
 						producto_id: id_producto,
 						cantidad: producto.cantidad + cantidad,
 					};
 
-					await editarSupa2Columnas(
-						"lista_id",
-						"producto_id",
-						productoAumentado,
-					);
+					await editarSupa2Columnas('lista_id', 'producto_id', productoAumentado);
 
 					const productosNuevos = productosLista.map((p) => {
 						if (p.producto_id === id_producto) {
@@ -131,17 +139,18 @@ const ProveedorListas = ({ children }) => {
 						return p;
 					});
 					setProductosLista(productosNuevos);
-					notificar("Cantidad aumentada correctamente.");
+					notificar('Cantidad aumentada correctamente.');
 				} else {
+					// Metemos el producto en la lista
 					const productoNuevo = {
-						lista_id: listaActual.id,
+						lista_id: id_lista,
 						producto_id: id_producto,
 						cantidad: cantidad,
 					};
 
 					await crearArtSupa(productoNuevo);
-					await obtenerProductosLista(listaActual.id);
-					notificar("Producto añadido a la lista.");
+					await obtenerProductosLista(id_lista);
+					notificar('Producto añadido a la lista.');
 				}
 			}
 		} catch (error) {}
@@ -156,21 +165,17 @@ const ProveedorListas = ({ children }) => {
 	// Se combinan los cargando, uno del hook y el que verifica si llega o no el usuario, así evitamos que se pete el componente
 	const datosProveer = {
 		listas,
-		listaActual,
 		productosLista,
 		cargando: cargando || cargandoInicial,
-		seleccionarListaId,
 		crearLista,
 		editarLista,
 		eliminarLista,
 		agregarArticuloLista,
+		obtenerProductosLista,
+		eliminarArticuloLista,
 	};
 
-	return (
-		<contextoListas.Provider value={datosProveer}>
-			{children}
-		</contextoListas.Provider>
-	);
+	return <contextoListas.Provider value={datosProveer}>{children}</contextoListas.Provider>;
 };
 
 export default ProveedorListas;
