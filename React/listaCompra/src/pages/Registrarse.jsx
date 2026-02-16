@@ -29,6 +29,7 @@ const Registrarse = () => {
 		}
 
 		crearCuenta();
+		setConfirmPasswd("");
 	};
 
 	return (
