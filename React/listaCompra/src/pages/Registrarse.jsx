@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useSesion from "../hooks/useSesion";
 import useNotificacion from "../hooks/useNotificacion";
 import "./Registrarse.css";
@@ -7,6 +7,8 @@ import "./Registrarse.css";
 const Registrarse = () => {
 	const { crearCuenta, actualizarDato, datosSesion } = useSesion();
 	const { notificar } = useNotificacion();
+
+	const navegar = useNavigate();
 
 	const [confirmPasswd, setConfirmPasswd] = useState("");
 
@@ -30,6 +32,7 @@ const Registrarse = () => {
 
 		crearCuenta();
 		setConfirmPasswd("");
+		navegar("/");
 	};
 
 	return (

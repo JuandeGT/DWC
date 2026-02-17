@@ -5,13 +5,16 @@ import "./index.css";
 import App from "./App.jsx";
 import ProveerNotificaciones from "./contexts/ProveerNotificaciones.jsx";
 import ProveedorSesion from "./contexts/ProveedorSesion.jsx";
+import ProveedorPerfil from "./contexts/ProveedorPerfil.jsx";
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
 		<BrowserRouter>
 			<ProveerNotificaciones>
 				<ProveedorSesion>
-					<App />
+					<ProveedorPerfil>
+						<App />
+					</ProveedorPerfil>
 				</ProveedorSesion>
 			</ProveerNotificaciones>
 		</BrowserRouter>

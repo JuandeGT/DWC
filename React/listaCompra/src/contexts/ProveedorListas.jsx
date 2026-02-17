@@ -1,21 +1,21 @@
-import React, { createContext, useEffect, useState } from 'react';
-import useSupaCRUD from '../hooks/useSupaCRUD.js';
-import useNotificacion from '../hooks/useNotificacion.js';
-import useSesion from '../hooks/useSesion.js';
+import React, { createContext, useEffect, useState } from "react";
+import useSupaCRUD from "../hooks/useSupaCRUD.js";
+import useNotificacion from "../hooks/useNotificacion.js";
+import useSesion from "../hooks/useSesion.js";
 
 const contextoListas = createContext();
 
 const ProveedorListas = ({ children }) => {
-	const { cargando, obtenerColumnaSupa, crearSupa, editarSupa, eliminarSupa } = useSupaCRUD('lista_compra');
+	const { cargando, obtenerColumnaSupa, crearSupa, editarSupa, eliminarSupa } =
+		useSupaCRUD("lista_compra");
 
 	// Se renombran los métodos para poder usar el hook con distinta tabla por parámetro
 	const {
 		obtenerMultitabla: obtenerArtSupa,
 		editarSupa2Columnas,
 		crearSupa: crearArtSupa,
-		editarSupa: editarArtSupa,
 		eliminarSupa: eliminarArtSupa,
-	} = useSupaCRUD('lista_articulos');
+	} = useSupaCRUD("lista_articulos");
 
 	const { usuario } = useSesion();
 	const { notificar } = useNotificacion();
@@ -27,10 +27,10 @@ const ProveedorListas = ({ children }) => {
 
 	const obtenerListas = async () => {
 		try {
-			const datos = await obtenerColumnaSupa('usuario_id', usuario.id);
+			const datos = await obtenerColumnaSupa("usuario_id", usuario.id);
 			if (datos) setListas(datos);
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		} finally {
 			setCargandoInicial(false);
 		}
@@ -51,9 +51,9 @@ const ProveedorListas = ({ children }) => {
 		try {
 			await crearSupa({ nombre: nombreLista, usuario_id: usuario.id });
 			obtenerListas(); // Hay que traerlos sí o sí para traer el id de la base de datos.
-			notificar('Lista creada correctamente.');
+			notificar("Lista creada correctamente.");
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		}
 	};
 
@@ -67,9 +67,9 @@ const ProveedorListas = ({ children }) => {
 				return l.id === id ? datos : l;
 			});
 			setListas(listasNuevas);
-			notificar('Lista modificada correctamente.');
+			notificar("Lista modificada correctamente.");
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		}
 	};
 
@@ -79,9 +79,9 @@ const ProveedorListas = ({ children }) => {
 
 			const listasNuevas = listas.filter((l) => l.id !== id);
 			setListas(listasNuevas);
-			notificar('Lista borrada correctamente.');
+			notificar("Lista borrada correctamente.");
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		}
 	};
 
@@ -92,18 +92,18 @@ const ProveedorListas = ({ children }) => {
 			const productosNuevos = productosLista.filter((p) => p.id !== id);
 
 			setProductosLista(productosNuevos);
-			notificar('Producto eliminado de la lista.');
+			notificar("Producto eliminado de la lista.");
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 		}
 	};
 
 	const obtenerProductosLista = async (id) => {
 		try {
 			const datos = await obtenerArtSupa(
-				'lista_id',
+				"lista_id",
 				id,
-				'id, producto_id, cantidad, productos(id, nombre, peso, precio, imagen_url, descripcion)',
+				"id, producto_id, cantidad, productos(id, nombre, peso, precio, imagen_url, descripcion)",
 			);
 
 			if (datos) {
@@ -111,7 +111,7 @@ const ProveedorListas = ({ children }) => {
 				return datos;
 			}
 		} catch (error) {
-			notificar(error.message, 'error');
+			notificar(error.message, "error");
 			setProductosLista([]);
 		}
 	};
@@ -130,7 +130,11 @@ const ProveedorListas = ({ children }) => {
 						cantidad: producto.cantidad + cantidad,
 					};
 
-					await editarSupa2Columnas('lista_id', 'producto_id', productoAumentado);
+					await editarSupa2Columnas(
+						"lista_id",
+						"producto_id",
+						productoAumentado,
+					);
 
 					const productosNuevos = productosLista.map((p) => {
 						if (p.producto_id === id_producto) {
@@ -139,7 +143,7 @@ const ProveedorListas = ({ children }) => {
 						return p;
 					});
 					setProductosLista(productosNuevos);
-					notificar('Cantidad aumentada correctamente.');
+					notificar("Cantidad aumentada correctamente.");
 				} else {
 					// Metemos el producto en la lista
 					const productoNuevo = {
@@ -150,7 +154,7 @@ const ProveedorListas = ({ children }) => {
 
 					await crearArtSupa(productoNuevo);
 					await obtenerProductosLista(id_lista);
-					notificar('Producto añadido a la lista.');
+					notificar("Producto añadido a la lista.");
 				}
 			}
 		} catch (error) {}
@@ -175,7 +179,11 @@ const ProveedorListas = ({ children }) => {
 		eliminarArticuloLista,
 	};
 
-	return <contextoListas.Provider value={datosProveer}>{children}</contextoListas.Provider>;
+	return (
+		<contextoListas.Provider value={datosProveer}>
+			{children}
+		</contextoListas.Provider>
+	);
 };
 
 export default ProveedorListas;

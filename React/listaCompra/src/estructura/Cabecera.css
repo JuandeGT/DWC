@@ -18,9 +18,15 @@
 	align-items: center;
 }
 
-.nombre-usuario {
-	color: #b0b0b0;
-	font-weight: 500;
+.img-usuario {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 5px solid #252525;
+	background-color: #fff;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
 }
 
 .btn-login {

@@ -10,6 +10,7 @@ import useSesion from "../hooks/useSesion.js";
 import ListasCompra from "../pages/ListasCompra.jsx";
 import FormularioLista from "../pages/FormularioLista.jsx";
 import AgregarALista from "../pages/AgregarALista.jsx";
+import Perfil from "../pages/Perfil.jsx";
 
 const Rutas = () => {
 	const { sesionIniciada } = useSesion();
@@ -31,6 +32,7 @@ const Rutas = () => {
 						<Route path="/crear-lista" element={<FormularioLista />} />
 						<Route path="/editar-lista/:id" element={<FormularioLista />} />
 						<Route path="/agregar-productos/:id" element={<AgregarALista />} />
+						<Route path="/perfil" element={<Perfil />} />
 					</>
 				)}
 				<Route path="*" element={<Error />} />
