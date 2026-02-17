@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useSupabase from "../hooks/useSupabase.js";
 import useNotificacion from "../hooks/useNotificacion.js";
+import useSupaCRUD from "../hooks/useSupaCRUD.js";
 
 const contextoSesion = createContext();
 
@@ -13,6 +14,8 @@ const ProveedorSesion = ({ children }) => {
 		cerrarSesionSupa,
 		suscripcion,
 	} = useSupabase();
+
+	const { obtenerColumnaSupa } = useSupaCRUD("roles");
 
 	const { notificar } = useNotificacion();
 
@@ -66,13 +69,24 @@ const ProveedorSesion = ({ children }) => {
 		try {
 			const user = await obtenerUsuarioSupa();
 			if (user) {
-				setUsuario(user);
+				const datosRol = await obtenerColumnaSupa("id_rol", user.id);
+
+				const usuarioCompleto = {
+					...user,
+					rol: datosRol[0]?.rol,
+				};
+
+				setUsuario(usuarioCompleto);
 			} else {
 				notificar("No se encuentra el usuario actual", "error");
 			}
 		} catch (error) {
 			notificar(error.message, "error");
 		}
+	};
+
+	const soyAdmin = () => {
+		return usuario.rol === "administrador" ? true : false;
 	};
 
 	const actualizarDato = (evento) => {
@@ -99,6 +113,7 @@ const ProveedorSesion = ({ children }) => {
 		datosSesion,
 		sesionIniciada,
 		usuario,
+		soyAdmin,
 	};
 
 	return (
