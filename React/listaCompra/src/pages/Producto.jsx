@@ -7,7 +7,7 @@ import Confirmacion from "../estructura/Confirmacion.jsx";
 
 const Producto = (props) => {
 	const { producto } = props;
-	const { soyAdmin } = useSesion();
+	const { administrador } = useSesion();
 	const { eliminarProducto } = useProductos();
 
 	const navegar = useNavigate();
@@ -55,7 +55,7 @@ const Producto = (props) => {
 					<span className="peso">{formatearDecimal(producto.peso)} kg</span>
 					<div className="card-footer">
 						<div className="iconos-acciones">
-							{soyAdmin && (
+							{administrador && (
 								<>
 									<img
 										className="icono-editar"

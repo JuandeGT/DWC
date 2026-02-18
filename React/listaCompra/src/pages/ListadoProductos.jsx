@@ -10,7 +10,7 @@ import "./ListadoProductos.css";
 
 const ListadoProductos = () => {
 	const { productosListado, cargando } = useProductos();
-	const { sesionIniciada, soyAdmin } = useSesion();
+	const { sesionIniciada, administrador } = useSesion();
 
 	const navegar = useNavigate();
 
@@ -27,7 +27,7 @@ const ListadoProductos = () => {
 				<div className="panel-izquierda">
 					<div className="cabecera-lista">
 						<h2>Lista Productos</h2>
-						{soyAdmin && (
+						{administrador && (
 							<button
 								className="btn-crear-nuevo"
 								onClick={() => navegar("/crear-producto")}

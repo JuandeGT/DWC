@@ -6,7 +6,7 @@ import Confirmacion from "./Confirmacion.jsx";
 import "./Cabecera.css";
 
 const Cabecera = () => {
-	const { sesionIniciada, usuario, cerrarSesion } = useSesion();
+	const { sesionIniciada, administrador, cerrarSesion } = useSesion();
 	const { perfil } = usePerfil();
 	const navegar = useNavigate();
 
@@ -39,6 +39,7 @@ const Cabecera = () => {
 
 				{sesionIniciada ? (
 					<div className="datos-usuario">
+						{administrador && <span className="admin">Administrador</span>}
 						<img
 							src={
 								perfil?.avatar ||

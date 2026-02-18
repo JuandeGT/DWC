@@ -30,6 +30,7 @@ const ProveedorSesion = ({ children }) => {
 	const [datosSesion, setDatosSesion] = useState(sesionInicial);
 	const [usuario, setUsuario] = useState(null);
 	const [sesionIniciada, setSesionIniciada] = useState(false);
+	const [administrador, setAdministrador] = useState(false);
 
 	const crearCuenta = async () => {
 		try {
@@ -77,16 +78,18 @@ const ProveedorSesion = ({ children }) => {
 				};
 
 				setUsuario(usuarioCompleto);
+				// Al obtener el usuario comprobamos si es administrador
+				if (usuarioCompleto.rol === "administrador") {
+					setAdministrador(true);
+				} else {
+					setAdministrador(false);
+				}
 			} else {
 				notificar("No se encuentra el usuario actual", "error");
 			}
 		} catch (error) {
 			notificar(error.message, "error");
 		}
-	};
-
-	const soyAdmin = () => {
-		return usuario.rol === "administrador" ? true : false;
 	};
 
 	const actualizarDato = (evento) => {
@@ -113,7 +116,7 @@ const ProveedorSesion = ({ children }) => {
 		datosSesion,
 		sesionIniciada,
 		usuario,
-		soyAdmin,
+		administrador,
 	};
 
 	return (

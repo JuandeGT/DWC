@@ -6,8 +6,14 @@ import useSesion from "../hooks/useSesion.js";
 const contextoListas = createContext();
 
 const ProveedorListas = ({ children }) => {
-	const { cargando, obtenerColumnaSupa, crearSupa, editarSupa, eliminarSupa } =
-		useSupaCRUD("lista_compra");
+	const {
+		cargando,
+		obtenerSupa,
+		obtenerColumnaSupa,
+		crearSupa,
+		editarSupa,
+		eliminarSupa,
+	} = useSupaCRUD("lista_compra");
 
 	// Se renombran los métodos para poder usar el hook con distinta tabla por parámetro
 	const {
@@ -17,13 +23,24 @@ const ProveedorListas = ({ children }) => {
 		eliminarSupa: eliminarArtSupa,
 	} = useSupaCRUD("lista_articulos");
 
-	const { usuario } = useSesion();
+	const { usuario, administrador } = useSesion();
 	const { notificar } = useNotificacion();
 
 	const [listas, setListas] = useState([]);
-	/* const [listaActual, setListaActual] = useState([]); */
+	const [todasListas, setTodasListas] = useState([]);
 	const [productosLista, setProductosLista] = useState([]);
 	const [cargandoInicial, setCargandoInicial] = useState(true);
+
+	const obtenerTodasListas = async () => {
+		if (administrador) {
+			try {
+				const datos = await obtenerSupa();
+				if (datos) setTodasListas(datos);
+			} catch (error) {
+				notificar(error.message, "error");
+			}
+		}
+	};
 
 	const obtenerListas = async () => {
 		try {
@@ -35,17 +52,6 @@ const ProveedorListas = ({ children }) => {
 			setCargandoInicial(false);
 		}
 	};
-
-	/* const seleccionarListaId = async (id) => {
-		try {
-			const datos = await obtenerColumnaSupa("id", id);
-			if (datos) {
-				setListaActual(datos);
-			}
-		} catch (error) {
-			notificar(error.message, "error");
-		}
-	}; */
 
 	const crearLista = async (nombreLista) => {
 		try {
@@ -163,6 +169,7 @@ const ProveedorListas = ({ children }) => {
 	useEffect(() => {
 		if (usuario) {
 			obtenerListas();
+			obtenerTodasListas();
 		}
 	}, [usuario]);
 
@@ -177,6 +184,7 @@ const ProveedorListas = ({ children }) => {
 		agregarArticuloLista,
 		obtenerProductosLista,
 		eliminarArticuloLista,
+		todasListas,
 	};
 
 	return (
