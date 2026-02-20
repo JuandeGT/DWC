@@ -1,16 +1,18 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Inicio from "../pages/Inicio.jsx";
-import InicioSesion from "../pages/InicioSesion.jsx";
-import Registrarse from "../pages/Registrarse.jsx";
-import ListadoProductos from "../pages/ListadoProductos.jsx";
-import Error from "../pages/Error.jsx";
-import FormularioProducto from "../pages/FormularioProducto.jsx";
-import useSesion from "../hooks/useSesion.js";
-import ListasCompra from "../pages/ListasCompra.jsx";
-import FormularioLista from "../pages/FormularioLista.jsx";
-import AgregarALista from "../pages/AgregarALista.jsx";
-import Perfil from "../pages/Perfil.jsx";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Inicio from '../pages/Inicio.jsx';
+import InicioSesion from '../pages/InicioSesion.jsx';
+import Registrarse from '../pages/Registrarse.jsx';
+import ListadoProductos from '../pages/ListadoProductos.jsx';
+import Error from '../pages/Error.jsx';
+import FormularioProducto from '../pages/FormularioProducto.jsx';
+import useSesion from '../hooks/useSesion.js';
+import ListasCompra from '../pages/ListasCompra.jsx';
+import FormularioLista from '../pages/FormularioLista.jsx';
+import AgregarALista from '../pages/AgregarALista.jsx';
+import Perfil from '../pages/Perfil.jsx';
+import VerListaAdmin from '../pages/VerListaAdmin.jsx';
+import PanelRoles from '../pages/PanelRoles.jsx';
 
 const Rutas = () => {
 	const { sesionIniciada, administrador } = useSesion();
@@ -34,10 +36,9 @@ const Rutas = () => {
 				{administrador && (
 					<>
 						<Route path="/crear-producto" element={<FormularioProducto />} />
-						<Route
-							path="/editar-producto/:id"
-							element={<FormularioProducto />}
-						/>
+						<Route path="/editar-producto/:id" element={<FormularioProducto />} />
+						<Route path="/ver-lista/:id" element={<VerListaAdmin />} />
+						<Route path="/panel-roles" element={<PanelRoles />} />
 					</>
 				)}
 				<Route path="*" element={<Error />} />

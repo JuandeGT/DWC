@@ -1,28 +1,22 @@
-import React, { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import useSupabase from "../hooks/useSupabase.js";
-import useNotificacion from "../hooks/useNotificacion.js";
-import useSupaCRUD from "../hooks/useSupaCRUD.js";
+import React, { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useSupabase from '../hooks/useSupabase.js';
+import useNotificacion from '../hooks/useNotificacion.js';
+import useSupaCRUD from '../hooks/useSupaCRUD.js';
 
 const contextoSesion = createContext();
 
 const ProveedorSesion = ({ children }) => {
-	const {
-		crearCuentaSupa,
-		iniciarSesionSupa,
-		obtenerUsuarioSupa,
-		cerrarSesionSupa,
-		suscripcion,
-	} = useSupabase();
+	const { crearCuentaSupa, iniciarSesionSupa, obtenerUsuarioSupa, cerrarSesionSupa, suscripcion } = useSupabase();
 
-	const { obtenerColumnaSupa } = useSupaCRUD("roles");
+	const { obtenerColumnaSupa, obtenerSupa, editarSupa, cargando } = useSupaCRUD('roles');
 
 	const { notificar } = useNotificacion();
 
 	const sesionInicial = {
-		email: "",
-		password: "",
-		name: "",
+		email: '',
+		password: '',
+		name: '',
 	};
 
 	const navegar = useNavigate();
@@ -31,26 +25,27 @@ const ProveedorSesion = ({ children }) => {
 	const [usuario, setUsuario] = useState(null);
 	const [sesionIniciada, setSesionIniciada] = useState(false);
 	const [administrador, setAdministrador] = useState(false);
+	const [roles, setRoles] = useState([]);
 
 	const crearCuenta = async () => {
 		try {
 			await crearCuentaSupa(datosSesion);
 
-			notificar("Recibirás un correo para confirmar la cuenta.");
+			notificar('Recibirás un correo para confirmar la cuenta.');
 			setDatosSesion(sesionInicial);
 		} catch (error) {
-			notificar(error.message, "error");
+			notificar(error.message, 'error');
 		}
 	};
 
 	const iniciarSesion = async () => {
 		try {
 			await iniciarSesionSupa(datosSesion);
-			notificar("Sesión iniciada correctamente.");
+			notificar('Sesión iniciada correctamente.');
 			setDatosSesion(sesionInicial);
-			navegar("/listado-productos");
+			navegar('/listado-productos');
 		} catch (error) {
-			notificar(error.message, "error");
+			notificar(error.message, 'error');
 		}
 	};
 
@@ -59,10 +54,10 @@ const ProveedorSesion = ({ children }) => {
 			await cerrarSesionSupa();
 			setDatosSesion(sesionInicial);
 			// Se redirige al usuario a la parte pública.
-			navegar("/");
-			notificar("Sesión cerrada correctamente.");
+			navegar('/');
+			notificar('Sesión cerrada correctamente.');
 		} catch (error) {
-			notificar(error.message, "error");
+			notificar(error.message, 'error');
 		}
 	};
 
@@ -70,7 +65,7 @@ const ProveedorSesion = ({ children }) => {
 		try {
 			const user = await obtenerUsuarioSupa();
 			if (user) {
-				const datosRol = await obtenerColumnaSupa("id_rol", user.id);
+				const datosRol = await obtenerColumnaSupa('id_rol', user.id);
 
 				const usuarioCompleto = {
 					...user,
@@ -79,16 +74,47 @@ const ProveedorSesion = ({ children }) => {
 
 				setUsuario(usuarioCompleto);
 				// Al obtener el usuario comprobamos si es administrador
-				if (usuarioCompleto.rol === "administrador") {
+				if (usuarioCompleto.rol === 'administrador') {
 					setAdministrador(true);
 				} else {
 					setAdministrador(false);
 				}
 			} else {
-				notificar("No se encuentra el usuario actual", "error");
+				notificar('No se encuentra el usuario actual', 'error');
 			}
 		} catch (error) {
-			notificar(error.message, "error");
+			notificar(error.message, 'error');
+		}
+	};
+
+	const obtenerTodosRoles = async () => {
+		if (administrador) {
+			try {
+				const datos = await obtenerSupa();
+				if (datos) {
+					setRoles(datos);
+				}
+			} catch (error) {
+				notificar(error.message, 'error');
+			}
+		}
+	};
+
+	const cambiarRol = async (id_rol, rolNuevo) => {
+		try {
+			const datos = {
+				id_rol: id_rol,
+				rol: rolNuevo,
+			};
+
+			await editarSupa(datos, 'id_rol');
+
+			const rolesNuevos = roles.map((r) => (r.id_rol === id_rol ? { ...r, rol: rolNuevo } : r));
+			setRoles(rolesNuevos);
+
+			notificar(`Rol actualizado a ${rolNuevo}.`);
+		} catch (error) {
+			notificar(error.message, 'error');
 		}
 	};
 
@@ -117,13 +143,13 @@ const ProveedorSesion = ({ children }) => {
 		sesionIniciada,
 		usuario,
 		administrador,
+		roles,
+		obtenerTodosRoles,
+		cambiarRol,
+		cargando,
 	};
 
-	return (
-		<contextoSesion.Provider value={datosProveer}>
-			{children}
-		</contextoSesion.Provider>
-	);
+	return <contextoSesion.Provider value={datosProveer}>{children}</contextoSesion.Provider>;
 };
 
 export default ProveedorSesion;

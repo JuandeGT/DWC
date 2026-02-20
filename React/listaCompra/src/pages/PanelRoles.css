@@ -1,0 +1,117 @@
+.panel-roles-wrapper {
+	padding: 40px 20px;
+	max-width: 900px;
+	margin: 0 auto;
+	color: #e0e0e0;
+}
+
+.panel-roles-header {
+	border-bottom: 1px solid #333;
+	padding-bottom: 15px;
+	margin-bottom: 25px;
+}
+
+.panel-roles-header h2 {
+	color: #bb86fc;
+	margin: 0 0 10px 0;
+	font-size: 1.8rem;
+}
+
+.panel-roles-header p {
+	color: #aaa;
+	margin: 0;
+}
+
+.panel-roles-content {
+	background-color: #1e1e1e;
+	border-radius: 8px;
+	border: 1px solid #333;
+	padding: 20px;
+}
+
+.panel-roles-vacio {
+	text-align: center;
+	color: #aaa;
+	padding: 20px 0;
+}
+
+.tabla-responsive {
+	overflow-x: auto;
+}
+
+.tabla-roles {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+}
+
+.tabla-roles th,
+.tabla-roles td {
+	padding: 15px;
+	border-bottom: 1px solid #333;
+}
+
+.tabla-roles th {
+	color: #03dac6;
+	text-transform: uppercase;
+	font-size: 0.85rem;
+	letter-spacing: 1px;
+	border-bottom: 2px solid #333;
+}
+
+.tabla-roles tr:last-child td {
+	border-bottom: none;
+}
+
+.tabla-roles tr:hover {
+	background-color: #252525;
+}
+
+.td-email {
+	font-weight: 500;
+	color: #fff;
+	letter-spacing: 0.5px;
+}
+
+.badge-rol {
+	padding: 6px 12px;
+	border-radius: 20px;
+	font-size: 0.8rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	display: inline-block;
+}
+
+.badge-rol.administrador {
+	background-color: rgba(187, 134, 252, 0.15);
+	color: #bb86fc;
+	border: 1px solid rgba(187, 134, 252, 0.3);
+}
+
+.badge-rol.usuario {
+	background-color: rgba(3, 218, 198, 0.1);
+	color: #03dac6;
+	border: 1px solid rgba(3, 218, 198, 0.2);
+}
+
+.select-cambiar-rol {
+	background-color: #2d2d2d;
+	color: #fff;
+	border: 1px solid #555;
+	padding: 8px 12px;
+	border-radius: 4px;
+	cursor: pointer;
+	outline: none;
+	transition: border-color 0.2s;
+	font-size: 0.9rem;
+}
+
+.select-cambiar-rol:focus,
+.select-cambiar-rol:hover {
+	border-color: #bb86fc;
+}
+
+.select-cambiar-rol option {
+	background-color: #2d2d2d;
+	color: #fff;
+}

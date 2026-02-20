@@ -30,6 +30,35 @@
 	border: 1px solid #03dac6;
 }
 
+.controles-admin {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-right: 15px;
+	border-right: 1px solid #333;
+	padding-right: 15px;
+}
+
+.btn-admin-roles {
+	background-color: transparent;
+	color: #bb86fc;
+	border: 1px solid #bb86fc;
+	padding: 6px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 0.85rem;
+	font-weight: bold;
+	transition: all 0.2s ease;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.btn-admin-roles:hover {
+	background-color: rgba(187, 134, 252, 0.15);
+	transform: translateY(-2px);
+}
+
 .img-usuario {
 	width: 35px;
 	height: 35px;

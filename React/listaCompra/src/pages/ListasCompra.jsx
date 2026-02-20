@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import useListas from "../hooks/useListas.js";
-import useSesion from "../hooks/useSesion.js";
-import Cargando from "./Cargando.jsx";
-import Lista from "./Lista.jsx";
-import "./ListasCompra.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useListas from '../hooks/useListas.js';
+import useSesion from '../hooks/useSesion.js';
+import Cargando from './Cargando.jsx';
+import Lista from './Lista.jsx';
+import './ListasCompra.css';
 
 const ListasCompra = () => {
 	const { listas, todasListas, cargando } = useListas();
@@ -24,10 +24,7 @@ const ListasCompra = () => {
 								<h2>Listas Compra</h2>
 								{administrador && (
 									<>
-										<button
-											className="btn-cambiar-listas"
-											onClick={() => setVerTodas(false)}
-										>
+										<button className="btn-cambiar-listas" onClick={() => setVerTodas(false)}>
 											Ver mis listas
 										</button>
 									</>
@@ -40,7 +37,7 @@ const ListasCompra = () => {
 									{!todasListas || todasListas.length === 0 ? (
 										<p>No hay listas disponibles.</p>
 									) : (
-										todasListas.map((l) => <Lista key={l.id} lista={l} />)
+										todasListas.map((l) => <Lista key={l.id} lista={l} vistaAdmin={true} />)
 									)}
 								</div>
 							)}
@@ -55,23 +52,14 @@ const ListasCompra = () => {
 								<h2>Listas Compra</h2>
 								{administrador && (
 									<>
-										<button
-											className="btn-cambiar-listas"
-											onClick={() => setVerTodas(true)}
-										>
+										<button className="btn-cambiar-listas" onClick={() => setVerTodas(true)}>
 											Ver todas listas
 										</button>
 									</>
 								)}
 								{sesionIniciada && (
-									<button
-										className="btn-crear-lista"
-										onClick={() => navegar("/crear-lista")}
-									>
-										<img
-											src="https://cdn-icons-png.flaticon.com/512/992/992651.png"
-											alt="Crear"
-										/>
+									<button className="btn-crear-lista" onClick={() => navegar('/crear-lista')}>
+										<img src="https://cdn-icons-png.flaticon.com/512/992/992651.png" alt="Crear" />
 									</button>
 								)}
 							</div>
@@ -82,7 +70,7 @@ const ListasCompra = () => {
 									{!listas || listas.length === 0 ? (
 										<p>No hay listas disponibles.</p>
 									) : (
-										listas.map((l) => <Lista key={l.id} lista={l} />)
+										listas.map((l) => <Lista key={l.id} lista={l} vistaAdmin={false} />)
 									)}
 								</div>
 							)}

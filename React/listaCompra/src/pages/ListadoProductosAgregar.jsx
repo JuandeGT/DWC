@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import useProductos from "../hooks/useProductos.js";
-import useSesion from "../hooks/useSesion.js";
-import useListas from "../hooks/useListas.js";
-import MostrarProducto from "./MostrarProducto.jsx";
-import Cargando from "./Cargando.jsx";
-import FiltrarProducto from "./FiltrarProducto.jsx";
-import { formatearPrecio } from "../utils/formatear.js";
-import "./ListadoProductosAgregar.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useProductos from '../hooks/useProductos.js';
+import useSesion from '../hooks/useSesion.js';
+import useListas from '../hooks/useListas.js';
+import MostrarProducto from './MostrarProducto.jsx';
+import Cargando from './Cargando.jsx';
+import FiltrarProducto from './FiltrarProducto.jsx';
+import { formatearPrecio } from '../utils/formatear.js';
+import './ListadoProductosAgregar.css';
 
 const ListadoProductosAgregar = ({ listaActual }) => {
 	const { productosListado, cargando } = useProductos();
@@ -40,9 +40,7 @@ const ListadoProductosAgregar = ({ listaActual }) => {
 
 	const calcularPrecio = () => {
 		let precioMedio = 0;
-		productosListado.forEach(
-			(producto) => (precioMedio += Number(producto.precio)),
-		);
+		productosListado.forEach((producto) => (precioMedio += Number(producto.precio)));
 		return precioMedio / productosListado.length || 0;
 	};
 	return (
@@ -51,14 +49,8 @@ const ListadoProductosAgregar = ({ listaActual }) => {
 				<div className="cabecera-lista">
 					<h2>Lista Productos</h2>
 					{administrador && (
-						<button
-							className="btn-crear-nuevo"
-							onClick={() => navegar("/crear-producto")}
-						>
-							<img
-								src="https://cdn-icons-png.flaticon.com/512/992/992651.png"
-								alt="Crear"
-							/>
+						<button className="btn-crear-nuevo" onClick={() => navegar('/crear-producto')}>
+							<img src="https://cdn-icons-png.flaticon.com/512/992/992651.png" alt="Crear" />
 						</button>
 					)}
 				</div>
@@ -74,10 +66,7 @@ const ListadoProductosAgregar = ({ listaActual }) => {
 								productosListado.map((p) => (
 									<div key={p.id} className="producto-card">
 										<div className="producto-imagen">
-											<img
-												src={p.imagen_url ? p.imagen_url : "https://"}
-												alt={p.nombre}
-											/>
+											<img src={p.imagen_url ? p.imagen_url : 'https://'} alt={p.nombre} />
 										</div>
 
 										<div className="producto-info">
@@ -85,43 +74,23 @@ const ListadoProductosAgregar = ({ listaActual }) => {
 											<span className="peso">{p.peso} kg</span>
 
 											<div className="card-footer-agregar">
-												<span className="precio">
-													{formatearPrecio(p.precio)}
-												</span>
+												<span className="precio">{formatearPrecio(p.precio)}</span>
 
-												<div style={{ display: "flex", alignItems: "center" }}>
+												<div style={{ display: 'flex', alignItems: 'center' }}>
 													{/* Selector - 1 + */}
 													<div className="selector-cantidad">
-														<button
-															className="btn-cantidad"
-															onClick={() => modificarCantidad(p.id, -1)}
-														>
+														<button className="btn-cantidad" onClick={() => modificarCantidad(p.id, -1)}>
 															-
 														</button>
 
-														<div className="input-cantidad-visual">
-															{cantidades[p.id] || 1}
-														</div>
+														<div className="input-cantidad-visual">{cantidades[p.id] || 1}</div>
 
-														<button
-															className="btn-cantidad"
-															onClick={() => modificarCantidad(p.id, 1)}
-														>
+														<button className="btn-cantidad" onClick={() => modificarCantidad(p.id, 1)}>
 															+
 														</button>
 													</div>
-
-													{/* Botón Añadir */}
-													<button
-														className="btn-add-carrito"
-														title="Añadir a la lista"
-														onClick={() => agregar(p.id)}
-													>
-														{/* Icono de Más (+) */}
-														<img
-															src="https://cdn-icons-png.flaticon.com/512/3524/3524388.png"
-															alt="+"
-														/>
+													<button className="btn-add-carrito" title="Añadir a la lista" onClick={() => agregar(p.id)}>
+														<img src="https://cdn-icons-png.flaticon.com/512/3524/3524388.png" alt="+" />
 													</button>
 												</div>
 											</div>

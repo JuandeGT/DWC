@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import useSesion from "../hooks/useSesion.js";
-import usePerfil from "../hooks/usePerfil.js";
-import Confirmacion from "./Confirmacion.jsx";
-import "./Cabecera.css";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import useSesion from '../hooks/useSesion.js';
+import usePerfil from '../hooks/usePerfil.js';
+import Confirmacion from './Confirmacion.jsx';
+import './Cabecera.css';
 
 const Cabecera = () => {
 	const { sesionIniciada, administrador, cerrarSesion } = useSesion();
@@ -39,16 +39,27 @@ const Cabecera = () => {
 
 				{sesionIniciada ? (
 					<div className="datos-usuario">
-						{administrador && <span className="admin">Administrador</span>}
+						{administrador && (
+							<div className="controles-admin">
+								<span className="admin">Administrador</span>
+								<button
+									className="btn-admin-roles"
+									onClick={() => navegar('/panel-roles')}
+									title="Gestionar roles de usuarios"
+								>
+									⚙️ Roles
+								</button>
+							</div>
+						)}
 						<img
 							src={
 								perfil?.avatar ||
-								"https://t4.ftcdn.net/jpg/11/68/50/57/360_F_1168505794_IBCEiafsIrHFJ09e65P2vh5115C1XI7e.jpg"
+								'https://t4.ftcdn.net/jpg/11/68/50/57/360_F_1168505794_IBCEiafsIrHFJ09e65P2vh5115C1XI7e.jpg'
 							}
 							alt="Avatar usuario"
 							className="img-usuario"
 							onClick={() => {
-								navegar("/perfil");
+								navegar('/perfil');
 							}}
 						/>
 						<button onClick={cerrar} className="btn-cerrar">

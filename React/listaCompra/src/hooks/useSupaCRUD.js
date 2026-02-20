@@ -33,8 +33,8 @@ const useSupaCRUD = (tabla) => {
 		await consulta(supabaseConexion.from(tabla).insert(datos));
 	};
 
-	const editarSupa = async (datos) => {
-		await consulta(supabaseConexion.from(tabla).update(datos).eq('id', datos.id));
+	const editarSupa = async (datos, columnaID = 'id') => {
+		await consulta(supabaseConexion.from(tabla).update(datos).eq(columnaID, datos[columnaID]));
 	};
 
 	const eliminarSupa = async (id) => {

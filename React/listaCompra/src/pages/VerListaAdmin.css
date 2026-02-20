@@ -1,0 +1,118 @@
+.admin-lista-wrapper {
+	padding: 40px 20px;
+	max-width: 900px;
+	margin: 0 auto;
+	color: #e0e0e0;
+}
+
+.admin-lista-btn-volver {
+	background: transparent;
+	color: #bb86fc;
+	padding: 8px 16px;
+	border-radius: 4px;
+	border: 1px solid #bb86fc;
+	cursor: pointer;
+	margin-bottom: 20px;
+	font-weight: bold;
+	transition: all 0.2s ease;
+}
+
+.admin-lista-btn-volver:hover {
+	background: rgba(187, 134, 252, 0.1);
+	transform: translateY(-2px);
+}
+
+.admin-lista-header {
+	border-bottom: 1px solid #333;
+	padding-bottom: 15px;
+	margin-bottom: 20px;
+}
+
+.admin-lista-header h2 {
+	color: #03dac6;
+	margin: 0 0 10px 0;
+}
+
+.admin-lista-creador {
+	margin: 0;
+	color: #aaa;
+}
+
+.admin-lista-creador strong {
+	color: #fff;
+}
+
+.admin-lista-content {
+	background: #1e1e1e;
+	padding: 20px;
+	border-radius: 8px;
+	border: 1px solid #333;
+}
+
+.admin-lista-vacia {
+	text-align: center;
+	color: #aaa;
+	padding: 20px 0;
+	margin: 0;
+}
+
+.admin-lista-items {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.admin-lista-card {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: #252525;
+	padding: 15px;
+	border-radius: 8px;
+	border: 1px solid #444;
+}
+
+.admin-lista-card-info {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.admin-lista-card-info img {
+	width: 60px;
+	height: 60px;
+	object-fit: contain;
+	background: #fff;
+	border-radius: 4px;
+	padding: 2px;
+}
+
+.admin-lista-card-info h3 {
+	margin: 0 0 5px 0;
+	font-size: 1.1rem;
+	color: #fff;
+}
+
+.admin-lista-card-info span {
+	font-size: 0.85rem;
+	color: #999;
+	background: #333;
+	padding: 2px 6px;
+	border-radius: 4px;
+}
+
+.admin-lista-card-totales {
+	text-align: right;
+}
+
+.admin-lista-cantidad {
+	font-size: 1.2rem;
+	color: #03dac6;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.admin-lista-precio {
+	font-size: 0.9rem;
+	color: #aaa;
+}

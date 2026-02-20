@@ -1,7 +1,6 @@
-/* Contenedor principal específico para Listas */
 .listado-listas-grid {
 	display: grid;
-	grid-template-columns: 1fr; /* Una sola columna ancha */
+	grid-template-columns: 1fr;
 	gap: 20px;
 	height: 100%;
 	align-items: start;
@@ -73,15 +72,12 @@
 	box-shadow: 0 0 15px rgba(3, 218, 198, 0.7);
 }
 
-/* Contenedor vertical de items */
 .contenedor-listas-vertical {
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
 }
 
-/* --- TARJETA DE LISTA (FILA) --- */
-/* Usamos un nombre distinto a 'producto-card' para no romper el otro */
 .lista-compra-card {
 	display: flex;
 	justify-content: space-between;
@@ -110,7 +106,12 @@
 	font-weight: 500;
 }
 
-/* Iconos específicos para listas */
+.creador-lista {
+	margin: 5px 0 0 0;
+	font-size: 0.85rem;
+	color: #aaa;
+}
+
 .acciones-lista {
 	display: flex;
 	gap: 15px;
@@ -123,15 +124,13 @@
 	cursor: pointer;
 	transition: all 0.3s ease;
 	object-fit: contain;
-	/* Filtro Lila */
-	filter: invert(66%) sepia(35%) saturate(885%) hue-rotate(224deg)
-		brightness(99%) contrast(96%);
+	filter: invert(66%) sepia(35%) saturate(885%) hue-rotate(224deg) brightness(99%) contrast(96%);
 }
 
 .icono-lista-editar:hover {
 	transform: scale(1.15);
-	filter: invert(66%) sepia(35%) saturate(885%) hue-rotate(224deg)
-		brightness(120%) contrast(96%) drop-shadow(0 0 5px #bb86fc);
+	filter: invert(66%) sepia(35%) saturate(885%) hue-rotate(224deg) brightness(120%) contrast(96%)
+		drop-shadow(0 0 5px #bb86fc);
 }
 
 .icono-lista-borrar {
@@ -140,13 +139,11 @@
 	cursor: pointer;
 	transition: all 0.3s ease;
 	object-fit: contain;
-	/* Filtro Rojo */
-	filter: invert(56%) sepia(61%) saturate(541%) hue-rotate(308deg)
-		brightness(87%) contrast(93%);
+	filter: invert(56%) sepia(61%) saturate(541%) hue-rotate(308deg) brightness(87%) contrast(93%);
 }
 
 .icono-lista-borrar:hover {
 	transform: scale(1.15);
-	filter: invert(56%) sepia(61%) saturate(541%) hue-rotate(308deg)
-		brightness(110%) contrast(93%) drop-shadow(0 0 5px #cf6679);
+	filter: invert(56%) sepia(61%) saturate(541%) hue-rotate(308deg) brightness(110%) contrast(93%)
+		drop-shadow(0 0 5px #cf6679);
 }
